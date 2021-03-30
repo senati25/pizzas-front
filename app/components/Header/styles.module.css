@@ -1,0 +1,18 @@
+.mainHeader {
+  background-color: #da5050;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 3%;
+  align-items: center;
+  position: sticky;
+  box-shadow: 0 0 3px #625f6f;
+  top: 0;
+  z-index: 1;
+  overflow: hidden;
+}
+
+@media only screen and (min-width: 768px) {
+  .mainHeader {
+    height: 6rem;
+  }
+}
