@@ -1,5 +1,5 @@
-import { memo, useState } from 'react';
 import Link from 'next/link';
+import { memo } from 'react';
 import styles from './styles.module.css';
 
 const NavGrid = memo(() => (
@@ -27,31 +27,4 @@ const NavGrid = memo(() => (
   </ul>
 ));
 
-const Nav = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleIsOpen = () => {
-    setIsOpen(!isOpen);
-  };
-
-  return (
-    <>
-      <nav
-        className={`${styles.mainHeader__nav} ${isOpen && styles.openNav}`}
-        onMouseUp={handleIsOpen}
-      >
-        <NavGrid />
-      </nav>
-
-      <button
-        type="button"
-        className={`${styles.iconContainer} ${styles.hamburger}`}
-        onClick={handleIsOpen}
-      >
-        <i className="fas fa-bars fa-2x"></i>
-      </button>
-    </>
-  );
-};
-
-export default Nav;
+export default NavGrid;
