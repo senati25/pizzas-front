@@ -3,6 +3,7 @@ import Header from '../app/components/Header';
 import Hero from '../app/components/Hero';
 import Footer from '../app/components/Footer';
 import styles from '../styles/Home.module.css';
+import Offers from '../app/components/Offers';
 
 const Home = () => {
   return (
@@ -11,11 +12,14 @@ const Home = () => {
         <title>Pizzas</title>
         <link rel="icon" href="/images/brand-logo.png" />
       </Head>
+
       <Header />
 
-      <div className={styles.mainContent}>
+      <main className={styles.mainContent}>
         <Hero />
-      </div>
+        <Offers />
+      </main>
+
       <Footer />
     </div>
   );

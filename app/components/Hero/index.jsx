@@ -17,13 +17,12 @@ const Hero = () => {
           Ven a <strong>InViaggios</strong> donde disfrutaras de las pizzas mas
           deliciosas
         </h1>
-        <div>
+        <div className={styles.main__img}>
           <Image
-            alt="pizza combo"
-            src="/images/combo-hero.png"
-            width={300}
-            height={330}
-            layout="intrinsic"
+            src="/images/hero-main.png"
+            layout="responsive"
+            width={20}
+            height={20}
           />
         </div>
       </div>

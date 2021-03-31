@@ -39,6 +39,12 @@ strong {
   font-weight: 600;
   text-shadow: 1px 1px 2px #fc4c4c;
 }
+button {
+  background-color: transparent;
+  border-color: transparent;
+  border: none;
+  outline: none;
+}
 
 /* #__next {
   background-color: aqua;
