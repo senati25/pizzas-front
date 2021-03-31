@@ -1,7 +1,7 @@
 import Head from 'next/head';
-
 import Header from '../app/components/Header';
 import Hero from '../app/components/Hero';
+import Footer from '../app/components/Footer';
 import styles from '../styles/Home.module.css';
 
 const Home = () => {
@@ -16,7 +16,7 @@ const Home = () => {
       <div className={styles.mainContent}>
         <Hero />
       </div>
-      <footer>Footer</footer>
+      <Footer />
     </div>
   );
 };
