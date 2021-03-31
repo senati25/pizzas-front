@@ -6,6 +6,7 @@ body,
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 
 a {
@@ -17,8 +18,6 @@ body {
   line-height: 1.5;
   max-width: 100vw;
   min-height: 100vh;
-  /* background-color: aquamarine; */
-  box-sizing: border-box;
   font-family: 'Nunito', sans-serif;
 }
 

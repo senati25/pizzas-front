@@ -11,6 +11,10 @@
   overflow: hidden;
 }
 
+.shoppingCartIcon {
+  color: #2e2e2e;
+}
+
 @media only screen and (min-width: 768px) {
   .mainHeader {
     height: 6rem;
