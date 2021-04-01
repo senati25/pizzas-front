@@ -14,7 +14,7 @@ const NavGrid = memo(() => (
         <a className={styles.nav__link}>Productos</a>
       </Link>
     </li>
-    <li className={styles.nav__gridItem}>
+    {/* <li className={styles.nav__gridItem}>
       <Link href="/ofertas">
         <a className={styles.nav__link}>Ofertas</a>
       </Link>
@@ -23,7 +23,7 @@ const NavGrid = memo(() => (
       <Link href="/contacto">
         <a className={styles.nav__link}>Contacto</a>
       </Link>
-    </li>
+    </li> */}
   </ul>
 ));
 

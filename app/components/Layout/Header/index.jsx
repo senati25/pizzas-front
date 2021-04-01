@@ -18,8 +18,8 @@ const Header = () => (
 
     <ul>
       <li>
-        <Link href="/">
-          <a className={styles.shoppingCartIcon} href="/">
+        <Link href="/shoping-cart">
+          <a className={styles.shoppingCartIcon}>
             <i className="fas fa-shopping-cart fa-2x"></i>
           </a>
         </Link>

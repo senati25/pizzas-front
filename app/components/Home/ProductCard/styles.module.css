@@ -2,16 +2,23 @@
   background-color: #f5f5f5;
   filter: drop-shadow(0px 0px 5px rgba(35, 30, 54, 0.25));
   border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
 }
 
-.productCard__Content {
+.productCard__content {
   margin: 1rem;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
 }
 
 .productCard__title {
   font-size: 1.3rem;
-  margin: 1rem 0;
+}
+.productCard__img {
+  width: 100%;
 }
 .productCard__description {
   margin: 1rem 0;
@@ -28,7 +35,9 @@
   color: #231e36;
   transition: all 0.3s ease-in-out;
   font-weight: bold;
+  margin-top: auto;
 }
+
 .productCard__button:hover {
   background-color: #fc4c4c;
   color: #f5f5f5;

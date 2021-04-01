@@ -31,11 +31,11 @@
 @media only screen and (min-width: 768px) {
   .nav__grid {
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: center;
   }
 
   .nav__gridItem {
-    margin: 0;
+    margin: 1rem;
     position: relative;
   }
 
