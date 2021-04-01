@@ -1,0 +1,29 @@
+.offers {
+  padding: 1.5rem;
+  align-self: stretch;
+}
+.offers__wrapper {
+  margin: auto;
+  max-width: 1500px;
+}
+
+.offers__title {
+  font-weight: bold;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.offersGrid {
+  min-width: 1rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  row-gap: 1.5rem;
+  column-gap: 1.5rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .offers {
+    padding: 3rem;
+  }
+}
