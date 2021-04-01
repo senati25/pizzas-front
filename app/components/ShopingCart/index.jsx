@@ -1,5 +1,5 @@
 import React from 'react';
 
-const ShopingCart = () => <div>dssdds</div>;
+const ShopingCart = () => <div>ShopingCart</div>;
 
 export default ShopingCart;
