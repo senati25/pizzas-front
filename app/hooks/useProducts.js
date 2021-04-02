@@ -4,7 +4,7 @@ const useProducts = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/productos')
+    fetch('https://inviaggio-api.vercel.app/api/index.php/api/productos')
       .then((response) => response.json())
       .then((data) => setProducts(data));
   }, []);

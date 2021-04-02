@@ -1,5 +1,3 @@
-import React from 'react';
-
-const ShopingCart = () => <div>ShopingCart</div>;
+const ShopingCart = () => <div>shoppingCart</div>;
 
 export default ShopingCart;

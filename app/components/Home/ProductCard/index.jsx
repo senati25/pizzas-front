@@ -31,7 +31,6 @@ ProductCard.propTypes = {
     description: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
   }).isRequired,
-
   addProduct: PropTypes.func.isRequired,
 };
 

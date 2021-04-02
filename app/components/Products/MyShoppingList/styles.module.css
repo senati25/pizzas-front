@@ -1,0 +1,73 @@
+.myShoppingList__content {
+  background: #f8f8f8;
+  box-shadow: 0px 2px 5px 1px rgba(35, 30, 54, 0.5);
+  margin-bottom: 2rem;
+  max-width: 25rem;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  margin: 0 auto 2rem auto;
+}
+
+.myShoppingList__title {
+  font-size: 1.2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.customTable {
+  width: 100%;
+  background-color: #ffffff;
+}
+
+.customTable td,
+.customTable th {
+  padding: 0.5rem;
+}
+
+.customTable th {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.customTable thead {
+  background-color: #ffffff;
+}
+
+.table__body * {
+  border-bottom: 1px solid#c7c7c7;
+}
+
+.table__body tr:last-child {
+  border-bottom-width: 5px;
+  border-bottom-color: transparent;
+}
+
+td.header__number,
+td.data__quantity {
+  min-width: 2.5rem;
+}
+
+td.data__quantity {
+  text-align: right;
+}
+
+td.data__info {
+  text-align: right;
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+td.data__price {
+  text-align: right;
+}
+
+.infoMessage {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  text-align: center;
+  min-height: 10rem;
+  justify-content: space-evenly;
+}
