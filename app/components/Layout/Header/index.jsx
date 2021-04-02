@@ -5,14 +5,16 @@ import styles from './styles.module.css';
 
 const Header = () => (
   <header className={styles.mainHeader}>
-    <span className={styles.mainHeader__logo}>
-      <Image
-        alt="brand logo"
-        src="/images/brand-logo.png"
-        width={70}
-        height={70}
-      />
-    </span>
+    <Link href="/">
+      <a className={styles.mainHeader__logo}>
+        <Image
+          alt="brand logo"
+          src="/images/brand-logo.png"
+          width={70}
+          height={70}
+        />
+      </a>
+    </Link>
 
     <Nav />
 
