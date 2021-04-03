@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import ProductsGrid from './ProductsGrid';
 import Search from './Search';
 import styles from './styles.module.css';
@@ -11,9 +12,11 @@ const Products = () => (
       <div className={styles.products__content}>
         <div className={styles.myProducts__wrapper}>
           <div className={styles.myProducts}>
-            <button className={styles.myProducts__button} type="button">
-              Ir al carrito
-            </button>
+            <Link href="shoping-cart">
+              <button className={styles.myProducts__button} type="button">
+                Ir al carrito
+              </button>
+            </Link>
             <MyShoppingList />
           </div>
         </div>
