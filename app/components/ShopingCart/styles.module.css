@@ -1,0 +1,117 @@
+.shopingCart__wrapper {
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+}
+
+.shopingCart {
+  max-width: 1500px;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+}
+
+.shopingCart__title {
+  font-weight: bold;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.shopingCart__content {
+  width: 100%;
+  background-color: #f8f8f8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 5px black;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.listProductsGrid {
+  display: flex;
+  flex-direction: column;
+  height: 60vh;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.listProductsGrid__item {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  border-bottom: 1px solid#c7c7c7;
+}
+
+.listProductsGrid__item:last-child {
+  border-bottom: none;
+}
+
+.product__img {
+  width: 5rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.shopingCart__sidebar {
+  background-color: #f38a679f;
+  box-shadow: 0 0 5px black;
+
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
+
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}
+
+.sidebar__paragraph {
+  text-align: center;
+  margin: 1rem 0;
+  font-size: 1.2rem;
+  font-family: Lemonada, cursive;
+  font-weight: 600;
+}
+
+.sidebar__button {
+  background-color: #fc4c4c;
+  box-shadow: 12px 12px 24px rgba(252, 77, 77, 0.56);
+  color: #f8f8f8;
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 0.3rem 1rem;
+  border-radius: 0.5rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .shopingCart__content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    box-shadow: none;
+    overflow: initial;
+  }
+
+  .listProductsGrid {
+    height: auto;
+    overflow: auto;
+  }
+
+  .shopingCart__sidebar {
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-left: 1rem;
+    max-width: 40%;
+    box-shadow: none;
+    align-self: flex-start;
+    position: -webkit-sticky;
+    background-color: transparent;
+    position: sticky;
+    top: 6rem;
+    align-self: flex-start;
+  }
+}

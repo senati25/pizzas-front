@@ -88,6 +88,7 @@
     grid-column: 1 / span 9;
     grid-row: 1 / span 1;
   }
+
   .myProducts__wrapper {
     grid-column: 10 / span 3;
     grid-row: 1 / span 13;

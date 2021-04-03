@@ -7,7 +7,7 @@
   position: sticky;
   box-shadow: 0 0 3px #625f6f;
   top: 0;
-  z-index: 1;
+  z-index: 3;
   overflow: hidden;
 }
 
