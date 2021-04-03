@@ -1,19 +1,10 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import shoppingCartContext from '../context/shoppingCart';
 
 const useShoppingCart = () => {
   const { shoppingCartList, setShoppingCartList } = useContext(
     shoppingCartContext
   );
-
-  const saveToLocalStorage = () => {
-    if (window) {
-      localStorage.setItem(
-        'shoppingCartList',
-        JSON.stringify(shoppingCartList)
-      );
-    }
-  };
 
   const verifyProductAlreadyAdded = (product) =>
     shoppingCartList.some(({ id }) => id === product.id);
@@ -45,11 +36,17 @@ const useShoppingCart = () => {
     return total.toFixed(2);
   };
 
-  useEffect(() => {
-    saveToLocalStorage();
-  }, [shoppingCartList]);
+  const deleteProduct = (id) => {
+    shoppingCartList.splice(id, 1);
+    setShoppingCartList([...shoppingCartList]);
+  };
 
-  return { shoppingCartList, addProduct, totalCost: calculateTotal() };
+  return {
+    shoppingCartList,
+    addProduct,
+    deleteProduct,
+    totalCost: calculateTotal(),
+  };
 };
 
 export default useShoppingCart;

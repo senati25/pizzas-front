@@ -1,39 +1,53 @@
 import Image from 'next/image';
+import useShoppingCart from '../../hooks/useShoppingCart';
 import styles from './styles.module.css';
 
-const ShopingCart = () => (
-  <div className={styles.shopingCart__wrapper}>
-    <div className={styles.shopingCart}>
-      <h2 className={styles.shopingCart__title}>Carrito</h2>
+const ShopingCart = () => {
+  const { shoppingCartList, deleteProduct, totalCost } = useShoppingCart();
+  return (
+    <div className={styles.shopingCart__wrapper}>
+      <div className={styles.shopingCart}>
+        <h2 className={styles.shopingCart__title}>Carrito</h2>
 
-      <div className={styles.shopingCart__content}>
-        <div className={styles.listProductsGrid}>
-          {[1, 2, 3, 4, 5, 6].map((product) => (
-            <div key={product} className={styles.listProductsGrid__item}>
-              <div className={styles.product__img}>
-                <Image
-                  src="https://static.phdvasia.com/br/menu/combo/desktop_thumbnail_659ca17b-5b4c-407d-b8fc-cb763274d623.png"
-                  width={200}
-                  height={200}
-                  layout="responsive"
-                />
+        <div className={styles.shopingCart__content}>
+          <div className={styles.listProductsGrid}>
+            {shoppingCartList.map((product, i) => (
+              <div key={product.id} className={styles.listProductsGrid__item}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    deleteProduct(i);
+                  }}
+                >
+                  <i className="fas fa-times"></i>
+                </button>
+
+                <div className={styles.product__img}>
+                  <Image
+                    src={product.img}
+                    width={200}
+                    height={200}
+                    layout="responsive"
+                  />
+                </div>
+
+                <span>{product.quantity}</span>
+                <span>{product.name}</span>
+                <span>{(product.quantity * product.price).toFixed(2)}</span>
               </div>
-              <span>x5</span>
-              <span>Meat Lovers</span>
-              <span>S/ 58.00</span>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        <div className={styles.shopingCart__sidebar}>
-          <p className={styles.sidebar__paragraph}>Total S/ 145.00</p>
-          <button className={styles.sidebar__button} type="button">
-            Completar orden
-          </button>
+          <form className={styles.shopingCart__form}>
+            <p className={styles.form__paragraph}>{totalCost}</p>
+            <button className={styles.form__button} type="button">
+              Completar orden
+            </button>
+          </form>
         </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default ShopingCart;

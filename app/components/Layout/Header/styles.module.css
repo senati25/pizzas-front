@@ -13,6 +13,19 @@
 
 .shoppingCartIcon {
   color: #2e2e2e;
+  display: block;
+  position: relative;
+}
+
+.shoppingCartBadge {
+  position: absolute;
+  background-color: #fff;
+  border-radius: 5px;
+  top: -1rem;
+  right: -1rem;
+  /* right: inherit; */
+  padding: 0px 10px;
+  color: rgb(197, 0, 0);
 }
 
 @media only screen and (min-width: 768px) {

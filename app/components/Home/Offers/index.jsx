@@ -6,6 +6,7 @@ import styles from './styles.module.css';
 
 const Offers = () => {
   const { addProduct } = useShoppingCart();
+
   return (
     <section className={styles.offers}>
       <div className={styles.offers__wrapper}>
