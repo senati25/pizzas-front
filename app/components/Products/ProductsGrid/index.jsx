@@ -1,10 +1,11 @@
+import { memo } from 'react';
 import useProducts from '../../../hooks/useProducts';
 import useShoppingCart from '../../../hooks/useShoppingCart';
 import ProductCard from '../../Home/ProductCard';
 import Spinner from '../../shared/Spinner';
 import styles from './styles.module.css';
 
-const ProductsGrid = () => {
+const ProductsGrid = memo(() => {
   const { addProduct } = useShoppingCart();
   const { products, isLoading } = useProducts();
 
@@ -25,6 +26,6 @@ const ProductsGrid = () => {
       )}
     </>
   );
-};
+});
 
 export default ProductsGrid;

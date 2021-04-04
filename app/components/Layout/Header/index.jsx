@@ -1,14 +1,16 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { memo } from 'react';
+import ROUTES from '../../../helpers/constants';
 import useShoppingCart from '../../../hooks/useShoppingCart';
 import Nav from '../Nav';
 import styles from './styles.module.css';
 
-const Header = () => {
+const Header = memo(() => {
   const { shoppingCartList } = useShoppingCart();
   return (
     <header className={styles.mainHeader}>
-      <Link href="/">
+      <Link href={ROUTES.public.home}>
         <a className={styles.mainHeader__logo}>
           <Image
             alt="brand logo"
@@ -23,7 +25,7 @@ const Header = () => {
 
       <ul>
         <li>
-          <Link href="/shoping-cart">
+          <Link href={ROUTES.public.shoppingCart}>
             <a className={styles.shoppingCartIcon}>
               <i className="fas fa-shopping-cart fa-2x"></i>
               <span className={styles.shoppingCartBadge}>
@@ -35,6 +37,6 @@ const Header = () => {
       </ul>
     </header>
   );
-};
+});
 
 export default Header;
