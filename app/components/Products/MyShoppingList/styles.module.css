@@ -83,15 +83,7 @@ td.data__price {
   align-items: center;
   justify-content: center;
 }
+
 .deleteButton:hover button {
   background-color: rgba(255, 0, 0, 0.555);
-}
-
-.infoMessage {
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  text-align: center;
-  min-height: 10rem;
-  justify-content: space-evenly;
 }

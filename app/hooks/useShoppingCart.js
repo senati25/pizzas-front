@@ -41,11 +41,31 @@ const useShoppingCart = () => {
     setShoppingCartList([...shoppingCartList]);
   };
 
+  const plusOne = (index) => {
+    shoppingCartList[index].quantity += 1;
+    setShoppingCartList([...shoppingCartList]);
+  };
+
+  const minusOne = (index) => {
+    if (shoppingCartList[index].quantity !== 0) {
+      shoppingCartList[index].quantity -= 1;
+      setShoppingCartList([...shoppingCartList]);
+    }
+  };
+
+  const handleOnChange = (event, index) => {
+    shoppingCartList[index].quantity = parseInt(event.target.value, 10);
+    setShoppingCartList([...shoppingCartList]);
+  };
+
   return {
     shoppingCartList,
     addProduct,
     deleteProduct,
+    plusOne,
+    minusOne,
     totalCost: calculateTotal(),
+    handleOnChange,
   };
 };
 

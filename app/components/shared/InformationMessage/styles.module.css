@@ -1,0 +1,8 @@
+.infoMessage {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  text-align: center;
+  min-height: 10rem;
+  justify-content: space-evenly;
+}

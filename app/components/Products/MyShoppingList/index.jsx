@@ -1,4 +1,5 @@
 import useShoppingCart from '../../../hooks/useShoppingCart';
+import InformationMessage from '../../shared/InformationMessage';
 import styles from './styles.module.css';
 
 const MyShoppingList = () => {
@@ -48,10 +49,7 @@ const MyShoppingList = () => {
             </tbody>
           </table>
         ) : (
-          <div className={styles.infoMessage}>
-            <i className="fas fa-info-circle fa-3x"></i>
-            Aun no haz añadido ningún articulo
-          </div>
+          <InformationMessage messageText="Aun no haz añadido ningún articulo" />
         )}
       </div>
     </div>

@@ -1,7 +1,7 @@
 import useProducts from '../../../hooks/useProducts';
 import useShoppingCart from '../../../hooks/useShoppingCart';
+import ProductCard from '../../shared/ProductCard';
 import Spinner from '../../shared/Spinner';
-import ProductCard from '../ProductCard';
 import styles from './styles.module.css';
 
 const Offers = () => {

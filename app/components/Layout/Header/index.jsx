@@ -25,7 +25,7 @@ const Header = memo(() => {
 
       <ul>
         <li>
-          <Link href={ROUTES.public.shoppingCart}>
+          <Link href={`/${ROUTES.public.shoppingCart}`}>
             <a className={styles.shoppingCartIcon}>
               <i className="fas fa-shopping-cart fa-2x"></i>
               <span className={styles.shoppingCartBadge}>
