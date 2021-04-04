@@ -10,10 +10,10 @@ const ShoppingCartProductsGrid = ({
   minusOne,
   handleOnChange,
 }) => (
-  <div className={styles.ShoppingCartProductsGrid}>
+  <div className={styles.shoppingCartProductsGrid}>
     {shoppingCartList.length ? (
       shoppingCartList.map((product, index) => (
-        <div key={product.id} className={styles.ShoppingCartProductsGrid__item}>
+        <div key={product.id} className={styles.shoppingCartProductsGrid__item}>
           <button
             className={styles.deleteButton}
             type="button"

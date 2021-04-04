@@ -30,7 +30,7 @@
 }
 
 .shopingCart__form {
-  background-color: #f38a679f;
+  /* background-color: #f38a679f; */
   box-shadow: 0 0 5px black;
   border-radius: 0.5rem;
   border-top-left-radius: 0.3rem;
@@ -43,6 +43,7 @@
 }
 .shopingCart__form textarea {
   padding: 1rem;
+  border: 1px solid #c7c7c7;
   margin: 1rem;
 }
 
@@ -95,7 +96,7 @@
 
   .shopingCart__form textarea {
     margin-top: 2rem;
-    border: 1px solid #c7c7c7;
+
     order: 3;
   }
 }
