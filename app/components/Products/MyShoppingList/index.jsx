@@ -1,9 +1,11 @@
 import useShoppingCart from '../../../hooks/useShoppingCart';
+import useShoppingCartContext from '../../../hooks/useShoppingCartContext';
 import InformationMessage from '../../shared/InformationMessage';
 import styles from './styles.module.css';
 
 const MyShoppingList = () => {
-  const { shoppingCartList, totalCost, deleteProduct } = useShoppingCart();
+  const { shoppingCartList } = useShoppingCartContext();
+  const { totalCost, deleteProduct } = useShoppingCart();
 
   return (
     <div className={styles.myShoppingList}>
@@ -19,6 +21,7 @@ const MyShoppingList = () => {
                 <th>&nbsp;</th>
               </tr>
             </thead>
+
             <tbody className={styles.table__body}>
               {shoppingCartList.map((product, index) => (
                 <tr key={product.id}>
@@ -44,7 +47,9 @@ const MyShoppingList = () => {
                 <td colSpan="2" className={styles.data__info}>
                   Total
                 </td>
-                <td className={styles.data__info}>S/ {totalCost}</td>
+                <td colSpan="2" className={styles.data__info}>
+                  S/ {totalCost}
+                </td>
               </tr>
             </tbody>
           </table>

@@ -11,7 +11,8 @@ const useProducts = () => {
       .then((data) => {
         setIsLoading(false);
         setProducts(data);
-      });
+      })
+      .catch(console.error);
   }, []);
 
   return { products, isLoading };

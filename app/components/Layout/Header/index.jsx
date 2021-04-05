@@ -2,12 +2,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { memo } from 'react';
 import ROUTES from '../../../helpers/constants';
-import useShoppingCart from '../../../hooks/useShoppingCart';
+import useShoppingCartContext from '../../../hooks/useShoppingCartContext';
 import Nav from '../Nav';
 import styles from './styles.module.css';
 
 const Header = memo(() => {
-  const { shoppingCartList } = useShoppingCart();
+  const { shoppingCartLength } = useShoppingCartContext();
+
   return (
     <header className={styles.mainHeader}>
       <Link href={ROUTES.public.home}>
@@ -29,7 +30,7 @@ const Header = memo(() => {
             <a className={styles.shoppingCartIcon}>
               <i className="fas fa-shopping-cart fa-2x"></i>
               <span className={styles.shoppingCartBadge}>
-                {shoppingCartList.length}
+                {shoppingCartLength}
               </span>
             </a>
           </Link>

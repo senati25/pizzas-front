@@ -1,13 +1,12 @@
 /* eslint-disable react/prop-types */
 import Head from 'next/head';
-import { ChakraProvider } from '@chakra-ui/react';
 import ShopingCartProvider from '../app/Providers/ShoppingCartProvider';
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
   return (
     <ShopingCartProvider>
-      <ChakraProvider>
+      <>
         <Head>
           <meta
             name="viewport"
@@ -15,7 +14,7 @@ function MyApp({ Component, pageProps }) {
           />
         </Head>
         <Component {...pageProps} />
-      </ChakraProvider>
+      </>
     </ShopingCartProvider>
   );
 }

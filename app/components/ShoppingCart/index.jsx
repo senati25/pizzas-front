@@ -1,16 +1,12 @@
 import useShoppingCart from '../../hooks/useShoppingCart';
+import useShoppingCartContext from '../../hooks/useShoppingCartContext';
+import ShoppingCartForm from './ShoppingCartForm';
 import ShoppingCartProductsGrid from './ShoppingCartProductsGrid';
 import styles from './styles.module.css';
 
 const ShoppingCart = () => {
-  const {
-    shoppingCartList,
-    deleteProduct,
-    totalCost,
-    plusOne,
-    minusOne,
-    handleOnChange,
-  } = useShoppingCart();
+  const { shoppingCartList } = useShoppingCartContext();
+  const { deleteProduct, totalCost, shoppingCardActions } = useShoppingCart();
 
   return (
     <div className={styles.shopingCart__wrapper}>
@@ -22,26 +18,11 @@ const ShoppingCart = () => {
             <ShoppingCartProductsGrid
               shoppingCartList={shoppingCartList}
               deleteProduct={deleteProduct}
-              plusOne={plusOne}
-              minusOne={minusOne}
-              handleOnChange={handleOnChange}
+              shoppingCardActions={shoppingCardActions}
             />
           </div>
 
-          <form className={styles.shopingCart__form}>
-            <textarea
-              placeholder="Dejanos un mensaje"
-              name="message"
-              id=""
-              // cols="0"
-              rows="5"
-              maxLength="250"
-            ></textarea>
-            <p className={styles.form__paragraph}>S/ {totalCost}</p>
-            <button className={styles.form__button} type="button">
-              Completar orden
-            </button>
-          </form>
+          <ShoppingCartForm totalCost={totalCost} />
         </div>
       </div>
     </div>

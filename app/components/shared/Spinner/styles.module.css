@@ -1,6 +1,6 @@
 .spinner {
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.274);
+  background-color: #00000013;
   display: flex;
   justify-content: center;
 }
@@ -20,7 +20,7 @@
   margin: 8px;
   box-sizing: border-box;
   border: 32px solid #fff;
-  border-color: #fff transparent #fff transparent;
+  border-color: #fc4c4c transparent #fc4c4c transparent;
   animation: lds__hourglass 1.2s infinite;
 }
 @keyframes lds__hourglass {

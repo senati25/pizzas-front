@@ -1,11 +1,7 @@
-import { useContext } from 'react';
-import shoppingCartContext from '../context/shoppingCart';
+import useShoppingCartContext from './useShoppingCartContext';
 
 const useShoppingCart = () => {
-  const { shoppingCartList, setShoppingCartList } = useContext(
-    shoppingCartContext
-  );
-
+  const { shoppingCartList, setShoppingCartList } = useShoppingCartContext();
   const verifyProductAlreadyAdded = (product) =>
     shoppingCartList.some(({ id }) => id === product.id);
 
@@ -59,13 +55,14 @@ const useShoppingCart = () => {
   };
 
   return {
-    shoppingCartList,
     addProduct,
     deleteProduct,
-    plusOne,
-    minusOne,
     totalCost: calculateTotal(),
-    handleOnChange,
+    shoppingCardActions: {
+      plusOne,
+      minusOne,
+      handleOnChange,
+    },
   };
 };
 

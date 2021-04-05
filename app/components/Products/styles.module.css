@@ -32,7 +32,6 @@
 }
 
 .MyShoppingList__button {
-  background-color: #d64141;
   color: #f8f8f8;
   font-size: 1.3rem;
   font-weight: bold;
@@ -41,6 +40,14 @@
   margin-bottom: 2rem;
   box-shadow: 0 0 3px black;
   width: 100%;
+  cursor: pointer;
+  transition: background, box-shadow 0.3s ease;
+  background-color: #d64141;
+}
+
+.MyShoppingList__button:hover {
+  box-shadow: 0 0 5px #fc4c4c;
+  background-color: #fc4c4c;
 }
 
 @media only screen and (min-width: 900px) {
