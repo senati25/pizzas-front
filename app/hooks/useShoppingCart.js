@@ -9,8 +9,8 @@ const useShoppingCart = () => {
     if (verifyProductAlreadyAdded(newProduct)) {
       const newState = shoppingCartList.map((product) => {
         if (product.id === newProduct.id) {
-          const { quantity } = product;
-          return { ...newProduct, quantity: quantity + 1 };
+          const { cantidad } = product;
+          return { ...newProduct, cantidad: cantidad + 1 };
         }
         return product;
       });
@@ -19,16 +19,19 @@ const useShoppingCart = () => {
     } else {
       setShoppingCartList((prevState) => [
         ...prevState,
-        { ...newProduct, quantity: 1 },
+        { ...newProduct, cantidad: 1 },
       ]);
     }
   };
 
   const calculateTotal = () => {
-    const total = shoppingCartList.reduce((acumulator, { price, quantity }) => {
-      const plus = price * quantity;
-      return acumulator + plus;
-    }, 0);
+    const total = shoppingCartList.reduce(
+      (acumulator, { precio, cantidad }) => {
+        const plus = precio * cantidad;
+        return acumulator + plus;
+      },
+      0
+    );
     return total.toFixed(2);
   };
 
@@ -38,19 +41,19 @@ const useShoppingCart = () => {
   };
 
   const plusOne = (index) => {
-    shoppingCartList[index].quantity += 1;
+    shoppingCartList[index].cantidad += 1;
     setShoppingCartList([...shoppingCartList]);
   };
 
   const minusOne = (index) => {
-    if (shoppingCartList[index].quantity !== 0) {
-      shoppingCartList[index].quantity -= 1;
+    if (shoppingCartList[index].cantidad !== 0) {
+      shoppingCartList[index].cantidad -= 1;
       setShoppingCartList([...shoppingCartList]);
     }
   };
 
   const handleOnChange = (event, index) => {
-    shoppingCartList[index].quantity = parseInt(event.target.value, 10);
+    shoppingCartList[index].cantidad = parseInt(event.target.value, 10);
     setShoppingCartList([...shoppingCartList]);
   };
 

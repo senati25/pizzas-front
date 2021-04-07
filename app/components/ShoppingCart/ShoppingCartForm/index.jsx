@@ -17,7 +17,7 @@ const ShoppingCartForm = ({ totalCost }) => (
 );
 
 ShoppingCartForm.propTypes = {
-  totalCost: PropTypes.number.isRequired,
+  totalCost: PropTypes.string.isRequired,
 };
 
 export default ShoppingCartForm;

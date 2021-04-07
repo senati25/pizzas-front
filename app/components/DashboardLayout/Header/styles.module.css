@@ -1,0 +1,12 @@
+.dashboardHeader {
+  padding: 0 4%;
+  display: flex;
+
+  align-items: center;
+  background-color: #fc4c4c;
+  color: #231e36;
+}
+
+.dashboardHeader__title {
+  font-size: 1.3rem;
+}

@@ -36,7 +36,7 @@ const ShoppingCartProductCard = memo(
           }}
           type="number"
           name="quantity"
-          value={product.quantity}
+          value={product.cantidad}
         />
 
         <button
@@ -49,10 +49,10 @@ const ShoppingCartProductCard = memo(
         </button>
       </span>
 
-      <span className={styles.product__name}>{product.name}</span>
+      <span className={styles.product__name}>{product.nombre}</span>
 
       <span className={styles.product__price}>
-        {(product.quantity * product.price).toFixed(2)}
+        {(product.cantidad * product.precio).toFixed(2)}
       </span>
     </div>
   )
@@ -68,10 +68,10 @@ ShoppingCartProductCard.propTypes = {
   product: PropTypes.shape({
     id: PropTypes.number.isRequired,
     img: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
-    quantity: PropTypes.number.isRequired,
+    nombre: PropTypes.string.isRequired,
+    descripcion: PropTypes.string.isRequired,
+    precio: PropTypes.string.isRequired,
+    cantidad: PropTypes.number.isRequired,
   }).isRequired,
 };
 

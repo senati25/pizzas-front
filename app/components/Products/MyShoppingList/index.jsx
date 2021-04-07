@@ -25,10 +25,10 @@ const MyShoppingList = () => {
             <tbody className={styles.table__body}>
               {shoppingCartList.map((product, index) => (
                 <tr key={product.id}>
-                  <td className={styles.data__quantity}>{product.quantity}</td>
-                  <td className={styles.data__name}>{product.name}</td>
+                  <td className={styles.data__quantity}>{product.cantidad}</td>
+                  <td className={styles.data__name}>{product.nombre}</td>
                   <td className={styles.data__price}>
-                    {(product.price * product.quantity).toFixed(2)}
+                    {(product.precio * product.cantidad).toFixed(2)}
                   </td>
                   <td className={styles.deleteButton}>
                     <button

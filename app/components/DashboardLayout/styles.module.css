@@ -1,0 +1,31 @@
+.container {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.layout__header {
+  z-index: 2;
+}
+
+.layout__content {
+  background-color: aqua;
+  display: flex;
+  z-index: 1;
+}
+
+.sideMenu {
+  width: 15%;
+  background-color: bisque;
+  box-shadow: 0px 0px 5px 1px black;
+  z-index: 1;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f8f8;
+  flex: 1;
+}

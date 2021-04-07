@@ -6,7 +6,9 @@ const useProducts = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch('https://inviaggio-api.vercel.app/api/index.php/api/productos')
+    fetch(
+      'https://inviaggio-api.vercel.app/api/index.php/api/publico/productos'
+    )
       .then((response) => response.json())
       .then((data) => {
         setIsLoading(false);

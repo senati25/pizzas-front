@@ -12,7 +12,7 @@ const Header = memo(() => {
   return (
     <header className={styles.mainHeader}>
       <Link href={ROUTES.public.home}>
-        <a className={styles.mainHeader__logo}>
+        <a>
           <Image
             alt="brand logo"
             src="/images/brand-logo.png"
