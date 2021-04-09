@@ -22,10 +22,8 @@ const Categories = () => {
         col3: c.estado,
       })),
     ],
-
     []
   );
-
   const columns = useMemo(
     () => [
       ...Object.keys(categories[0]).map((key, index) => ({
