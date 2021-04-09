@@ -1,0 +1,12 @@
+.sideMenu {
+  /* padding: 1rem;ç */
+  display: flex;
+  flex-direction: column;
+  max-height: 100vh;
+  overflow-y: scroll;
+  background-color: #252f3e;
+}
+
+.sideMenu::-webkit-scrollbar {
+  display: none;
+}

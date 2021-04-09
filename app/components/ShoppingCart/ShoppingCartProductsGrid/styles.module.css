@@ -1,0 +1,13 @@
+.shoppingCartProductsGrid {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+}
+
+@media only screen and (min-width: 900px) {
+  .shoppingCartProductsGrid {
+    padding: 0;
+    max-height: none;
+  }
+}

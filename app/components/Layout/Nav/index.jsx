@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import NavGrid from '../NavGrid';
 import styles from './styles.module.css';
 
-const Nav = () => {
+const Nav = memo(() => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleIsOpen = () => {
@@ -28,6 +28,6 @@ const Nav = () => {
       </button>
     </>
   );
-};
+});
 
 export default Nav;

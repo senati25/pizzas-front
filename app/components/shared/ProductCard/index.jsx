@@ -9,8 +9,8 @@ const ProductCard = memo(({ product, addProduct }) => (
       <Image src={product.img} layout="responsive" width={200} height={150} />
     </div>
     <div className={styles.productCard__content}>
-      <h4 className={styles.productCard__title}>{product.name}</h4>
-      <p className={styles.productCard__description}>{product.description}</p>
+      <h4 className={styles.productCard__title}>{product.nombre}</h4>
+      <p className={styles.productCard__description}>{product.descripcion}</p>
       <button
         type="button"
         className={styles.productCard__button}
@@ -18,7 +18,7 @@ const ProductCard = memo(({ product, addProduct }) => (
           addProduct(product);
         }}
       >
-        Añadir <span>S/ {product.price}</span>
+        Añadir <span>S/ {product.precio}</span>
       </button>
     </div>
   </div>
@@ -26,12 +26,12 @@ const ProductCard = memo(({ product, addProduct }) => (
 
 ProductCard.propTypes = {
   product: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     img: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
+    nombre: PropTypes.string.isRequired,
+    descripcion: PropTypes.string.isRequired,
+    precio: PropTypes.string.isRequired,
   }).isRequired,
-
   addProduct: PropTypes.func.isRequired,
 };
 

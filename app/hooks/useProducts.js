@@ -1,15 +1,23 @@
 import { useEffect, useState } from 'react';
 
 const useProducts = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/productos')
+    setIsLoading(true);
+    fetch(
+      'https://inviaggio-api.vercel.app/api/index.php/api/publico/productos'
+    )
       .then((response) => response.json())
-      .then((data) => setProducts(data));
+      .then((data) => {
+        setIsLoading(false);
+        setProducts(data);
+      })
+      .catch(console.error);
   }, []);
 
-  return { products };
+  return { products, isLoading };
 };
 
 export default useProducts;

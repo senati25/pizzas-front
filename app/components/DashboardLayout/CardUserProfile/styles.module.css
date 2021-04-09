@@ -1,0 +1,23 @@
+.cardUserProfile {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+  align-items: center;
+  background-color: #1b2330;
+  padding: 1rem;
+}
+
+.cardUserProfile__img {
+  width: 50%;
+  margin-bottom: 0.5rem;
+}
+
+.cardUserProfile__name {
+  color: #f8f8f8;
+  font-size: 1rem;
+}
+
+.cardUserProfile__rol {
+  font-size: 0.9rem;
+  color: rgb(139, 139, 139);
+}

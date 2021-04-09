@@ -43,6 +43,7 @@ button {
   border-color: transparent;
   border: none;
   outline: none;
+  cursor: pointer;
 }
 
 input {

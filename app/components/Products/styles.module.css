@@ -1,5 +1,4 @@
 .productsWrapper {
-  /* background-color: aqua; */
   width: 100%;
   padding: 1rem;
   height: 100%;
@@ -11,7 +10,6 @@
 }
 .products {
   max-width: 1500px;
-  /* background-color: bisque; */
   margin: 0 auto;
   height: inherit;
   display: flex;
@@ -26,14 +24,42 @@
   column-gap: 1.5rem;
 }
 
-.myProducts__wrapper {
-  display: none;
+.MyShoppingList__wrapper {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  background-color: #f38a679f;
+}
+
+.MyShoppingList__button {
+  color: #f8f8f8;
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 0.3rem 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 3px black;
+  width: 100%;
+  cursor: pointer;
+  transition: background, box-shadow 0.3s ease;
+  background-color: #d64141;
+}
+
+.MyShoppingList__button:hover {
+  box-shadow: 0 0 5px #fc4c4c;
+  background-color: #fc4c4c;
 }
 
 @media only screen and (min-width: 900px) {
   .productsWrapper {
     padding: 3rem 1rem;
   }
+
+  .MyShoppingList {
+    position: sticky;
+    top: 7rem;
+  }
+
   .products__content {
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(12, auto);
@@ -41,16 +67,17 @@
 
   .productsGrid__wrapper {
     grid-column: 1 / span 8;
-    grid-row: 2 / span 12;
+    grid-row: 2 / span 11;
   }
 
   .search__wrapper {
     grid-column: 1 / span 8;
     grid-row: 1 / span 1;
-    /* margin-bottom: 2rem; */
   }
-  .myProducts__wrapper {
-    display: initial;
+
+  .MyShoppingList__wrapper {
+    background-color: transparent;
+    padding: 0;
     grid-column: 9 / span 4;
     grid-row: 1 / span 12;
     position: relative;
@@ -61,15 +88,16 @@
 @media only screen and (min-width: 1200px) {
   .productsGrid__wrapper {
     grid-column: 1 / span 9;
-    grid-row: 2 / span 12;
+    grid-row: 2 / span 11;
   }
 
   .search__wrapper {
     grid-column: 1 / span 9;
     grid-row: 1 / span 1;
   }
-  .myProducts__wrapper {
-    grid-column: 10 / span 4;
-    grid-row: 1 / span 12;
+
+  .MyShoppingList__wrapper {
+    grid-column: 10 / span 3;
+    grid-row: 1 / span 13;
   }
 }
