@@ -1,10 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ROUTES from '../helpers/constants';
-import useCategories from './useCategories';
 
-const useNewCategory = () => {
-  const { fetchCategories } = useCategories();
-  const [isLoading, setisLoading] = useState(false);
+const useNewCategory = (fetchCategories, handleShowNewCategoryForm) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [inputValues, setInputValues] = useState({});
 
   const handleOnChange = (e) => {
@@ -15,6 +13,7 @@ const useNewCategory = () => {
   };
 
   const handleCreateNewCategory = async () => {
+    setIsLoading(true);
     const response = await fetch(`${ROUTES.api}/dashboard/categoria`, {
       method: 'POST',
       body: JSON.stringify(inputValues),
@@ -24,21 +23,21 @@ const useNewCategory = () => {
     const data = await response.json();
 
     if (data) {
+      setIsLoading(false);
       await fetchCategories();
+      handleShowNewCategoryForm();
+    } else {
+      // TODO
+      setIsLoading(false);
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(e.currentTarget.value);
     handleCreateNewCategory();
   };
 
-  useEffect(() => {
-    console.log(inputValues);
-  }, [inputValues]);
-
-  return { handleSubmit, handleOnChange };
+  return { handleSubmit, handleOnChange, isLoading };
 };
 
 export default useNewCategory;
