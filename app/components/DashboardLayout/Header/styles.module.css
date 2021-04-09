@@ -1,10 +1,11 @@
 .dashboardHeader {
-  padding: 0 4%;
+  padding: 0 1%;
   display: flex;
-
   align-items: center;
-  background-color: #fc4c4c;
-  color: #231e36;
+  background-color: #2e2e2e;
+  /* color: #231e36; */
+  color: #f8f8f8;
+  box-shadow: 0 0 5px #231e36;
 }
 
 .dashboardHeader__title {

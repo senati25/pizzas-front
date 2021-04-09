@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
+import CardUserProfile from '../CardUserProfile';
+import DashboardNav from '../DashboardNav';
 import styles from './styles.module.css';
 
 const SideMenu = ({ className }) => (
   <div className={`${styles.sideMenu} ${className}`}>
-    <button type="button" style={{ backgroundColor: 'red' }}>
-      a
-    </button>
+    <CardUserProfile />
+    <DashboardNav />
   </div>
 );
 

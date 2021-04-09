@@ -1,0 +1,57 @@
+.dashboardForm {
+  box-shadow: 0 0 3px rgb(27, 35, 48);
+  padding: 2.5rem;
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboardForm__title {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.form__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.form__group input {
+  border: 1px solid rgb(216, 216, 216);
+  padding: 0.8rem 0.5rem;
+  display: block;
+  width: 100%;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: border 0.3s ease-in-out;
+}
+
+.form__group input:focus {
+  border: 1px solid black;
+  position: relative;
+  border: 1px solid #0cb7e2;
+}
+
+.dashboardForm__buttonsGroup {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.dashboardForm__buttonsGroup > button {
+  border-radius: 3rem;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.buttonsGroup__save {
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #0cb7e2;
+}
+
+.buttonsGroup__cancel {
+  background-color: #1b2330;
+  color: #fff;
+}
