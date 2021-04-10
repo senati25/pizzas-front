@@ -46,7 +46,8 @@ button {
   cursor: pointer;
 }
 
-input {
+input,
+select {
   border: none;
   outline: none;
 }

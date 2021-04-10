@@ -17,19 +17,22 @@
   flex-direction: column;
 }
 
-.form__group input {
+.form__group input,
+.form__group select {
   border: 1px solid rgb(216, 216, 216);
   padding: 0.7rem 0.4rem;
-  outline:none;
+  outline: none;
   display: block;
   width: 100%;
   border-radius: 0.5rem;
   font-size: 1rem;
+  margin: 0.5rem 0;
   transition: border 0.3s ease-in-out;
   margin-bottom: 12px;
 }
 
-.form__group input:focus {
+.form__group input:focus,
+.form__group select:focus {
   border: 1px solid black;
   position: relative;
   border: 1px solid #0cb7e2;
@@ -46,6 +49,8 @@
   padding: 0.5rem 1rem;
   font-weight: 600;
   font-size: 1.1rem;
+  margin: 0 0.5rem;
+  transition: all 0.3s ease-in-out;
 }
 
 .buttonsGroup__save {
@@ -53,7 +58,15 @@
   background-color: #0cb7e2;
 }
 
+.buttonsGroup__save:hover {
+  box-shadow: 0 0 5px #232c3b;
+  background-color: #00ccff;
+}
 .buttonsGroup__cancel {
   background-color: #1b2330;
   color: #fff;
+}
+.buttonsGroup__cancel:hover {
+  box-shadow: 0 0 5px #232c3b;
+  background-color: #29374e;
 }

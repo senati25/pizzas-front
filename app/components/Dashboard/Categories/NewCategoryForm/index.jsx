@@ -1,29 +1,36 @@
-import PropTypes from 'prop-types';
-import useNewCategory from '../../../../hooks/useNewCategory';
+import useCategory from '../../../../hooks/useCategory';
 import DashboardForm from '../../../shared/DashBoardForm';
+import SpinnerDashboard from '../../../shared/SpinnerDashboard';
 // import styles from './styles.module.css';
 
-const NewCategoryForm = ({ handleShowNewCategoryForm }) => {
-  const { handleSubmit, handleOnChange } = useNewCategory();
+const NewCategoryForm = () => {
+  const {
+    handleCreateNewCategory,
+    redirectToCategories,
+    handleOnChange,
+    isLoading,
+  } = useCategory();
   return (
-    <DashboardForm
-      handleSubmit={handleSubmit}
-      title="Crear nueva categoria"
-      onCancel={handleShowNewCategoryForm}
-    >
-      <input
-        onChange={handleOnChange}
-        type="text"
-        name="denominacion"
-        id="denominacion"
-        placeholder="Denominacion"
-      />
-    </DashboardForm>
+    <>
+      {!isLoading ? (
+        <DashboardForm
+          handleSubmit={handleCreateNewCategory}
+          title="Crear nueva categoria"
+          onCancel={redirectToCategories}
+        >
+          <input
+            onChange={handleOnChange}
+            type="text"
+            name="denominacion"
+            id="denominacion"
+            placeholder="Denominacion"
+          />
+        </DashboardForm>
+      ) : (
+        <SpinnerDashboard />
+      )}
+    </>
   );
-};
-
-NewCategoryForm.propTypes = {
-  handleShowNewCategoryForm: PropTypes.func.isRequired,
 };
 
 export default NewCategoryForm;
