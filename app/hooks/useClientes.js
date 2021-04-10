@@ -9,7 +9,7 @@ const useClients = () => {
   const [inputValues, setInputValues] = useState({});
 
   const getClients = async () => {
-    const response = await fetch('http://127.0.0.1:8000/api/dashboard/cliente');
+    const response = await fetch(`${ROUTES.api}/dashboard/cliente`);
     const data = await response.json();
 
     if (data) {
