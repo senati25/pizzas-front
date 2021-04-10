@@ -16,7 +16,6 @@ const EditCategoryForm = () => {
   const { query } = useRouter();
 
   useEffect(() => {
-    console.log(query);
     setInputValues((prevState) => ({ ...prevState, ...query }));
   }, [query]);
 

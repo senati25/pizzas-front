@@ -1,33 +1,35 @@
 /* eslint-disable react/prop-types */
+import Link from 'next/link';
 import { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import useActionsTable from '../../../../hooks/useActionsTable';
 import DashboardTable from '../../../shared/DashboardTable';
 import styles from './styles.module.css';
 
-const Actions = ({ original, deleteItem, editItem }) => {
-  console.log(original);
-  return (
-    <div className={styles.actions}>
-      <button
-        onClick={() => {
-          editItem(original);
-        }}
-        type="button"
-      >
-        <i className="fas fa-edit fa-lg"></i>
-      </button>
-      <button
-        onClick={() => {
-          deleteItem(original.id);
-        }}
-        type="button"
-      >
-        <i className="fas fa-trash-alt fa-lg"></i>
-      </button>
-    </div>
-  );
-};
+const Actions = ({ original, deleteItem, editItem }) => (
+  <div className={styles.actions}>
+    <button
+      onClick={() => {
+        editItem(original);
+      }}
+      type="button"
+    >
+      <i className="fas fa-edit fa-lg"></i>
+    </button>
+    <button
+      onClick={() => {
+        deleteItem(original.id);
+      }}
+      type="button"
+    >
+      <i className="fas fa-trash-alt fa-lg"></i>
+    </button>
+
+    <Link href={`/admin/categories/subcategories/${original.id}`}>
+      <a>Subcategorias</a>
+    </Link>
+  </div>
+);
 
 Actions.propTypes = {
   original: PropTypes.shape({
