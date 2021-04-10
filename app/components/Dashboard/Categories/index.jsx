@@ -1,51 +1,24 @@
-// import { useRouter } from 'next/router';
-// import ROUTES from '../../../helpers/constants';
-import { useState } from 'react';
-
-import useCategories from '../../../hooks/useCategories';
+import Link from 'next/link';
+import useFetchCategories from '../../../hooks/useFetchCategories';
 import SpinnerDashboard from '../../shared/SpinnerDashboard';
 import CategoryTable from './CategoryTable';
-import NewCategoryForm from './NewCategoryForm';
-
-// const celllllll = ({ cell }) => {
-//   const id = cell.row.values.id;
-//   return (
-//     <>
-//       <button type="button">Editar</button>
-//       <button type="button">Eliminar</button>
-//     </>
-//   );
-// };
+import styles from './styles.module.css';
 
 const Categories = () => {
-  const { categories, fetchCategories, isLoading } = useCategories();
-  const [showNewCategoryForm, setShowNewCategoryForm] = useState(false);
-
-  const handleShowNewCategoryForm = () => {
-    setShowNewCategoryForm(!showNewCategoryForm);
-  };
+  const { categories, fetchCategories, isLoading } = useFetchCategories();
 
   return (
     <>
       {!isLoading ? (
-        <div>
-          {!showNewCategoryForm ? (
-            <>
-              <button type="button" onClick={handleShowNewCategoryForm}>
-                Nuevo
-              </button>
-              <h1>Categorias</h1>
-              <CategoryTable
-                categories={categories}
-                fetchCategories={fetchCategories}
-              />
-            </>
-          ) : (
-            <NewCategoryForm
-              handleShowNewCategoryForm={handleShowNewCategoryForm}
-              fetchCategories={fetchCategories}
-            />
-          )}
+        <div className={styles.categories}>
+          <h1 className={styles.categories__title}>Categorias</h1>
+          <Link href="/admin/categories/new">
+            <a className={styles.categories__link}>Nuevo</a>
+          </Link>
+          <CategoryTable
+            categories={categories}
+            fetchCategories={fetchCategories}
+          />
         </div>
       ) : (
         <SpinnerDashboard />

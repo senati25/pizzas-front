@@ -1,34 +1,39 @@
+import router from 'next/router';
 import { useEffect, useState } from 'react';
 import ROUTES from '../helpers/constants';
 import useStoreContext from './useStoreContext';
 
-const useCategories = () => {
+const useFetchCategories = () => {
   const { setStore } = useStoreContext();
   const [categories, setCategories] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchCategories = async () => {
-    setIsLoading(true);
     const response = await fetch(`${ROUTES.api}/dashboard/categoria`);
     const data = await response.json();
 
     if (data.length) {
       setIsLoading(false);
       setCategories([...data]);
-      setStore((prevState) => ({
-        ...prevState,
-        categories: { value: categories, setCategories },
-      }));
     } else {
       setIsLoading(false);
     }
   };
-
+  const redirectToCategories = () => {
+    router.push('/admin/categories');
+  };
   useEffect(() => {
     fetchCategories();
   }, []);
 
-  return { categories, fetchCategories, isLoading };
+  useEffect(() => {
+    setStore((prevState) => ({
+      ...prevState,
+      categories,
+    }));
+  }, [categories]);
+
+  return { categories, fetchCategories, redirectToCategories, isLoading };
 };
 
-export default useCategories;
+export default useFetchCategories;

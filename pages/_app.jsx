@@ -8,13 +8,15 @@ function MyApp({ Component, pageProps }) {
   return (
     <ShopingCartProvider>
       <StoreProvider>
-        <Head>
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-          />
-        </Head>
-        <Component {...pageProps} />
+        <>
+          <Head>
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1.0"
+            />
+          </Head>
+          <Component {...pageProps} />
+        </>
       </StoreProvider>
     </ShopingCartProvider>
   );

@@ -1,5 +1,11 @@
 import React from 'react';
+import NewCategoryForm from '../../../app/components/Dashboard/Categories/NewCategoryForm';
+import DashboardLayout from '../../../app/components/DashboardLayout';
 
-const NewCategory = () => <div>form nueva categoris</div>;
+const NewCategory = () => (
+  <DashboardLayout>
+    <NewCategoryForm />
+  </DashboardLayout>
+);
 
 export default NewCategory;

@@ -16,15 +16,6 @@ const DashboardForm = ({ children, title, handleSubmit, onCancel }) => (
           <div className={styles.form__group}>{child}</div>
         </>
       ))}
-
-      {/* <div className={styles.form__group}>
-        <select name="Subcategorias" id="">
-          <option value="" selected>
-            Subcategoria
-          </option>
-          <option value="1">1</option>
-        </select>
-      </div> */}
     </div>
 
     <div className={styles.dashboardForm__buttonsGroup}>

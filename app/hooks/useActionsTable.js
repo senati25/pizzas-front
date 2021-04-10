@@ -1,3 +1,4 @@
+import router from 'next/router';
 import ROUTES from '../helpers/constants';
 
 const useActionsTable = (fetchCategories) => {
@@ -14,8 +15,8 @@ const useActionsTable = (fetchCategories) => {
     }
   };
 
-  const editItem = (id) => {
-    console.log(id);
+  const editItem = (values) => {
+    router.push({ pathname: `/admin/categories/${values.id}`, query: values });
   };
 
   return { editItem, deleteItem };
