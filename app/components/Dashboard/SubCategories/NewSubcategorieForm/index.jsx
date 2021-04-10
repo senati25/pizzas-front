@@ -2,18 +2,12 @@ import React from 'react';
 import useSubCategories from '../../../../hooks/useSubCategories';
 import DashboardForm from '../../../shared/DashBoardForm';
 
-export const FormCreateSubCategorie = () => {
-  const {
-    createSubCategory,
-    responseCreate,
-    handleChange,
-    handleSubmit,
-    handleShowNewCategoryForm,
-  } = useSubCategories();
+const FormCreateSubCategorie = () => {
+  const { handleChange, handleCreateSubCategory } = useSubCategories();
 
   return (
     <DashboardForm
-      handleSubmit={handleSubmit}
+      handleSubmit={handleCreateSubCategory}
       title="Crear nueva Subcategoria"
       onCancel={() => {
         alert('hola mundo en react');
@@ -43,3 +37,5 @@ export const FormCreateSubCategorie = () => {
     </DashboardForm>
   );
 };
+
+export default FormCreateSubCategorie;

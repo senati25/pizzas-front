@@ -19,7 +19,14 @@ const useActionsTable = (fetchCategories) => {
     router.push({ pathname: `/admin/categories/${values.id}`, query: values });
   };
 
-  return { editItem, deleteItem };
+  const redirectToSubcategories = (values) => {
+    router.push({
+      pathname: `/admin/categories/subcategories/${values.id}`,
+      query: values,
+    });
+  };
+
+  return { editItem, deleteItem, redirectToSubcategories };
 };
 
 export default useActionsTable;

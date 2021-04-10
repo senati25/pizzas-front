@@ -16,10 +16,10 @@ const SubCategories = () => {
   return (
     <>
       {!isLoading ? (
-        <div className={styles.categories}>
-          <h1 className={styles.categories__title}>SubCategorias</h1>
-          <Link href="/admin/categories/new">
-            <a className={styles.categories__link}>Nuevo</a>
+        <div className={styles.subCategories}>
+          <h1 className={styles.subCategories__title}>SubCategorias</h1>
+          <Link href="/admin/categories/subcategories/new">
+            <a className={styles.subCategories__link}>Nuevo</a>
           </Link>
           <SubcategoryTable
             subcategories={subcategories}
@@ -27,8 +27,6 @@ const SubCategories = () => {
             editItem={editItem}
             deleteItem={deleteItem}
           />
-
-          <pre>{JSON.stringify(subcategories, null, 2)}</pre>
         </div>
       ) : (
         <SpinnerDashboard />

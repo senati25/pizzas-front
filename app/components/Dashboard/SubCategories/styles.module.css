@@ -1,0 +1,26 @@
+.subCategories {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+.subCategories__title {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.subCategories__link {
+  border-radius: 0.3rem;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin: 0 0.5rem;
+  margin-left: auto;
+  margin-bottom: 1rem;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #0cb7e2;
+  transition: all 0.3s ease-in-out;
+}
+.subCategories__link:hover {
+  box-shadow: 0 0 5px #232c3b;
+  background-color: #00ccff;
+}

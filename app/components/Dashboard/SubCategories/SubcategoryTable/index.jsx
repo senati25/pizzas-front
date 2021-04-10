@@ -29,7 +29,8 @@ Actions.propTypes = {
   original: PropTypes.shape({
     id: PropTypes.number.isRequired,
     denominacion: PropTypes.string.isRequired,
-    estado: PropTypes.string.isRequired,
+    precio: PropTypes.string.isRequired,
+    categoria_id: PropTypes.number.isRequired,
   }).isRequired,
   deleteItem: PropTypes.func.isRequired,
   editItem: PropTypes.func.isRequired,
@@ -68,13 +69,7 @@ const SubcategoryTable = ({ subcategories, editItem, deleteItem }) => (
       ];
     }, [subcategories])}
     data={useMemo(
-      () => [
-        ...subcategories.map((c) => ({
-          id: c.id,
-          denominacion: c.denominacion,
-          estado: c.estado,
-        })),
-      ],
+      () => [...subcategories.map((subcategory) => ({ ...subcategory }))],
       [subcategories]
     )}
   />
@@ -85,7 +80,8 @@ SubcategoryTable.propTypes = {
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       denominacion: PropTypes.string.isRequired,
-      estado: PropTypes.string.isRequired,
+      precio: PropTypes.string.isRequired,
+      categoria_id: PropTypes.number.isRequired,
     })
   ).isRequired,
   deleteItem: PropTypes.func.isRequired,

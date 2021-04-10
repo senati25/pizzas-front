@@ -5,12 +5,12 @@ import useStoreContext from './useStoreContext';
 
 const useFetchSubcategories = () => {
   const { query, push } = useRouter();
-  const [id, setId] = useState('');
   const { setStore } = useStoreContext();
   const [subcategories, setSubcategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchSubCategories = async () => {
+    const { id } = query;
     if (id) {
       const response = await fetch(
         `${ROUTES.api}/dashboard/subcategoriaproductos/${id}`
@@ -24,10 +24,6 @@ const useFetchSubcategories = () => {
         setIsLoading(false);
       }
     }
-  };
-
-  const redirectToSubCategories = () => {
-    push('/admin/categories');
   };
 
   const deleteItem = async (itemId) => {
@@ -47,25 +43,18 @@ const useFetchSubcategories = () => {
 
   const editItem = (values) => {
     push({
-      pathname: `/admin/categories/subcategories/${values.id}`,
+      pathname: `/admin/categories/subcategories/edit`,
       query: values,
     });
   };
 
   useEffect(() => {
-    if (query.id) {
-      setId(query.id);
-      fetchSubCategories();
-      console.log({ query });
-    }
+    fetchSubCategories();
   }, [query]);
 
-  // useEffect(() => {
-  //   if (query.id) {
-  //     setId(query.id);
-  //     console.log({ query });
-  //   }
-  // }, [query]);
+  useEffect(() => {
+    fetchSubCategories();
+  }, [query]);
 
   useEffect(() => {
     setStore((prevState) => ({
@@ -77,7 +66,6 @@ const useFetchSubcategories = () => {
   return {
     subcategories,
     fetchSubCategories,
-    redirectToSubCategories,
     isLoading,
     editItem,
     deleteItem,

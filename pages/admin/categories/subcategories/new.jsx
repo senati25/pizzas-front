@@ -1,9 +1,9 @@
-import SubcategoriesWrapper from '../../../../app/components/Dashboard/SubCategories';
 import DashboardLayout from '../../../../app/components/DashboardLayout';
+import NewSubcategorieForm from '../../../../app/components/Dashboard/SubCategories/NewSubcategorieForm';
 
 const SubCategories = () => (
   <DashboardLayout>
-    <SubcategoriesWrapper />
+    <NewSubcategorieForm />
   </DashboardLayout>
 );
 

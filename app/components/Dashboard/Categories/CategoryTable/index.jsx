@@ -1,12 +1,17 @@
 /* eslint-disable react/prop-types */
-import Link from 'next/link';
+
 import { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import useActionsTable from '../../../../hooks/useActionsTable';
 import DashboardTable from '../../../shared/DashboardTable';
 import styles from './styles.module.css';
 
-const Actions = ({ original, deleteItem, editItem }) => (
+const Actions = ({
+  original,
+  deleteItem,
+  editItem,
+  redirectToSubcategories,
+}) => (
   <div className={styles.actions}>
     <button
       onClick={() => {
@@ -25,9 +30,9 @@ const Actions = ({ original, deleteItem, editItem }) => (
       <i className="fas fa-trash-alt fa-lg"></i>
     </button>
 
-    <Link href={`/admin/categories/subcategories/${original.id}`}>
-      <a>Subcategorias</a>
-    </Link>
+    <button onClick={() => redirectToSubcategories(original)} type="button">
+      Subcategorias
+    </button>
   </div>
 );
 
@@ -39,10 +44,13 @@ Actions.propTypes = {
   }).isRequired,
   deleteItem: PropTypes.func.isRequired,
   editItem: PropTypes.func.isRequired,
+  redirectToSubcategories: PropTypes.func.isRequired,
 };
 
 const CategoryTable = ({ categories, fetchCategories }) => {
-  const { editItem, deleteItem } = useActionsTable(fetchCategories);
+  const { editItem, deleteItem, redirectToSubcategories } = useActionsTable(
+    fetchCategories
+  );
 
   return (
     <DashboardTable
@@ -71,6 +79,7 @@ const CategoryTable = ({ categories, fetchCategories }) => {
                 original={original}
                 editItem={editItem}
                 deleteItem={deleteItem}
+                redirectToSubcategories={redirectToSubcategories}
               />
             ),
           },
