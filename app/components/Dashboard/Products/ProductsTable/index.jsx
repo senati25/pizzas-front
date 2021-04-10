@@ -3,7 +3,6 @@ import { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import DashboardTable from '../../../shared/DashboardTable';
 import styles from '../style.module.css';
-import useProducts from '../../../../hooks/useProducts';
 
 const Actions = ({ original, deleteItem, editItem }) => (
   <div className={styles.actions}>
@@ -37,55 +36,51 @@ Actions.propTypes = {
   editItem: PropTypes.func.isRequired,
 };
 
-const ProductsTable = ({ products }) => {
-  const { editItem, deleteItem } = useProducts();
-  return (
-    <DashboardTable
-      columns={useMemo(() => {
-        let headers = [];
-        if (products.length) {
-          headers = [
-            { Header: 'ID', accessor: 'id' },
-            { Header: 'NOMBRE', accessor: 'nombre' },
-            { Header: 'DESCRIPCION', accessor: 'descripcion' },
-            { Header: 'ESTADO', accessor: 'estado' },
-          ];
-          console.log(headers);
-        }
-
-        return [
-          ...headers,
-          {
-            Header: 'ACCIONES',
-            accessor: `acciones`,
-            Cell: ({
-              cell: {
-                row: { original },
-              },
-            }) => (
-              <Actions
-                original={original}
-                editItem={editItem}
-                deleteItem={deleteItem}
-              />
-            ),
-          },
+const ProductsTable = ({ deleteItem, products, editItem }) => (
+  <DashboardTable
+    columns={useMemo(() => {
+      let headers = [];
+      if (products.length) {
+        headers = [
+          { Header: 'ID', accessor: 'id' },
+          { Header: 'NOMBRE', accessor: 'nombre' },
+          { Header: 'DESCRIPCION', accessor: 'descripcion' },
+          { Header: 'ESTADO', accessor: 'estado' },
         ];
-      }, [products])}
-      data={useMemo(
-        () => [
-          ...products.map((c) => ({
-            id: c.id,
-            nombre: c.nombre,
-            descripcion: c.descripcion,
-            estado: c.estado,
-          })),
-        ],
-        [products]
-      )}
-    />
-  );
-};
+      }
+
+      return [
+        ...headers,
+        {
+          Header: 'ACCIONES',
+          accessor: `acciones`,
+          Cell: ({
+            cell: {
+              row: { original },
+            },
+          }) => (
+            <Actions
+              original={original}
+              editItem={editItem}
+              deleteItem={deleteItem}
+            />
+          ),
+        },
+      ];
+    }, [products])}
+    data={useMemo(
+      () => [
+        ...products.map((c) => ({
+          id: c.id,
+          nombre: c.nombre,
+          descripcion: c.descripcion,
+          estado: c.estado,
+        })),
+      ],
+      [products]
+    )}
+  />
+);
 
 ProductsTable.propTypes = {
   products: PropTypes.arrayOf(
@@ -96,6 +91,8 @@ ProductsTable.propTypes = {
       estado: PropTypes.string.isRequired,
     })
   ).isRequired,
+  deleteItem: PropTypes.func.isRequired,
+  editItem: PropTypes.func.isRequired,
 };
 
 export default ProductsTable;

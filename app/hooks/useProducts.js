@@ -15,28 +15,27 @@ const useProducts = () => {
     const data = await response.json();
 
     if (data) {
-      setProducts(data);
-      console.log(data);
+      // console.log(`fetch`);
+      setProducts([...data]);
       setIsLoading(false);
     } else {
       setIsLoading(false);
     }
   };
+
   const deleteItem = async (id) => {
     try {
       fetch(
         `https://inviaggio-api.vercel.app/api/index.php/api/dashboard/producto/baja/${id}`,
         { method: 'PATCH' }
-      ).then((data) => {
+      ).then(async (data) => {
         if (data.status === 200) {
+          await getProducts();
           Swal.fire(
             'Proceso dado de bajo',
             `Dado de baja correctamente ${id}`,
             'success'
           );
-          setTimeout(() => {
-            getProducts();
-          }, 100);
         }
       });
     } catch (e) {
@@ -44,9 +43,11 @@ const useProducts = () => {
       Swal.fire('Error', 'error', 'error');
     }
   };
+
   const editItem = (values) => {
     router.push({ pathname: `/admin/products/${values.id}`, query: values });
   };
+
   const getDetalle = async (id) => {
     if (id) {
       const response = await fetch(
