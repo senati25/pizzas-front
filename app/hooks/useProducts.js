@@ -34,9 +34,7 @@ const useProducts = () => {
             `Dado de baja correctamente ${id}`,
             'success'
           );
-          setTimeout(() => {
-            getProducts();
-          }, 100);
+          getProducts();
         }
       });
     } catch (e) {
