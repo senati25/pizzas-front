@@ -7,7 +7,7 @@ const useProducts = () => {
   useEffect(() => {
     setIsLoading(true);
     fetch(
-      'https://inviaggio-api.vercel.app/api/index.php/api/publico/productos'
+      'http://127.0.0.1:8000/api/publico/productos'
     )
       .then((response) => response.json())
       .then((data) => {

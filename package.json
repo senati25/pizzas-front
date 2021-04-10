@@ -11,8 +11,10 @@
     "next": "10.0.9",
     "prop-types": "15.7.2",
     "react": "17.0.2",
+    "react-data-table-component": "^6.11.7",
     "react-dom": "17.0.2",
-    "react-table": "7.6.3"
+    "react-table": "7.6.3",
+    "styled-components": "^5.2.3"
   },
   "devDependencies": {
     "babel-eslint": "10.1.0",
