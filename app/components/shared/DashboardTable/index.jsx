@@ -3,8 +3,6 @@ import { useTable } from 'react-table';
 import styles from './styles.module.css';
 
 const DashboardTable = ({ columns, data }) => {
-  console.log(data);
-
   const tableInstance = useTable({ columns, data });
   const {
     getTableProps,
@@ -88,13 +86,6 @@ DashboardTable.propTypes = {
       Header: PropTypes.string.isRequired,
       accessor: PropTypes.string.isRequired,
     })
-  ).isRequired,
-  data: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      denominacion: PropTypes.string.isRequired,
-      estado: PropTypes.string.isRequired,
-    }).isRequired
   ).isRequired,
 };
 

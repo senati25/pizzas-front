@@ -1,5 +1,5 @@
 const ROUTES = {
-  api: 'http://127.0.0.1:8000/api',
+  api: 'https://inviaggio-api.vercel.app/api/index.php/api',
   public: {
     home: '/',
     products: 'products',

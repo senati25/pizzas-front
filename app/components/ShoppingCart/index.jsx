@@ -7,7 +7,7 @@ import styles from './styles.module.css';
 const ShoppingCart = () => {
   const { shoppingCartList } = useShoppingCartContext();
   const { deleteProduct, totalCost, shoppingCardActions } = useShoppingCart();
-  console.log(totalCost);
+
   return (
     <div className={styles.shopingCart__wrapper}>
       <div className={styles.shopingCart}>

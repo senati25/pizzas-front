@@ -1,54 +1,29 @@
-import {React,useState} from 'react';
-import DataTable from 'react-data-table-component';
+import Link from 'next/link';
+import { React } from 'react';
 import useProducts from '../../../hooks/useProducts';
+import ProductsTable from './ProductsTable';
+
+import styles from './style.module.css';
+import SpinnerDashboard from '../../shared/SpinnerDashboard';
 
 const Products = () => {
-  const {products} = useProducts();
-  const columns = [
-    {
-      name: 'nombre',
-      selector: 'nombre',
-      sortable: true,
-    },
-    {
-      name: 'descripcion',
-      selector: 'descripcion',
-      
-      sortable: true,
-      right: true,
-    },
-    {
-      name: 'estado',
-      selector: 'estado',
-      
-      sortable: true,
-      right: true,
-    },
-    {}
-  ];
-    const handleChange=(e)=>{
-      console.log(e);
-    }
+  const { products, isLoading } = useProducts();
 
-return (
-  <>
-  <div className="container_tableProducts">
-  <DataTable
-  title="Productos"
-  columns={columns}
-  data={products}
-  selectableRows
-  Clicked
-  Selected={handleChange}
-  pagination={true}
-  button={true}
-/>
-</div>
-</>
-)
-
-
+  return (
+    <>
+      {!isLoading ? (
+        <div className={styles.categories}>
+          <h1 className={styles.categories__title}>Categorias</h1>
+          <Link href="/admin/products/new">
+            <a className={styles.categories__link}>Nuevo</a>
+          </Link>
+          <ProductsTable products={products} />
+        </div>
+      ) : (
+        <SpinnerDashboard />
+      )}
+    </>
+  );
 };
-
 
 export default Products;

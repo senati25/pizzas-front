@@ -18,7 +18,7 @@ const ProductCard = memo(({ product, addProduct }) => (
           addProduct(product);
         }}
       >
-        Añadir <span>S/ {product.precio}</span>
+        Añadir <span>S/</span>
       </button>
     </div>
   </div>

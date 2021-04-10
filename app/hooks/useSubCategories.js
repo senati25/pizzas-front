@@ -25,7 +25,7 @@ export const useSubCategories = () => {
         if(res){
             setResponseCreate(res);
         }
-        console.log(responseCreate);
+    
     }
     const handleChange=(e)=>{
         setInputValues((prevState) => ({
@@ -36,7 +36,7 @@ export const useSubCategories = () => {
     const handleSubmit=(e)=>{
         e.preventDefault();
         createSubCategory();
-        console.log(inputValues);
+    
     
     }
     return {subCategories,fetchSubCategories,responseCreate,createSubCategory,handleChange,handleSubmit};
