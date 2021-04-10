@@ -18,7 +18,8 @@
 }
 
 .form__group input,
-.form__group select {
+.form__group select,
+.form__group textarea {
   border: 1px solid rgb(216, 216, 216);
   padding: 0.7rem 0.4rem;
   outline: none;

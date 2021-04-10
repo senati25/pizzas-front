@@ -3,20 +3,18 @@ import Swal from 'sweetalert2';
 import router from 'next/router';
 import ROUTES from '../helpers/constants';
 
-const useProducts = () => {
+const useClients = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [products, setProducts] = useState([]);
+  const [clients, setClients] = useState([]);
   const [inputValues, setInputValues] = useState({});
 
-  const getProducts = async () => {
-    const response = await fetch(
-      'https://inviaggio-api.vercel.app/api/index.php/api/publico/productos'
-    );
+  const getClients = async () => {
+    const response = await fetch('http://127.0.0.1:8000/api/dashboard/cliente');
     const data = await response.json();
 
     if (data) {
       // console.log(`fetch`);
-      setProducts([...data]);
+      setClients([...data]);
       setIsLoading(false);
     } else {
       setIsLoading(false);
@@ -30,14 +28,14 @@ const useProducts = () => {
         { method: 'PATCH' }
       ).then(async (data) => {
         if (data.status === 200) {
-          await getProducts();
+          await getClients();
           Swal.fire(
             'Proceso dado de bajo',
             `Dado de baja correctamente ${id}`,
             'success'
           );
 
-          getProducts();
+          getClients();
         }
       });
     } catch (e) {
@@ -47,13 +45,13 @@ const useProducts = () => {
   };
 
   const editItem = (values) => {
-    router.push({ pathname: `/admin/products/${values.id}`, query: values });
+    router.push({ pathname: `/admin/cliente/${values.id}`, query: values });
   };
 
   const getDetalle = async (id) => {
     if (id) {
       const response = await fetch(
-        `https://inviaggio-api.vercel.app/api/index.php/api/dashboard/producto/${id}`
+        `https://inviaggio-api.vercel.app/api/index.php/api/dashboard/cliente/${id}`
       );
 
       const data = await response.json();
@@ -66,15 +64,15 @@ const useProducts = () => {
       }
     }
   };
-  const handleRedirectProducts = () => {
-    router.push('/admin/products');
+  const handleRedirectClients = () => {
+    router.push('/admin/clients');
   };
   const handleSubmitEdit = async (e) => {
     console.log(inputValues);
     e.preventDefault();
     setIsLoading(true);
     const response = await fetch(
-      `${ROUTES.api}/dashboard/producto/${inputValues.id}`,
+      `${ROUTES.api}/dashboard/cliente/${inputValues.id}`,
       {
         method: 'PATCH',
         body: JSON.stringify(inputValues),
@@ -92,13 +90,13 @@ const useProducts = () => {
       setIsLoading(false);
       Swal.fire('', 'No se a podido actualizar', 'info');
     }
-    handleRedirectProducts();
+    handleRedirectClients();
   };
   const handleSubmitCreate = async (e) => {
     e.preventDefault();
     console.log(inputValues);
     setIsLoading(true);
-    const response = await fetch(`${ROUTES.api}/dashboard/producto`, {
+    const response = await fetch(`${ROUTES.api}/dashboard/cliente`, {
       method: 'POST',
       body: JSON.stringify(inputValues),
       headers: { 'Content-Type': 'application/json' },
@@ -113,7 +111,7 @@ const useProducts = () => {
       setIsLoading(false);
       Swal.fire('', 'No se a podido crear el producto', 'info');
     }
-    handleRedirectProducts();
+    handleRedirectClients();
   };
   const handleOnChange = (e) => {
     setInputValues((prevState) => ({
@@ -123,23 +121,23 @@ const useProducts = () => {
   };
 
   useEffect(() => {
-    getProducts();
+    getClients();
   }, []);
 
   return {
-    products,
+    clients,
     isLoading,
-    getProducts,
+    getClients,
     editItem,
     deleteItem,
     handleSubmitEdit,
     handleSubmitCreate,
     inputValues,
-    handleRedirectProducts,
+    handleRedirectClients,
     setInputValues,
     handleOnChange,
     getDetalle,
   };
 };
 
-export default useProducts;
+export default useClients;

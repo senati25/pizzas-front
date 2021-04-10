@@ -51,6 +51,11 @@ select {
   border: none;
   outline: none;
 }
+.container_tableProducts{
+  padding:10px;
+  width:90%;
+  margin: auto;
+}
 
 /* #__next {
   background-color: aqua;

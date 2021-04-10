@@ -3,14 +3,12 @@ import ROUTES from '../helpers/constants';
 
 const useActionsTable = (fetchCategories) => {
   const deleteItem = async (id) => {
-    const response = await fetch(`${ROUTES.api}/dashboard/categoria/${id}`, {
+    const response = await fetch(`${ROUTES.api}/dashboard/{categoria}/${id}`, {
       method: 'DELETE',
     });
-
     const result = await response.json();
-
     if (result) {
-      console.log({ result });
+     
       fetchCategories();
     }
   };

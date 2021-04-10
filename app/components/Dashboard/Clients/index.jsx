@@ -1,26 +1,26 @@
 import Link from 'next/link';
 import { React } from 'react';
-import useProducts from '../../../hooks/useProducts';
-import ProductsTable from './ProductsTable';
+import useClients from '../../../hooks/useClientes';
+import ClientsTable from './ClientTable';
 
 import styles from './style.module.css';
 import SpinnerDashboard from '../../shared/SpinnerDashboard';
 
-const Products = () => {
-  const { products, isLoading, deleteItem, editItem } = useProducts();
+const Clients = () => {
+  const { clients, isLoading, deleteItem, editItem } = useClients();
 
   return (
     <>
       {!isLoading ? (
         <div className={styles.categories}>
-          <h1 className={styles.categories__title}>Productos</h1>
-          <Link href="/admin/products/new">
+          <h1 className={styles.categories__title}>Clientes</h1>
+          <Link href="/admin/clients/new">
             <a className={styles.categories__link}>Nuevo</a>
           </Link>
-          <ProductsTable
+          <ClientsTable
             deleteItem={deleteItem}
             editItem={editItem}
-            products={products}
+            clients={clients}
           />
         </div>
       ) : (
@@ -30,4 +30,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default Clients;
