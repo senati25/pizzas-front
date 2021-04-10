@@ -11,6 +11,10 @@ const ROUTES = {
       root: 'categories',
       new: 'new',
     },
+    subCategories:{
+      root:'subcategories',
+      new:'new'
+    }
   },
 };
 

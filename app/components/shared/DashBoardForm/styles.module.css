@@ -20,12 +20,15 @@
 .form__group input,
 .form__group select {
   border: 1px solid rgb(216, 216, 216);
-  padding: 0.5rem;
+  padding: 0.7rem 0.4rem;
+  outline: none;
+  display: block;
   width: 100%;
   border-radius: 0.5rem;
   font-size: 1rem;
   margin: 0.5rem 0;
   transition: border 0.3s ease-in-out;
+  margin-bottom: 12px;
 }
 
 .form__group input:focus,
@@ -42,7 +45,7 @@
 }
 
 .dashboardForm__buttonsGroup > button {
-  border-radius: 3rem;
+  border-radius: 0.8rem;
   padding: 0.5rem 1rem;
   font-weight: 600;
   font-size: 1.1rem;
