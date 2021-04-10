@@ -15,11 +15,11 @@ const DashboardNav = () => (
       </a>
     </Link>
 
-    <Link href="/">
+    <Link href="/admin/products">
       <a className={`${styles.dashboardNav__link} `}>Productos</a>
     </Link>
 
-    <Link href="/">
+    <Link href="/admin/clients">
       <a className={`${styles.dashboardNav__link} `}>Clientes</a>
     </Link>
 
