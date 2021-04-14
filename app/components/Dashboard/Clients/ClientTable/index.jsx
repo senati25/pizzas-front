@@ -50,6 +50,7 @@ const ClientsTable = ({ deleteItem, clients, editItem }) => (
           { Header: 'CORREO', accessor: 'correo' },
           { Header: 'DNI', accessor: 'dni' },
           { Header: 'DIRECCION', accessor: 'direccion' },
+          { Header: 'ESTADO', accessor: 'estado' },
         ];
       }
 
@@ -75,12 +76,7 @@ const ClientsTable = ({ deleteItem, clients, editItem }) => (
     data={useMemo(
       () => [
         ...clients.map((c) => ({
-          id: c.id,
-          nombre: c.nombre,
-          apellido: c.apellido,
-          correo: c.correo,
-          dni: c.dni,
-          direccion: c.direccion,
+          ...c,
         })),
       ],
       [clients]

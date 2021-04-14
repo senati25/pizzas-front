@@ -46,6 +46,7 @@ const CreateProductForm = () => {
         onChange={handleOnChange}
         id="categoria"
       >
+        <option value="">---categoria---</option>
         {categories.length
           ? categories.map((data) => (
               <option key={data.id} value={data.id}>
@@ -54,7 +55,14 @@ const CreateProductForm = () => {
             ))
           : undefined}
       </select>
-      <select name="estado" required onChange={handleOnChange} id="estado">
+      <select
+        name="estado"
+        required
+        onChange={handleOnChange}
+        defaultValue=""
+        id="estado"
+      >
+        <option value="">---estado---</option>
         <option value="activo">Activo</option>
         <option value="baja">Baja</option>
       </select>

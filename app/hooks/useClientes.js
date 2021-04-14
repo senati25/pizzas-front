@@ -24,8 +24,8 @@ const useClients = () => {
   const deleteItem = async (id) => {
     try {
       fetch(
-        `https://inviaggio-api.vercel.app/api/index.php/api/dashboard/producto/baja/${id}`,
-        { method: 'PATCH' }
+        `https://inviaggio-api.vercel.app/api/index.php/api/dashboard/cliente/${id}`,
+        { method: 'DELETE' }
       ).then(async (data) => {
         if (data.status === 200) {
           await getClients();
@@ -45,7 +45,7 @@ const useClients = () => {
   };
 
   const editItem = (values) => {
-    router.push({ pathname: `/admin/cliente/${values.id}`, query: values });
+    router.push({ pathname: `/admin/clients/${values.id}`, query: values });
   };
 
   const getDetalle = async (id) => {
@@ -102,9 +102,9 @@ const useClients = () => {
       headers: { 'Content-Type': 'application/json' },
     });
     const data = await response.json();
-
     if (data) {
       setIsLoading(false);
+      console.log(data);
       Swal.fire('', 'Producto Creado correctamente', 'success');
     } else {
       // TODO
