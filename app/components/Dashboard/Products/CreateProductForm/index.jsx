@@ -1,18 +1,24 @@
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 import DashboardForm from '../../../shared/DashBoardForm';
-import useProducts from '../../../../hooks/useProducts';
 import useFetchCategories from '../../../../hooks/useFetchCategories';
+import Varieties from './Varieties';
+import useProductsForm from '../../../../hooks/useProductsForm';
 
 const CreateProductForm = () => {
-  const { handleOnChange, handleSubmitCreate } = useProducts();
+  const { handleOnChange, handleSubmitCreate } = useProductsForm();
   const { categories } = useFetchCategories();
-
   const { back } = useRouter();
+
+  const [varieties, setVarieties] = useState([]);
 
   return (
     <DashboardForm
-      handleSubmit={handleSubmitCreate}
-      title="  Crear Nuevo Producto   "
+      handleSubmit={(e) => {
+        e.preventDefault();
+        handleSubmitCreate(varieties);
+      }}
+      title="Crear Nuevo Producto"
       onCancel={back}
     >
       <input
@@ -23,6 +29,7 @@ const CreateProductForm = () => {
         placeholder="NOMBRE"
         onChange={handleOnChange}
       />
+
       <input
         type="text"
         name="img"
@@ -40,6 +47,7 @@ const CreateProductForm = () => {
         placeholder="DESCRIPCION"
         onChange={handleOnChange}
       ></textarea>
+
       <select
         name="categoria_id"
         required
@@ -55,17 +63,8 @@ const CreateProductForm = () => {
             ))
           : undefined}
       </select>
-      <select
-        name="estado"
-        required
-        onChange={handleOnChange}
-        defaultValue=""
-        id="estado"
-      >
-        <option value="">---estado---</option>
-        <option value="activo">Activo</option>
-        <option value="baja">Baja</option>
-      </select>
+
+      <Varieties varieties={varieties} setVarieties={setVarieties} />
     </DashboardForm>
   );
 };

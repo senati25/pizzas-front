@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import DashboardForm from '../../../shared/DashBoardForm';
-import useProducts from '../../../../hooks/useProducts';
 import useFetchCategories from '../../../../hooks/useFetchCategories';
+import useProductsForm from '../../../../hooks/useProductsForm';
 
 const EditProductForm = () => {
   const {
@@ -10,7 +10,7 @@ const EditProductForm = () => {
     handleSubmitEdit,
     inputValues,
     getDetalle,
-  } = useProducts();
+  } = useProductsForm();
   const { categories } = useFetchCategories();
 
   const { query, back } = useRouter();
