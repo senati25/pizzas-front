@@ -5,12 +5,16 @@ const useShoppingCart = () => {
   const verifyProductAlreadyAdded = (product) =>
     shoppingCartList.some(({ id }) => id === product.id);
 
-  const addProduct = (newProduct) => {
+  const addProduct = (newProduct, index) => {
     if (verifyProductAlreadyAdded(newProduct)) {
       const newState = shoppingCartList.map((product) => {
         if (product.id === newProduct.id) {
           const { cantidad } = product;
-          return { ...newProduct, cantidad: cantidad + 1 };
+          return {
+            ...newProduct,
+            cantidad: cantidad + 1,
+            precio: newProduct.subcategoria[index].precio,
+          };
         }
         return product;
       });
@@ -19,7 +23,11 @@ const useShoppingCart = () => {
     } else {
       setShoppingCartList((prevState) => [
         ...prevState,
-        { ...newProduct, cantidad: 1 },
+        {
+          ...newProduct,
+          cantidad: 1,
+          precio: newProduct.subcategoria[index].precio,
+        },
       ]);
     }
   };
