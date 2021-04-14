@@ -1,26 +1,13 @@
 import PropTypes from 'prop-types';
+import Cookie from 'js-cookie';
 import { useEffect, useState } from 'react';
 import storeContext from '../../context/storeContext';
 
-const StoreProvider = ({ children, storageKey }) => {
-  const [isInitialized, setIsInitialized] = useState(false);
-  const [store, setStore] = useState({});
-
-  // const [posts, dispatchPost] = useReducer(reducer, []);
-
+const StoreProvider = ({ children, initialState }) => {
+  const [store, setStore] = useState(() => JSON.parse(initialState));
   useEffect(() => {
-    if (isInitialized) {
-      localStorage.setItem(storageKey, JSON.stringify(store));
-    }
+    Cookie.set('store', JSON.stringify(store));
   }, [store]);
-
-  useEffect(() => {
-    setStore({
-      ...(JSON.parse(localStorage.getItem(storageKey)) || []),
-    });
-
-    setIsInitialized(true);
-  }, []);
 
   return (
     <storeContext.Provider value={{ store, setStore }}>
@@ -29,13 +16,9 @@ const StoreProvider = ({ children, storageKey }) => {
   );
 };
 
-StoreProvider.defaultProps = {
-  storageKey: 'store',
-};
-
 StoreProvider.propTypes = {
   children: PropTypes.element.isRequired,
-  storageKey: PropTypes.string,
+  initialState: PropTypes.string.isRequired,
 };
 
 export default StoreProvider;

@@ -4,31 +4,33 @@ import ROUTES from '../helpers/constants';
 import useStoreContext from './useStoreContext';
 
 const useFetchSubcategories = () => {
-  const { query, push } = useRouter();
-  const { setStore } = useStoreContext();
+  const { push, back } = useRouter();
+  const { store } = useStoreContext();
+  const [currentSubcategory] = useState(
+    () => store?.currentSubcategory || null
+  );
+
+  const [_isMounted, setIsMounted] = useState(true);
   const [subcategories, setSubcategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchSubCategories = async () => {
-    const { id } = query;
-    if (id) {
-      const response = await fetch(
-        `${ROUTES.api}/dashboard/subcategoriaproductos/${id}`
-      );
-      const data = await response.json();
+    const response = await fetch(
+      `${ROUTES.api}/dashboard/subcategoriaproductos/${currentSubcategory.id}`
+    );
+    const data = await response.json();
 
-      if (data.length) {
-        setIsLoading(false);
-        setSubcategories([...data]);
-      } else {
-        setIsLoading(false);
-      }
+    if (data.length && _isMounted) {
+      setIsLoading(false);
+      setSubcategories([...data]);
+    } else if (_isMounted) {
+      setIsLoading(false);
     }
   };
 
   const deleteItem = async (itemId) => {
     const response = await fetch(
-      `${ROUTES.api}/dashboard/categoria/${itemId}`,
+      `${ROUTES.api}/dashboard/subcategoriaproductos/${itemId}`,
       {
         method: 'DELETE',
       }
@@ -36,7 +38,7 @@ const useFetchSubcategories = () => {
 
     const result = await response.json();
 
-    if (result) {
+    if (result && _isMounted) {
       fetchSubCategories();
     }
   };
@@ -49,23 +51,18 @@ const useFetchSubcategories = () => {
   };
 
   useEffect(() => {
+    if (!currentSubcategory) {
+      back();
+    }
     fetchSubCategories();
-  }, [query]);
-
-  useEffect(() => {
-    fetchSubCategories();
-  }, [query]);
-
-  useEffect(() => {
-    setStore((prevState) => ({
-      ...prevState,
-      subcategories,
-    }));
-  }, [subcategories]);
+    return () => {
+      setIsMounted(false);
+    };
+  }, [currentSubcategory]);
 
   return {
+    currentSubcategory,
     subcategories,
-    fetchSubCategories,
     isLoading,
     editItem,
     deleteItem,

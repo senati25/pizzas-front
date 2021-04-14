@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
-import router from 'next/router';
+import { useRouter } from 'next/router';
 import ROUTES from '../helpers/constants';
 
 const useProducts = () => {
+  const { back, push } = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState([]);
   const [inputValues, setInputValues] = useState({});
@@ -47,7 +48,7 @@ const useProducts = () => {
   };
 
   const editItem = (values) => {
-    router.push({ pathname: `/admin/products/${values.id}`, query: values });
+    push({ pathname: `/admin/products/${values.id}`, query: values });
   };
 
   const getDetalle = async (id) => {
@@ -66,9 +67,11 @@ const useProducts = () => {
       }
     }
   };
-  const handleRedirectProducts = () => {
-    router.push('/admin/products');
-  };
+
+  // const handleRedirectProducts = () => {
+  //   router.push('/admin/products');
+  // };
+
   const handleSubmitEdit = async (e) => {
     console.log(inputValues);
     e.preventDefault();
@@ -92,7 +95,9 @@ const useProducts = () => {
       setIsLoading(false);
       Swal.fire('', 'No se a podido actualizar', 'info');
     }
-    handleRedirectProducts();
+
+    back();
+    // handleRedirectProducts();
   };
   const handleSubmitCreate = async (e) => {
     e.preventDefault();
@@ -113,7 +118,8 @@ const useProducts = () => {
       setIsLoading(false);
       Swal.fire('', 'No se a podido crear el producto', 'info');
     }
-    handleRedirectProducts();
+    back();
+    // handleRedirectProducts();
   };
   const handleOnChange = (e) => {
     setInputValues((prevState) => ({
@@ -135,7 +141,7 @@ const useProducts = () => {
     handleSubmitEdit,
     handleSubmitCreate,
     inputValues,
-    handleRedirectProducts,
+    // handleRedirectProducts,
     setInputValues,
     handleOnChange,
     getDetalle,

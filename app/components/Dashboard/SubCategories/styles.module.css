@@ -3,8 +3,14 @@
   display: flex;
   flex-direction: column;
 }
+
 .subCategories__title {
   font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.subCategories__subTitle {
+  font-size: 1.2rem;
   margin-bottom: 2rem;
 }
 

@@ -87,10 +87,8 @@ const CategoryTable = ({ categories, fetchCategories }) => {
       }, [categories])}
       data={useMemo(
         () => [
-          ...categories.map((c) => ({
-            id: c.id,
-            denominacion: c.denominacion,
-            estado: c.estado,
+          ...categories.map((category) => ({
+            ...category,
           })),
         ],
         [categories]

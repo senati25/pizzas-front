@@ -1,8 +1,14 @@
 import { useState } from 'react';
 import router from 'next/router';
 import ROUTES from '../helpers/constants';
+import useStoreContext from './useStoreContext';
 
-const useSubCategories = () => {
+const useSubCategoriesForm = () => {
+  const { store } = useStoreContext();
+  const [currentSubcategory] = useState(
+    () => store?.currentSubcategory || null
+  );
+
   const [subCategories, setSubCategorie] = useState({});
   const [responseCreate, setResponseCreate] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -30,7 +36,10 @@ const useSubCategories = () => {
       `${ROUTES.api}/dashboard/subcategoriaproductos`,
       {
         method: 'POST',
-        body: JSON.stringify(inputValues),
+        body: JSON.stringify({
+          ...inputValues,
+          categoria_id: currentSubcategory.id,
+        }),
         headers: { 'Content-Type': 'application/json' },
       }
     );
@@ -100,4 +109,4 @@ const useSubCategories = () => {
     handleOnChange,
   };
 };
-export default useSubCategories;
+export default useSubCategoriesForm;

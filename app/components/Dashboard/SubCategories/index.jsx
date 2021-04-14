@@ -6,24 +6,29 @@ import styles from './styles.module.css';
 
 const SubCategories = () => {
   const {
+    currentSubcategory,
     subcategories,
-    fetchSubCategories,
     isLoading,
     editItem,
     deleteItem,
   } = useFetchSubcategories();
 
+  const { denominacion } = currentSubcategory;
   return (
     <>
       {!isLoading ? (
         <div className={styles.subCategories}>
-          <h1 className={styles.subCategories__title}>SubCategorias</h1>
+          <h1 className={styles.subCategories__title}>
+            {denominacion.toUpperCase()}
+          </h1>
+          <h2 className={styles.subCategories__subTitle}>SubCategorias</h2>
+
           <Link href="/admin/categories/subcategories/new">
             <a className={styles.subCategories__link}>Nuevo</a>
           </Link>
+
           <SubcategoryTable
             subcategories={subcategories}
-            fetchSubCategories={fetchSubCategories}
             editItem={editItem}
             deleteItem={deleteItem}
           />

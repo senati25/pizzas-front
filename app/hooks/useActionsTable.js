@@ -1,14 +1,15 @@
 import router from 'next/router';
 import ROUTES from '../helpers/constants';
+import useStoreContext from './useStoreContext';
 
 const useActionsTable = (fetchCategories) => {
+  const { setStore } = useStoreContext();
   const deleteItem = async (id) => {
     const response = await fetch(`${ROUTES.api}/dashboard/{categoria}/${id}`, {
       method: 'DELETE',
     });
     const result = await response.json();
     if (result) {
-     
       fetchCategories();
     }
   };
@@ -18,10 +19,16 @@ const useActionsTable = (fetchCategories) => {
   };
 
   const redirectToSubcategories = (values) => {
-    router.push({
-      pathname: `/admin/categories/subcategories/${values.id}`,
-      query: values,
-    });
+    setStore((prevState) => ({
+      ...prevState,
+      currentSubcategory: { ...values },
+    }));
+
+    // router.push({
+    //   pathname: `/admin/categories/subcategories/${values.id}`,
+    //   query: values,
+    // });
+    router.push(`/admin/categories/subcategories/${values.denominacion}`);
   };
 
   return { editItem, deleteItem, redirectToSubcategories };

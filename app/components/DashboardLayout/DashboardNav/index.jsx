@@ -6,18 +6,15 @@ import styles from './styles.module.css';
 
 const DashboardNav = () => {
   const { pathname } = useRouter();
-  console.log(pathname);
   return (
     <nav className={styles.dashboardNav}>
-      <Link
-        href={`/${ROUTES.dashboard.root}/${ROUTES.dashboard.categories.root}`}
-      >
+      <Link href="/admin/clients">
         <a
           className={`${styles.dashboardNav__link} ${
-            pathname.includes('categories') && styles.dashboardNav__link__active
+            pathname.includes('clients') && styles.dashboardNav__link__active
           } `}
         >
-          Categorias
+          Clientes
         </a>
       </Link>
 
@@ -31,13 +28,15 @@ const DashboardNav = () => {
         </a>
       </Link>
 
-      <Link href="/admin/clients">
+      <Link
+        href={`/${ROUTES.dashboard.root}/${ROUTES.dashboard.categories.root}`}
+      >
         <a
           className={`${styles.dashboardNav__link} ${
-            pathname.includes('clients') && styles.dashboardNav__link__active
+            pathname.includes('categories') && styles.dashboardNav__link__active
           } `}
         >
-          Clientes
+          Categorias
         </a>
       </Link>
     </nav>

@@ -1,20 +1,19 @@
+import { useRouter } from 'next/router';
 import DashboardForm from '../../../shared/DashBoardForm';
 import useProducts from '../../../../hooks/useProducts';
 import useFetchCategories from '../../../../hooks/useFetchCategories';
 
 const CreateProductForm = () => {
-  const {
-    handleOnChange,
-    handleSubmitCreate,
-    handleRedirectProducts,
-  } = useProducts();
+  const { handleOnChange, handleSubmitCreate } = useProducts();
   const { categories } = useFetchCategories();
+
+  const { back } = useRouter();
 
   return (
     <DashboardForm
       handleSubmit={handleSubmitCreate}
       title="  Crear Nuevo Producto   "
-      onCancel={handleRedirectProducts}
+      onCancel={back}
     >
       <input
         type="text"

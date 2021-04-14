@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
-import useSubCategories from '../../../../hooks/useSubCategories';
+import useSubCategoriesForm from '../../../../hooks/useSubCategoriesForm';
 
 import DashboardForm from '../../../shared/DashBoardForm';
 
@@ -11,7 +11,7 @@ const EditSubCategoryForm = () => {
     setInputValues,
     handleOnChange,
     handleEditSubCategory,
-  } = useSubCategories();
+  } = useSubCategoriesForm();
 
   const { query } = useRouter();
 

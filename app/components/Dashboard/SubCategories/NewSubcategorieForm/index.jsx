@@ -1,17 +1,16 @@
+import { useRouter } from 'next/router';
 import React from 'react';
-import useSubCategories from '../../../../hooks/useSubCategories';
+import useSubCategoriesForm from '../../../../hooks/useSubCategoriesForm';
 import DashboardForm from '../../../shared/DashBoardForm';
 
 const FormCreateSubCategorie = () => {
-  const { handleChange, handleCreateSubCategory } = useSubCategories();
-
+  const { handleChange, handleCreateSubCategory } = useSubCategoriesForm();
+  const { back } = useRouter();
   return (
     <DashboardForm
       handleSubmit={handleCreateSubCategory}
       title="Crear nueva Subcategoria"
-      onCancel={() => {
-        alert('hola mundo en react');
-      }}
+      onCancel={back}
     >
       <input
         type="text"
@@ -28,12 +27,12 @@ const FormCreateSubCategorie = () => {
         min="0"
         onChange={handleChange}
       />
-      <input
+      {/* <input
         type="number"
         name="categoria_id"
         placeholder="CATEGORIA ID"
         onChange={handleChange}
-      />
+      /> */}
     </DashboardForm>
   );
 };
