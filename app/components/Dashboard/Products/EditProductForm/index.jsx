@@ -9,12 +9,11 @@ const EditProductForm = () => {
     handleOnChange,
     handleSubmitEdit,
     inputValues,
-    handleRedirectProducts,
     getDetalle,
   } = useProducts();
   const { categories } = useFetchCategories();
 
-  const { query } = useRouter();
+  const { query, back } = useRouter();
 
   useEffect(() => {
     getDetalle(query.id);
@@ -24,7 +23,7 @@ const EditProductForm = () => {
     <DashboardForm
       handleSubmit={handleSubmitEdit}
       title="Editar  producto"
-      onCancel={handleRedirectProducts}
+      onCancel={back}
     >
       <input
         type="text"
