@@ -5,9 +5,12 @@ import useStoreContext from './useStoreContext';
 const useActionsTable = (fetchCategories) => {
   const { setStore } = useStoreContext();
   const deleteItem = async (id) => {
-    const response = await fetch(`${ROUTES.api}/dashboard/{categoria}/${id}`, {
-      method: 'DELETE',
-    });
+    const response = await fetch(
+      `${ROUTES.api}/dashboard/categoria/baja/${id}`,
+      {
+        method: 'PATCH',
+      }
+    );
     const result = await response.json();
     if (result) {
       fetchCategories();

@@ -49,14 +49,15 @@ const EditSubCategoryForm = () => {
         onChange={handleOnChange}
       />
 
-      {/* <select
+      <select
         name="estado"
-        value={inputValues.estado}
+        defaultValue={inputValues.estado}
         onChange={handleOnChange}
       >
+        <option value="">--estado--</option>
         <option value="activo">activo</option>
         <option value="baja">baja</option>
-      </select> */}
+      </select>
     </DashboardForm>
   );
 };

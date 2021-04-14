@@ -47,6 +47,7 @@ const useSubCategoriesForm = () => {
     const res = await response.json();
     if (res) {
       setResponseCreate(res);
+      router.back();
     }
     console.log(responseCreate);
   };
