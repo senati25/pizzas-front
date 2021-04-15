@@ -1,0 +1,40 @@
+.variety {
+  margin-top: 1rem;
+  border: 2px;
+  border-color: #00000022;
+  border-style: solid;
+  padding: 1rem;
+  font-size: 0.8rem;
+}
+
+.variety__add {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  /* flex-wrap: wrap; */
+}
+
+.variety__add > button {
+  width: 50%;
+}
+
+.variety__grid {
+  display: grid;
+  column-gap: 0.5rem;
+  row-gap: 1rem;
+  grid-template-columns: 1fr 1fr auto;
+}
+
+.variety__grid > button {
+  display: block;
+  margin: auto;
+  background-color: aqua;
+  min-width: 1.5rem;
+  min-height: 1.5rem;
+  border-radius: 100%;
+  /* padding: 1rem; */
+}
+
+.variety__grid span {
+  margin-left: 1rem;
+}

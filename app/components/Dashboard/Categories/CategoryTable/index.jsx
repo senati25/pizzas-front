@@ -6,12 +6,7 @@ import useActionsTable from '../../../../hooks/useActionsTable';
 import DashboardTable from '../../../shared/DashboardTable';
 import styles from './styles.module.css';
 
-const Actions = ({
-  original,
-  deleteItem,
-  editItem,
-  redirectToSubcategories,
-}) => (
+const Actions = ({ original, deleteItem, editItem }) => (
   <div className={styles.actions}>
     <button
       onClick={() => {
@@ -29,10 +24,6 @@ const Actions = ({
     >
       <i className="fas fa-trash-alt fa-lg"></i>
     </button>
-
-    <button onClick={() => redirectToSubcategories(original)} type="button">
-      Subcategorias
-    </button>
   </div>
 );
 
@@ -44,7 +35,6 @@ Actions.propTypes = {
   }).isRequired,
   deleteItem: PropTypes.func.isRequired,
   editItem: PropTypes.func.isRequired,
-  redirectToSubcategories: PropTypes.func.isRequired,
 };
 
 const CategoryTable = ({ categories, fetchCategories }) => {
