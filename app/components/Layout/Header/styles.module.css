@@ -10,11 +10,20 @@
   z-index: 3;
   overflow: hidden;
 }
+.listNavIcons {
+  text-decoration: none;
+  display: flex;
+}
 
 .shoppingCartIcon {
   color: #2e2e2e;
   display: block;
   position: relative;
+}
+.registerUserIcon {
+  color: #000;
+  display: block;
+  margin-right: 10px;
 }
 
 .shoppingCartBadge {

@@ -5,15 +5,15 @@ import ProductCard from '../../shared/ProductCard';
 import Spinner from '../../shared/Spinner';
 import styles from './styles.module.css';
 
-const ProductsGrid = memo(() => {
+const ProductsGrid = memo((products) => {
+  console.log(products);
   const { addProduct } = useShoppingCart();
-  const { products, isLoading } = useProducts();
-
+  const { isLoading } = useProducts();
   return (
     <>
       {!isLoading ? (
         <div className={styles.productsGrid}>
-          {products.map((product) => (
+          {products.products.map((product) => (
             <ProductCard
               key={product.id}
               product={product}
@@ -27,5 +27,4 @@ const ProductsGrid = memo(() => {
     </>
   );
 });
-
 export default ProductsGrid;

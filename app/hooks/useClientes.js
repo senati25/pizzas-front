@@ -6,7 +6,9 @@ import ROUTES from '../helpers/constants';
 const useClients = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [clients, setClients] = useState([]);
+  const [smsResponse, setSmsResponse] = useState('');
   const [inputValues, setInputValues] = useState({});
+  const [isLoadingRegister, setIsLoadingRegister] = useState(false);
 
   const getClients = async () => {
     const response = await fetch(`${ROUTES.api}/dashboard/cliente`);
@@ -96,22 +98,58 @@ const useClients = () => {
     e.preventDefault();
     console.log(inputValues);
     setIsLoading(true);
-    const response = await fetch(`${ROUTES.api}/dashboard/cliente`, {
-      method: 'POST',
-      body: JSON.stringify(inputValues),
-      headers: { 'Content-Type': 'application/json' },
-    });
+    const response = await fetch(
+      `http://127.0.0.1:8000/api/dashboard/cliente`,
+      {
+        method: 'POST',
+        body: JSON.stringify(inputValues),
+        headers: { 'Content-Type': 'application/json' },
+      }
+    );
     const data = await response.json();
-    if (data) {
+    console.log(data);
+    if (data.estado === 'success') {
       setIsLoading(false);
-      console.log(data);
-      Swal.fire('', 'Producto Creado correctamente', 'success');
+      Swal.fire('Tu cuenta a sido creada con exito', '', 'success');
+      handleRedirectClients();
+    } else if (data.estado === 'correoexiste') {
+      const sms = `El correo ${inputValues.correo} ya esta registrado`;
+      setSmsResponse(sms);
+      setIsLoading(false);
     } else {
-      // TODO
+      const sms = `Tenemos problemas al crear tu cuenta intentalo mas tarde`;
+      setSmsResponse(sms);
       setIsLoading(false);
-      Swal.fire('', 'No se a podido crear el producto', 'info');
     }
-    handleRedirectClients();
+  };
+  const handleSubmitCreateCliente = async (e) => {
+    e.preventDefault();
+    console.log(inputValues);
+    setIsLoadingRegister(true);
+    const response = await fetch(
+      `http://127.0.0.1:8000/api/dashboard/cliente`,
+      {
+        method: 'POST',
+        body: JSON.stringify(inputValues),
+        headers: { 'Content-Type': 'application/json' },
+      }
+    );
+    const data = await response.json();
+    console.log(data);
+    if (data.estado === 'success') {
+      setIsLoadingRegister(false);
+      Swal.fire('Tu cuenta a sido creada con exito', '', 'success');
+      router.push('/login');
+    } else if (data.estado === 'correoexiste') {
+      const sms = `El correo ${inputValues.correo} ya esta registrado`;
+      setSmsResponse(sms);
+
+      setIsLoadingRegister(false);
+    } else {
+      const sms = `Tenemos problemas al crear tu cuenta intentalo mas tarde`;
+      setSmsResponse(sms);
+      setIsLoadingRegister(false);
+    }
   };
   const handleOnChange = (e) => {
     setInputValues((prevState) => ({
@@ -135,8 +173,11 @@ const useClients = () => {
     inputValues,
     handleRedirectClients,
     setInputValues,
+    isLoadingRegister,
+    handleSubmitCreateCliente,
     handleOnChange,
     getDetalle,
+    smsResponse,
   };
 };
 

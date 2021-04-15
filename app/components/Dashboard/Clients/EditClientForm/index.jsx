@@ -23,7 +23,7 @@ const EditClientForm = () => {
       {!isLoading ? (
         <DashboardForm
           handleSubmit={handleSubmitEdit}
-          title="Crear Nuevo Cliente"
+          title="Editar Cliente"
           onCancel={back}
         >
           <input
