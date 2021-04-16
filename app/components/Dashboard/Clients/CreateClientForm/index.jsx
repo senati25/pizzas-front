@@ -6,7 +6,12 @@ import SpinnerDashboard from '../../../shared/SpinnerDashboard';
 // import styles from './styles.module.css';
 
 const CreateClientFrom = () => {
-  const { handleSubmitCreate, handleOnChange, isLoading } = useClients();
+  const {
+    handleSubmitCreate,
+    handleOnChange,
+    smsResponse,
+    isLoading,
+  } = useClients();
   const { back } = useRouter();
   return (
     <>
@@ -63,6 +68,7 @@ const CreateClientFrom = () => {
             id="password"
             placeholder="Contraseña"
           />
+          <p>{smsResponse}</p>
         </DashboardForm>
       ) : (
         <SpinnerDashboard />

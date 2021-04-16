@@ -4,9 +4,8 @@ import ProductCard from '../../shared/ProductCard';
 import Spinner from '../../shared/Spinner';
 import styles from './styles.module.css';
 
-const ProductsGrid = memo(() => {
-  const { products, isLoading } = useProducts();
-
+const ProductsGrid = memo(({ products }) => {
+  const { isLoading } = useProducts();
   return (
     <>
       {!isLoading ? (
@@ -15,7 +14,6 @@ const ProductsGrid = memo(() => {
             <ProductCard
               key={`${product.id}${product.denominacion}`}
               product={product}
-              // {...useProductCardHook}
             />
           ))}
         </div>

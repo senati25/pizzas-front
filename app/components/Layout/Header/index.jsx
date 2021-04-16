@@ -26,10 +26,16 @@ const Header = memo(() => {
           />
         </a>
       </Link>
-
       <Nav />
-
-      <ul>
+      <ul className={styles.listNavIcons}>
+        <li>
+          <Link href="/login">
+            <a className={styles.registerUserIcon}>
+              <i className="fas fa-user fa-2x"></i>
+              <span> </span>
+            </a>
+          </Link>
+        </li>
         <li>
           <Link href={`/${ROUTES.public.shoppingCart}`}>
             <a className={styles.shoppingCartIcon}>

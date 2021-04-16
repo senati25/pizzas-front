@@ -61,6 +61,7 @@ const useProducts = () => {
 
   return {
     products,
+    setProducts,
     isLoading,
     getProducts,
     editItem,
