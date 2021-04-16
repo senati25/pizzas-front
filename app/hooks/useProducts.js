@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import { useRouter } from 'next/router';
+import ROUTES from '../helpers/constants';
 
 const useProducts = () => {
   const { push } = useRouter();
@@ -8,9 +9,7 @@ const useProducts = () => {
   const [products, setProducts] = useState([]);
 
   const getProducts = async () => {
-    const response = await fetch(
-      'https://inviaggio-api.vercel.app/api/index.php/api/publico/productos'
-    );
+    const response = await fetch(`${ROUTES.api}/publico/productos`);
     const data = await response.json();
 
     if (data) {
@@ -24,10 +23,9 @@ const useProducts = () => {
 
   const deleteItem = async (id) => {
     try {
-      fetch(
-        `https://inviaggio-api.vercel.app/api/index.php/api/dashboard/producto/baja/${id}`,
-        { method: 'PATCH' }
-      ).then(async (data) => {
+      fetch(`${ROUTES.api}/dashboard/producto/baja/${id}`, {
+        method: 'PATCH',
+      }).then(async (data) => {
         if (data.status === 200) {
           await getProducts();
           Swal.fire(
@@ -56,6 +54,10 @@ const useProducts = () => {
   useEffect(() => {
     getProducts();
   }, []);
+
+  useEffect(() => {
+    console.log({ products });
+  }, [products]);
 
   return {
     products,
