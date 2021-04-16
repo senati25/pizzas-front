@@ -7,6 +7,9 @@ const ShoppingCartForm = ({ totalCost }) => (
       placeholder="Dejanos un mensaje"
       name="message"
       rows="5"
+      onChange={(e) => {
+        console.log(e.target.value);
+      }}
       maxLength="250"
     ></textarea>
     <p className={styles.form__paragraph}>Total S/ {totalCost}</p>

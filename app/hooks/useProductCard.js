@@ -48,13 +48,18 @@ const useProductCard = () => {
     }
   };
 
-  const plusOne = async ({ id, cantidad }) => {
+  const plusOne = async ({ id, cantidad }, minus = false) => {
+    console.log(minus);
+    let newQuantity = 0;
+    newQuantity = cantidad + 1;
+    if (minus) newQuantity = cantidad - 1;
+
     setIsLoading(true);
     const response = await fetch(
       `${ROUTES.api}/publico/carritoTieneProducto/aumentarUnidad/${id}`,
       {
         method: 'POST',
-        body: JSON.stringify({ cantidad: cantidad + 1 }),
+        body: JSON.stringify({ cantidad: newQuantity }),
         headers: { 'Content-Type': 'application/json' },
       }
     );
@@ -72,6 +77,11 @@ const useProductCard = () => {
     // shoppingCartProducts[index].cantidad += 1;
     // setShoppingCartProducts([...shoppingCartProducts]);
   };
+
+  const minusOne = (product) => {
+    plusOne(product, true);
+  };
+
   const handleAddProduct = async (product, currentVarietyDenomination) => {
     const carritoId = 1;
     const foundProduct = verifyProductAlreadyAdded(
@@ -99,6 +109,8 @@ const useProductCard = () => {
   return {
     handleAddProduct,
     isLoading,
+    plusOne,
+    minusOne,
   };
 };
 
