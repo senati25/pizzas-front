@@ -1,10 +1,13 @@
 import PropTypes from 'prop-types';
+import cookie from 'cookie';
 import Cookie from 'js-cookie';
 import { useEffect, useState } from 'react';
 import storeContext from '../../context/storeContext';
 
 const StoreProvider = ({ children, initialState }) => {
-  const [store, setStore] = useState(() => JSON.parse(initialState));
+  console.log({ initialState });
+  const [store, setStore] = useState(() => cookie.parse(initialState));
+
   useEffect(() => {
     Cookie.set('store', JSON.stringify(store));
   }, [store]);
