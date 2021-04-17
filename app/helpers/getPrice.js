@@ -5,5 +5,4 @@ const getPrice = (product) => {
   );
   return precio;
 };
-
 export default getPrice;
