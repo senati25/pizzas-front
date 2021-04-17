@@ -6,7 +6,6 @@ import styles from './styles.module.css';
 import MyShoppingList from './MyShoppingList';
 import ROUTES from '../../helpers/constants';
 import useProducts from '../../hooks/useProducts';
-
 const Products = () => {
   const { products } = useProducts();
   const router = useRouter();
