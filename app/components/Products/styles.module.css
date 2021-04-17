@@ -87,17 +87,17 @@
 
 @media only screen and (min-width: 1200px) {
   .productsGrid__wrapper {
-    grid-column: 1 / span 9;
+    grid-column: 1 / span 8;
     grid-row: 2 / span 11;
   }
 
   .search__wrapper {
-    grid-column: 1 / span 9;
+    grid-column: 1 / span 8;
     grid-row: 1 / span 1;
   }
 
   .MyShoppingList__wrapper {
-    grid-column: 10 / span 3;
+    grid-column: 9 / span 4;
     grid-row: 1 / span 13;
   }
 }

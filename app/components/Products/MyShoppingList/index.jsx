@@ -1,17 +1,17 @@
+import calculateTotal from '../../../helpers/calculateTotal';
+import getPrice from '../../../helpers/getPrice';
 import useShoppingCart from '../../../hooks/useShoppingCart';
-import useShoppingCartContext from '../../../hooks/useShoppingCartContext';
 import InformationMessage from '../../shared/InformationMessage';
 import styles from './styles.module.css';
 
 const MyShoppingList = () => {
-  const { shoppingCartList } = useShoppingCartContext();
-  const { totalCost, deleteProduct } = useShoppingCart();
+  const { shoppingCartProducts } = useShoppingCart();
 
   return (
     <div className={styles.myShoppingList}>
       <h3 className={styles.myShoppingList__title}>Mis articulos</h3>
       <div className={styles.myShoppingList__content}>
-        {shoppingCartList.length ? (
+        {shoppingCartProducts.length ? (
           <table className={styles.customTable}>
             <thead>
               <tr>
@@ -23,18 +23,18 @@ const MyShoppingList = () => {
             </thead>
 
             <tbody className={styles.table__body}>
-              {shoppingCartList.map((product, index) => (
+              {shoppingCartProducts.map((product) => (
                 <tr key={product.id}>
                   <td className={styles.data__quantity}>{product.cantidad}</td>
                   <td className={styles.data__name}>{product.nombre}</td>
                   <td className={styles.data__price}>
-                    {(product.precio * product.cantidad).toFixed(2)}
+                    {(getPrice(product) * product.cantidad).toFixed(2)}
                   </td>
                   <td className={styles.deleteButton}>
                     <button
                       type="button"
                       onClick={() => {
-                        deleteProduct(index);
+                        // deleteProduct(index);
                       }}
                     >
                       <i className="fas fa-times"></i>
@@ -48,7 +48,7 @@ const MyShoppingList = () => {
                   Total
                 </td>
                 <td colSpan="2" className={styles.data__info}>
-                  S/ {totalCost}
+                  S/ {calculateTotal(shoppingCartProducts)}
                 </td>
               </tr>
             </tbody>

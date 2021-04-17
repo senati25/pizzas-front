@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ProductsGrid from './ProductsGrid';
 import Search from './Search';
 import styles from './styles.module.css';

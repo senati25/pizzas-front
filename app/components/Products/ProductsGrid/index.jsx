@@ -1,23 +1,19 @@
 import { memo } from 'react';
 import useProducts from '../../../hooks/useProducts';
-import useShoppingCart from '../../../hooks/useShoppingCart';
 import ProductCard from '../../shared/ProductCard';
 import Spinner from '../../shared/Spinner';
 import styles from './styles.module.css';
 
-const ProductsGrid = memo((products) => {
-  console.log(products);
-  const { addProduct } = useShoppingCart();
+const ProductsGrid = memo(({ products }) => {
   const { isLoading } = useProducts();
   return (
     <>
       {!isLoading ? (
         <div className={styles.productsGrid}>
-          {products.products.map((product) => (
+          {products.map((product) => (
             <ProductCard
-              key={product.id}
+              key={`${product.id}${product.denominacion}`}
               product={product}
-              addProduct={addProduct}
             />
           ))}
         </div>
@@ -27,4 +23,5 @@ const ProductsGrid = memo((products) => {
     </>
   );
 });
+
 export default ProductsGrid;

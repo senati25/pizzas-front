@@ -1,5 +1,6 @@
 const ROUTES = {
-  api: 'https://inviaggio-api.vercel.app/api/index.php/api',
+  // api: 'https://inviaggio-api.vercel.app/api/index.php/api',
+  api: 'http://127.0.0.1:8000/api',
   public: {
     home: '/',
     products: 'products',
@@ -11,10 +12,10 @@ const ROUTES = {
       root: 'categories',
       new: 'new',
     },
-    subCategories:{
-      root:'subcategories',
-      new:'new'
-    }
+    subCategories: {
+      root: 'subcategories',
+      new: 'new',
+    },
   },
 };
 

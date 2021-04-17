@@ -1,13 +1,19 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import ROUTES from '../../../helpers/constants';
-import useShoppingCartContext from '../../../hooks/useShoppingCartContext';
+import useShoppingCart from '../../../hooks/useShoppingCart';
+
 import Nav from '../Nav';
 import styles from './styles.module.css';
 
 const Header = memo(() => {
-  const { shoppingCartLength } = useShoppingCartContext();
+  const { shoppingCartProducts } = useShoppingCart();
+
+  const cantidad = useMemo(() => shoppingCartProducts.length, [
+    shoppingCartProducts.length,
+  ]);
+
   return (
     <header className={styles.mainHeader}>
       <Link href={ROUTES.public.home}>
@@ -34,9 +40,7 @@ const Header = memo(() => {
           <Link href={`/${ROUTES.public.shoppingCart}`}>
             <a className={styles.shoppingCartIcon}>
               <i className="fas fa-shopping-cart fa-2x"></i>
-              <span className={styles.shoppingCartBadge}>
-                {shoppingCartLength}
-              </span>
+              <span className={styles.shoppingCartBadge}>{cantidad || 0}</span>
             </a>
           </Link>
         </li>
