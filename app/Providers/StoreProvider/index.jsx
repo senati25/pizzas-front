@@ -1,15 +1,9 @@
 import PropTypes from 'prop-types';
-import cookie from 'cookie';
-import Cookie from 'js-cookie';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import storeContext from '../../context/storeContext';
 
-const StoreProvider = ({ children, initialState }) => {
-  const [store, setStore] = useState(() => cookie.parse(initialState));
-
-  useEffect(() => {
-    Cookie.set('store', JSON.stringify(store));
-  }, [store]);
+const StoreProvider = ({ children }) => {
+  const [store, setStore] = useState({});
 
   return (
     <storeContext.Provider value={{ store, setStore }}>
@@ -20,7 +14,6 @@ const StoreProvider = ({ children, initialState }) => {
 
 StoreProvider.propTypes = {
   children: PropTypes.element.isRequired,
-  initialState: PropTypes.string.isRequired,
 };
 
 export default StoreProvider;

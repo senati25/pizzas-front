@@ -82,6 +82,7 @@ const useShoppingCart = () => {
 
   useEffect(() => {
     setStore((prevState) => ({ ...prevState, shoppingCartProducts }));
+    setStore({ ...store, shoppingCartProducts });
   }, [shoppingCartProducts]);
 
   useEffect(() => {

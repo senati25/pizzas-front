@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import { useRouter } from 'next/router';
 import ROUTES from '../helpers/constants';
+import useStoreContext from './useStoreContext';
 
 const useProducts = () => {
+  const { setStore } = useStoreContext();
   const { push } = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState([]);
@@ -56,7 +58,7 @@ const useProducts = () => {
   }, []);
 
   useEffect(() => {
-    console.log({ products });
+    setStore((prevState) => ({ ...prevState, products }));
   }, [products]);
 
   return {
