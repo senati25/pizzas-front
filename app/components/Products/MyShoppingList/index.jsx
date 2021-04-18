@@ -1,12 +1,13 @@
 import calculateTotal from '../../../helpers/calculateTotal';
 import getPrice from '../../../helpers/getPrice';
-import useShoppingCart from '../../../hooks/useShoppingCart';
+import useShoppingCartContext from '../../../hooks/useShoppingCartContext';
+import useShoppingCartHandlers from '../../../hooks/useShoppingCartHandlers';
 import InformationMessage from '../../shared/InformationMessage';
 import styles from './styles.module.css';
 
 const MyShoppingList = () => {
-  const { shoppingCartProducts } = useShoppingCart();
-
+  const { shoppingCartProducts } = useShoppingCartContext();
+  const { handleDeleteProduct } = useShoppingCartHandlers();
   return (
     <div className={styles.myShoppingList}>
       <h3 className={styles.myShoppingList__title}>Mis articulos</h3>
@@ -17,6 +18,7 @@ const MyShoppingList = () => {
               <tr>
                 <th className={styles.header__number}>#</th>
                 <th>Nombre</th>
+                <th title="Tamaño">T</th>
                 <th className={styles.header__price}>Precio</th>
                 <th>&nbsp;</th>
               </tr>
@@ -27,6 +29,7 @@ const MyShoppingList = () => {
                 <tr key={product.id}>
                   <td className={styles.data__quantity}>{product.cantidad}</td>
                   <td className={styles.data__name}>{product.nombre}</td>
+                  <td className={styles.data__name}>{product.variedad}</td>
                   <td className={styles.data__price}>
                     {(getPrice(product) * product.cantidad).toFixed(2)}
                   </td>
@@ -34,7 +37,7 @@ const MyShoppingList = () => {
                     <button
                       type="button"
                       onClick={() => {
-                        // deleteProduct(index);
+                        handleDeleteProduct(product);
                       }}
                     >
                       <i className="fas fa-times"></i>

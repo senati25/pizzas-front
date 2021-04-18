@@ -21,7 +21,22 @@
   width: 100%;
 }
 .productCard__description {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   margin: 1rem 0;
+}
+
+.productCard__tamanios {
+  display: flex;
+  justify-content: space-evenly;
+}
+.tamanios__button {
+  padding: 0.3rem;
+  background-color: #fc4c4c;
+  color: #fff;
+  box-shadow: 0 0 2px 1px #231e36;
 }
 
 .productCard__button {

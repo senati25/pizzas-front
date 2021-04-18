@@ -19,20 +19,28 @@ const ProductCard = memo(({ product }) => {
       </div>
       <div className={styles.productCard__content}>
         <h4 className={styles.productCard__title}>{product.nombre}</h4>
-        <p className={styles.productCard__description}>{product.descripcion}</p>
+        <p
+          className={styles.productCard__description}
+          title={product.descripcion}
+        >
+          {product.descripcion}
+        </p>
 
-        {product.variedades.map((variedad) => (
-          <button
-            key={variedad.denominacion}
-            title={variedad.denominacion}
-            type="button"
-            onClick={() => {
-              handleChangeVariety(variedad);
-            }}
-          >
-            {variedad.denominacion}
-          </button>
-        ))}
+        <div className={styles.productCard__tamanios}>
+          {product.variedades.map((variedad) => (
+            <button
+              className={styles.tamanios__button}
+              key={variedad.denominacion}
+              title={variedad.denominacion}
+              type="button"
+              onClick={() => {
+                handleChangeVariety(variedad);
+              }}
+            >
+              {variedad.denominacion}
+            </button>
+          ))}
+        </div>
 
         {!isLoading ? (
           <button

@@ -9,7 +9,7 @@ import useProducts from '../../hooks/useProducts';
 const Products = () => {
   const { products } = useProducts();
 
-  const [filterProducts, setFilterProducts] = useState(products);
+  const [filterProducts, setFilterProducts] = useState([]);
   const handleSearchProducts = (query) => {
     const result = products.filter(
       (product) =>
