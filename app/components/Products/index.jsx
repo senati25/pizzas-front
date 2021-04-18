@@ -1,15 +1,14 @@
-import { useRouter } from 'next/router';
 import { useState } from 'react';
 import ProductsGrid from './ProductsGrid';
 import Search from './Search';
 import styles from './styles.module.css';
 import MyShoppingList from './MyShoppingList';
-import ROUTES from '../../helpers/constants';
+
 import useProducts from '../../hooks/useProducts';
 
 const Products = () => {
   const { products } = useProducts();
-  const router = useRouter();
+
   const [filterProducts, setFilterProducts] = useState(products);
   const handleSearchProducts = (query) => {
     const result = products.filter(
@@ -19,6 +18,9 @@ const Products = () => {
     );
     setFilterProducts(result);
   };
+
+  // ------------------------------------------------
+
   return (
     <div className={styles.productsWrapper}>
       <div className={styles.products}>
@@ -27,7 +29,7 @@ const Products = () => {
         <div className={styles.products__content}>
           <div className={styles.MyShoppingList__wrapper}>
             <div className={styles.MyShoppingList}>
-              <button
+              {/* <button
                 className={styles.MyShoppingList__button}
                 type="button"
                 onClick={() => {
@@ -35,7 +37,7 @@ const Products = () => {
                 }}
               >
                 Ir al carrito
-              </button>
+              </button> */}
               <MyShoppingList />
             </div>
           </div>

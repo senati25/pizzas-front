@@ -1,17 +1,15 @@
 import { useEffect, useState } from 'react';
+import ShoppingCartRepository from '../../api/ShoppingCartRepository';
 import ROUTES from '../helpers/constants';
-import useStoreContext from './useStoreContext';
+import useShoppingCart from './useShoppingCart';
 
 const useProductCard = () => {
-  const {
-    store: { fetchShoppingCart, shoppingCartProducts },
-  } = useStoreContext();
-
+  const { shoppingCartProducts, fetchShoppingCart } = useShoppingCart();
   const [isLoading, setIsLoading] = useState(false);
   const [_isMounted, setIsMounted] = useState(true);
 
   const verifyProductAlreadyAdded = (product, currentVarietyDenomination) =>
-    shoppingCartProducts.find(
+    shoppingCartProducts?.find(
       ({ producto_id: productId, variedad }) =>
         variedad === currentVarietyDenomination && productId === product.id
     );
@@ -23,21 +21,14 @@ const useProductCard = () => {
   ) => {
     setIsLoading(true);
 
-    const response = await fetch(
-      `${ROUTES.api}/publico/carritoTieneProducto/aniadir`,
-      {
-        method: 'POST',
-        body: JSON.stringify({
-          producto_id: product.id,
-          carrito_id: carritoId,
-          variedad: currentVarietyDenomination,
-          cantidad: 1,
-        }),
-        headers: { 'Content-Type': 'application/json' },
-      }
+    const data = await ShoppingCartRepository.addProduct(
+      product.id,
+      carritoId,
+      currentVarietyDenomination,
+      1
     );
 
-    const { error, message } = await response.json();
+    const { error, message } = data;
 
     if (!error) {
       setIsLoading(false);
@@ -88,6 +79,10 @@ const useProductCard = () => {
       product,
       currentVarietyDenomination
     );
+
+    console.log({ product });
+
+    console.log({ currentVarietyDenomination });
 
     if (foundProduct) {
       console.log(`encontrado`);

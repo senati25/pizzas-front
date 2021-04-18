@@ -1,9 +1,7 @@
 import router from 'next/router';
 import ROUTES from '../helpers/constants';
-import useStoreContext from './useStoreContext';
 
 const useActionsTable = (fetchCategories) => {
-  const { setStore } = useStoreContext();
   const deleteItem = async (id) => {
     const response = await fetch(
       `${ROUTES.api}/dashboard/categoria/baja/${id}`,
@@ -22,11 +20,6 @@ const useActionsTable = (fetchCategories) => {
   };
 
   const redirectToSubcategories = (values) => {
-    setStore((prevState) => ({
-      ...prevState,
-      currentSubcategory: { ...values },
-    }));
-
     // router.push({
     //   pathname: `/admin/categories/subcategories/${values.id}`,
     //   query: values,

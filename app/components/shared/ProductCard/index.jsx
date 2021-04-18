@@ -10,7 +10,7 @@ const ProductCard = memo(({ product }) => {
   const handleChangeVariety = (variety) => {
     setCurrentVariety({ ...variety });
   };
-  // console.log(product.nombre);
+
   return (
     <div className={styles.productCard}>
       <div className={styles.productCard__img}>
@@ -19,14 +19,6 @@ const ProductCard = memo(({ product }) => {
       <div className={styles.productCard__content}>
         <h4 className={styles.productCard__title}>{product.nombre}</h4>
         <p className={styles.productCard__description}>{product.descripcion}</p>
-        {/* <select name="precio" onChange={handlePriceChange}>
-          <option value="">Tamaño</option>
-          {product.variedades.map((variedades, index) => (
-            <option key={variedades.id} value={index}>
-              {variedades.denominacion}
-            </option>
-          ))}
-        </select> */}
 
         {product.variedades.map((variedad) => (
           <button
@@ -37,7 +29,7 @@ const ProductCard = memo(({ product }) => {
               handleChangeVariety(variedad);
             }}
           >
-            {variedad.denominacion[0]}
+            {variedad.denominacion}
           </button>
         ))}
 

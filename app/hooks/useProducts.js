@@ -15,7 +15,6 @@ const useProducts = () => {
     const data = await response.json();
 
     if (data) {
-      // console.log(`fetch`);
       setProducts([...data]);
       setIsLoading(false);
     } else {

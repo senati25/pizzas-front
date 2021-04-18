@@ -1,20 +1,15 @@
 import { useEffect, useState } from 'react';
-import ROUTES from '../helpers/constants';
-import useStoreContext from './useStoreContext';
+import ShoppingCartRepository from '../../api/ShoppingCartRepository';
 
 const useShoppingCart = () => {
-  const { store, setStore } = useStoreContext();
-
   const [isLoading, setIsLoading] = useState(true);
   const [_isMounted, setIsMounted] = useState(true);
   const [shoppingCartProducts, setShoppingCartProducts] = useState([]);
 
   const fetchShoppingCart = async () => {
-    const response = await fetch(
-      `${ROUTES.api}/publico/carritoTieneProducto/1`
-    );
-
-    const { error, payload } = await response.json();
+    const id = 1;
+    const data = await ShoppingCartRepository.getAllProducts(id);
+    const { error, payload } = data;
     if (!error && _isMounted) {
       setIsLoading(false);
       setShoppingCartProducts([...payload]);
@@ -81,12 +76,6 @@ const useShoppingCart = () => {
   };
 
   useEffect(() => {
-    setStore((prevState) => ({ ...prevState, shoppingCartProducts }));
-    setStore({ ...store, shoppingCartProducts });
-  }, [shoppingCartProducts]);
-
-  useEffect(() => {
-    setStore({ ...store, fetchShoppingCart });
     fetchShoppingCart();
 
     return () => {
@@ -96,6 +85,7 @@ const useShoppingCart = () => {
 
   return {
     shoppingCartProducts,
+    fetchShoppingCart,
     isLoading,
     deleteProduct,
     shoppingCardActions: {
