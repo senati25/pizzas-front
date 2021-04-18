@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import Head from 'next/head';
-// import Header from './Header';
 import styles from './styles.module.css';
 import SideMenu from './SideMenu';
 
@@ -19,8 +18,16 @@ const DashboardLayout = ({ children }) => (
   </div>
 );
 
+const elementOrArrayOfElementPropType = PropTypes.oneOfType([
+  PropTypes.arrayOf(PropTypes.element),
+  PropTypes.element,
+]);
+
 DashboardLayout.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(elementOrArrayOfElementPropType),
+    elementOrArrayOfElementPropType,
+  ]).isRequired,
 };
 
 export default DashboardLayout;

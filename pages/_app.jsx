@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import Head from 'next/head';
+import Layout from '../app/components/Layout';
 import ShoppingCartProvider from '../app/Providers/ShoppingCartProvider';
 import StoreProvider from '../app/Providers/StoreProvider';
 import '../styles/globals.css';
@@ -10,7 +11,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <StoreProvider initialState={store}>
       <ShoppingCartProvider>
-        <>
+        <Layout>
           <Head>
             <meta
               name="viewport"
@@ -18,7 +19,7 @@ function MyApp({ Component, pageProps }) {
             />
           </Head>
           <Component {...pageProps} />
-        </>
+        </Layout>
       </ShoppingCartProvider>
     </StoreProvider>
   );

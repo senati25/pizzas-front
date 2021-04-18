@@ -1,10 +1,9 @@
-import Products from "../../../app/components/Dashboard/Products";
-import DashboardLayout from '../../../app/components/DashboardLayout';
+import Products from '../../../app/components/Dashboard/Products';
 
 const Products2 = () => (
-  <DashboardLayout>
-    <Products/>
-  </DashboardLayout>
+  <>
+    <Products />
+  </>
 );
 
 export default Products2;

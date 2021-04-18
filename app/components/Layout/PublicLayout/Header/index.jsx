@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { memo, useMemo } from 'react';
-import ROUTES from '../../../helpers/constants';
-import useShoppingCartContext from '../../../hooks/useShoppingCartContext';
+import ROUTES from '../../../../helpers/constants';
+import useShoppingCartContext from '../../../../hooks/useShoppingCartContext';
 
 import Nav from '../Nav';
 import styles from './styles.module.css';
