@@ -25,11 +25,14 @@ const ProductCard = memo(({ product }) => {
         >
           {product.descripcion}
         </p>
-
+        {}
         <div className={styles.productCard__tamanios}>
           {product.variedades.map((variedad) => (
             <button
-              className={styles.tamanios__button}
+              className={`${styles.tamanios__button} ${
+                variedad.denominacion === currentVariety.denominacion &&
+                styles.tamanios__selected
+              }`}
               key={variedad.denominacion}
               title={variedad.denominacion}
               type="button"
@@ -37,7 +40,7 @@ const ProductCard = memo(({ product }) => {
                 handleChangeVariety(variedad);
               }}
             >
-              {variedad.denominacion}
+              {variedad.denominacion.toUpperCase()}
             </button>
           ))}
         </div>
@@ -51,7 +54,7 @@ const ProductCard = memo(({ product }) => {
             }}
           >
             Añadir
-            <span>S/ {parseInt(currentVariety.precio, 10).toFixed(2)}</span>
+            <span> S/{parseInt(currentVariety.precio, 10).toFixed(2)}</span>
           </button>
         ) : (
           <div>cargando</div>
