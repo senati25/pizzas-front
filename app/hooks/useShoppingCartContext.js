@@ -2,9 +2,9 @@ import { useContext } from 'react';
 import shoppingCartContext from '../context/shoppingCart';
 /**
  * @returns {{
- * ShoppingCartProducts: [],
+ * shoppingCartProducts: [],
  * setShoppingCartProducts: function,
- * refreshShoppingCartProducts: function }}
+ * refreshShoppingCart: function }}
  */
 const useShoppingCartContext = () => useContext(shoppingCartContext);
 

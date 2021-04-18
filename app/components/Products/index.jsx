@@ -19,8 +19,6 @@ const Products = () => {
     setFilterProducts(result);
   };
 
-  // ------------------------------------------------
-
   return (
     <div className={styles.productsWrapper}>
       <div className={styles.products}>

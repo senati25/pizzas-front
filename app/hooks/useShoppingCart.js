@@ -1,10 +1,15 @@
 import { useEffect, useState } from 'react';
 import ShoppingCartRepository from '../../api/ShoppingCartRepository';
+import useShoppingCartContext from './useShoppingCartContext';
 
 const useShoppingCart = () => {
+  const {
+    shoppingCartProducts,
+    setShoppingCartProducts,
+  } = useShoppingCartContext();
+
   const [isLoading, setIsLoading] = useState(true);
   const [_isMounted, setIsMounted] = useState(true);
-  const [shoppingCartProducts, setShoppingCartProducts] = useState([]);
 
   const fetchShoppingCart = async () => {
     const id = 1;
@@ -85,7 +90,6 @@ const useShoppingCart = () => {
 
   return {
     shoppingCartProducts,
-    fetchShoppingCart,
     isLoading,
     deleteProduct,
     shoppingCardActions: {

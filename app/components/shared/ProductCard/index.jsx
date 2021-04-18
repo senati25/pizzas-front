@@ -1,12 +1,13 @@
 import Image from 'next/image';
 import PropTypes from 'prop-types';
 import { memo, useState } from 'react';
-import useProductCard from '../../../hooks/useProductCard';
+import useShoppingCartHandlers from '../../../hooks/useShoppingCartHandlers';
 import styles from './styles.module.css';
 
 const ProductCard = memo(({ product }) => {
   const [currentVariety, setCurrentVariety] = useState(product.variedades[0]);
-  const { handleAddProduct, isLoading } = useProductCard();
+  const { handleAddProduct, isLoading } = useShoppingCartHandlers();
+
   const handleChangeVariety = (variety) => {
     setCurrentVariety({ ...variety });
   };

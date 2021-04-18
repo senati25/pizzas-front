@@ -30,6 +30,35 @@ const ShoppingCartRepository = {
 
     return data;
   },
+
+  deleteProduct: async (productCartId, cartId) => {
+    const response = await fetch(
+      `${ROUTES.api}/publico/carritoTieneProducto/eliminar`,
+      {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: productCartId, carrito_id: cartId }),
+      }
+    );
+
+    const data = await response.json();
+
+    return data;
+  },
+
+  changeProductQuantity: async (id, newQuantity) => {
+    const response = await fetch(
+      `${ROUTES.api}/publico/carritoTieneProducto/aumentarUnidad/${id}`,
+      {
+        method: 'POST',
+        body: JSON.stringify({ cantidad: newQuantity }),
+        headers: { 'Content-Type': 'application/json' },
+      }
+    );
+    const data = await response.json();
+
+    return data;
+  },
 };
 
 export default ShoppingCartRepository;

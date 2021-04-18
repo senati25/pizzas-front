@@ -1,10 +1,15 @@
 import { useEffect, useState } from 'react';
 import ShoppingCartRepository from '../../api/ShoppingCartRepository';
-import ROUTES from '../helpers/constants';
-import useShoppingCart from './useShoppingCart';
+import useShoppingCartContext from './useShoppingCartContext';
 
-const useProductCard = () => {
-  const { shoppingCartProducts, fetchShoppingCart } = useShoppingCart();
+const useShoppingCartHandlers = () => {
+  const cartId = 1;
+
+  const {
+    shoppingCartProducts,
+    refreshShoppingCart,
+  } = useShoppingCartContext();
+
   const [isLoading, setIsLoading] = useState(false);
   const [_isMounted, setIsMounted] = useState(true);
 
@@ -32,45 +37,36 @@ const useProductCard = () => {
 
     if (!error) {
       setIsLoading(false);
-      fetchShoppingCart();
+      refreshShoppingCart();
       console.log(message);
     } else {
       console.log(message);
     }
   };
 
-  const plusOne = async ({ id, cantidad }, minus = false) => {
-    console.log(minus);
+  const handlePlusOne = async ({ id, cantidad }, minus = false) => {
     let newQuantity = 0;
     newQuantity = cantidad + 1;
     if (minus) newQuantity = cantidad - 1;
 
     setIsLoading(true);
-    const response = await fetch(
-      `${ROUTES.api}/publico/carritoTieneProducto/aumentarUnidad/${id}`,
-      {
-        method: 'POST',
-        body: JSON.stringify({ cantidad: newQuantity }),
-        headers: { 'Content-Type': 'application/json' },
-      }
-    );
-
-    const { error, message } = await response.json();
+    const {
+      error,
+      message,
+    } = await ShoppingCartRepository.changeProductQuantity(id, newQuantity);
 
     if (!error && _isMounted) {
-      await fetchShoppingCart();
+      refreshShoppingCart();
       setIsLoading(false);
       console.log(message);
     } else {
       setIsLoading(false);
       console.log(message);
     }
-    // shoppingCartProducts[index].cantidad += 1;
-    // setShoppingCartProducts([...shoppingCartProducts]);
   };
 
-  const minusOne = (product) => {
-    plusOne(product, true);
+  const handleMinusOne = (product) => {
+    handlePlusOne(product, true);
   };
 
   const handleAddProduct = async (product, currentVarietyDenomination) => {
@@ -80,17 +76,30 @@ const useProductCard = () => {
       currentVarietyDenomination
     );
 
-    console.log({ product });
-
-    console.log({ currentVarietyDenomination });
-
     if (foundProduct) {
       console.log(`encontrado`);
 
-      plusOne(foundProduct);
+      handlePlusOne(foundProduct);
     } else {
       console.log(`no encontrado`);
       addNewProduct(product, carritoId, currentVarietyDenomination);
+    }
+  };
+
+  const handleDeleteProduct = async (product) => {
+    setIsLoading(true);
+    console.log({ product });
+    const data = await ShoppingCartRepository.deleteProduct(product.id, cartId);
+
+    const { error, message } = data;
+    console.log(data);
+
+    if (error) {
+      setIsLoading(false);
+      console.warn(message);
+    } else {
+      refreshShoppingCart();
+      setIsLoading(false);
     }
   };
 
@@ -104,9 +113,10 @@ const useProductCard = () => {
   return {
     handleAddProduct,
     isLoading,
-    plusOne,
-    minusOne,
+    handlePlusOne,
+    handleMinusOne,
+    handleDeleteProduct,
   };
 };
 
-export default useProductCard;
+export default useShoppingCartHandlers;

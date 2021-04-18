@@ -1,36 +1,17 @@
 import Image from 'next/image';
 import PropTypes from 'prop-types';
 import { memo } from 'react';
-import ROUTES from '../../../helpers/constants';
 import getPrice from '../../../helpers/getPrice';
 import styles from './styles.module.css';
 
-const ShoppingCartProductCard = memo(({ product, plusOne, minusOne }) => {
-  const deleteProduct = async (id) => {
-    const result = await fetch(
-      `${ROUTES.api}/publico/carritoTieneProducto/eliminar`,
-      {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, carrito_id: 1 }),
-      }
-    );
-
-    return result.json();
-  };
-
-  const handleDeleteProduct = async ({ id }) => {
-    const response = await deleteProduct(id);
-    console.log({ response });
-  };
-
-  return (
+const ShoppingCartProductCard = memo(
+  ({ product, plusOne, minusOne, deleteProduct }) => (
     <div className={styles.shoppingCartProductsGrid__item}>
       <button
         className={styles.deleteButton}
         type="button"
         onClick={() => {
-          handleDeleteProduct(product);
+          deleteProduct(product);
         }}
       >
         <i className="fas fa-times"></i>
@@ -69,12 +50,13 @@ const ShoppingCartProductCard = memo(({ product, plusOne, minusOne }) => {
         {(product.cantidad * getPrice(product)).toFixed(2)}
       </span>
     </div>
-  );
-});
+  )
+);
 
 ShoppingCartProductCard.propTypes = {
   minusOne: PropTypes.func.isRequired,
   plusOne: PropTypes.func.isRequired,
+  deleteProduct: PropTypes.func.isRequired,
 
   product: PropTypes.shape({
     id: PropTypes.number.isRequired,
