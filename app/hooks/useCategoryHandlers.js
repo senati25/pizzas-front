@@ -1,10 +1,10 @@
 import router from 'next/router';
 import { useState } from 'react';
 import CategoryRepository from '../../api/CategoryRepository';
-import useCategoryContext from './useCategoryContext';
+import useDashboardContext from './useDashboardContext';
 
 const useCategoryHandlers = () => {
-  const { refreshCategories } = useCategoryContext();
+  const { refreshCategories } = useDashboardContext();
   const [inputValues, setInputValues] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 

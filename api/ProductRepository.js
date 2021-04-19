@@ -4,7 +4,6 @@ const ProductRepository = {
   getAll: async () => {
     const response = await fetch(`${ROUTES.api}/publico/productos`);
     const data = await response.json();
-    console.log(data);
     return data;
   },
 

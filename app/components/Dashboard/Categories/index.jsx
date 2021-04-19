@@ -1,11 +1,11 @@
 import Link from 'next/link';
-import useCategoryContext from '../../../hooks/useCategoryContext';
+import useDashboardContext from '../../../hooks/useDashboardContext';
 import SpinnerDashboard from '../../shared/SpinnerDashboard';
 import CategoryTable from './CategoryTable';
 import styles from './styles.module.css';
 
 const Categories = () => {
-  const { categories } = useCategoryContext();
+  const { categories } = useDashboardContext();
 
   return (
     <>

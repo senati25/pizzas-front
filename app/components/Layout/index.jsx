@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import PublicLayout from './PublicLayout';
 import DashboardLayout from './DashboardLayout';
-import CategoryProvider from '../../Providers/CategoryProvider';
+import DashboardProvider from '../../Providers/DashboardProvider';
 
 const Layout = ({ children }) => {
   const { pathname } = useRouter();
@@ -11,9 +11,9 @@ const Layout = ({ children }) => {
   if (isOnAdmin()) {
     return (
       <>
-        <CategoryProvider>
+        <DashboardProvider>
           <DashboardLayout>{children}</DashboardLayout>;
-        </CategoryProvider>
+        </DashboardProvider>
       </>
     );
   }

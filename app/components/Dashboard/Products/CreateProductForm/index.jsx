@@ -4,10 +4,10 @@ import DashboardForm from '../../../shared/DashBoardForm';
 
 import Varieties from './Varieties';
 import useProductsForm from '../../../../hooks/useProductsForm';
-import useCategoryContext from '../../../../hooks/useCategoryContext';
+import useDashboardContext from '../../../../hooks/useDashboardContext';
 
 const CreateProductForm = () => {
-  const { categories } = useCategoryContext();
+  const { categories } = useDashboardContext();
   const { handleOnChange, handleSubmitCreate } = useProductsForm();
   const { back } = useRouter();
 
