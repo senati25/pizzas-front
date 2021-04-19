@@ -1,10 +1,5 @@
-import Layout from '../../app/components/Layout';
 import ReclamoForm from '../../app/components/reclamo/ReclamoForm';
 
-const Reclamo = () => (
-  <Layout>
-    <ReclamoForm />
-  </Layout>
-);
+const Reclamo = () => <ReclamoForm />;
 
 export default Reclamo;

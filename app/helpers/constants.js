@@ -16,6 +16,10 @@ const ROUTES = {
       root: 'subcategories',
       new: 'new',
     },
+    users: {
+      root: 'users',
+      new: 'new',
+    },
   },
 };
 

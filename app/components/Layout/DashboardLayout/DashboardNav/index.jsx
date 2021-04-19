@@ -39,6 +39,16 @@ const DashboardNav = () => {
           Categorias
         </a>
       </Link>
+
+      <Link href={`/${ROUTES.dashboard.root}/${ROUTES.dashboard.users.root}`}>
+        <a
+          className={`${styles.dashboardNav__link} ${
+            pathname.includes('users') && styles.dashboardNav__link__active
+          } `}
+        >
+          Usuarios
+        </a>
+      </Link>
     </nav>
   );
 };
