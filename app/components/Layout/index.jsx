@@ -2,13 +2,20 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import PublicLayout from './PublicLayout';
 import DashboardLayout from './DashboardLayout';
+import CategoryProvider from '../../Providers/CategoryProvider';
 
 const Layout = ({ children }) => {
   const { pathname } = useRouter();
   const isOnAdmin = () => pathname.includes('admin');
-  console.log(children);
+
   if (isOnAdmin()) {
-    return <DashboardLayout>{children}</DashboardLayout>;
+    return (
+      <>
+        <CategoryProvider>
+          <DashboardLayout>{children}</DashboardLayout>;
+        </CategoryProvider>
+      </>
+    );
   }
 
   return <PublicLayout>{children}</PublicLayout>;

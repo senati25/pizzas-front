@@ -1,17 +1,18 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import DashboardForm from '../../../shared/DashBoardForm';
-import useFetchCategories from '../../../../hooks/useFetchCategories';
 import useProductsForm from '../../../../hooks/useProductsForm';
+import useCategoryContext from '../../../../hooks/useCategoryContext';
 
 const EditProductForm = () => {
+  const { categories } = useCategoryContext();
+
   const {
     handleOnChange,
     handleSubmitEdit,
     inputValues,
     getDetalle,
   } = useProductsForm();
-  const { categories } = useFetchCategories();
 
   const { query, back } = useRouter();
 

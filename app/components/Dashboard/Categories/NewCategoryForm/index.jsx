@@ -1,22 +1,26 @@
-import useCategory from '../../../../hooks/useCategory';
+import { useRouter } from 'next/router';
+import useCategoryHandlers from '../../../../hooks/useCategoryHandlers';
 import DashboardForm from '../../../shared/DashBoardForm';
 import SpinnerDashboard from '../../../shared/SpinnerDashboard';
 // import styles from './styles.module.css';
 
 const NewCategoryForm = () => {
+  const router = useRouter();
+
   const {
-    handleCreateNewCategory,
-    redirectToCategories,
-    handleOnChange,
     isLoading,
-  } = useCategory();
+    handleOnChange,
+    handleCreateCategory,
+  } = useCategoryHandlers();
   return (
     <>
       {!isLoading ? (
         <DashboardForm
-          handleSubmit={handleCreateNewCategory}
+          handleSubmit={handleCreateCategory}
           title="Crear nueva categoria"
-          onCancel={redirectToCategories}
+          onCancel={() => {
+            router.push('/admin/categories');
+          }}
         >
           <input
             onChange={handleOnChange}

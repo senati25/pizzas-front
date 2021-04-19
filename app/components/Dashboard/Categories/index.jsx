@@ -1,24 +1,21 @@
 import Link from 'next/link';
-import useFetchCategories from '../../../hooks/useFetchCategories';
+import useCategoryContext from '../../../hooks/useCategoryContext';
 import SpinnerDashboard from '../../shared/SpinnerDashboard';
 import CategoryTable from './CategoryTable';
 import styles from './styles.module.css';
 
 const Categories = () => {
-  const { categories, fetchCategories, isLoading } = useFetchCategories();
+  const { categories } = useCategoryContext();
 
   return (
     <>
-      {!isLoading ? (
+      {categories.length !== 0 ? (
         <div className={styles.categories}>
           <h1 className={styles.categories__title}>Categorias</h1>
           <Link href="/admin/categories/new">
             <a className={styles.categories__link}>Nuevo</a>
           </Link>
-          <CategoryTable
-            categories={categories}
-            fetchCategories={fetchCategories}
-          />
+          <CategoryTable categories={categories} />
         </div>
       ) : (
         <SpinnerDashboard />

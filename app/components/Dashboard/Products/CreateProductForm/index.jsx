@@ -1,13 +1,14 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import DashboardForm from '../../../shared/DashBoardForm';
-import useFetchCategories from '../../../../hooks/useFetchCategories';
+
 import Varieties from './Varieties';
 import useProductsForm from '../../../../hooks/useProductsForm';
+import useCategoryContext from '../../../../hooks/useCategoryContext';
 
 const CreateProductForm = () => {
+  const { categories } = useCategoryContext();
   const { handleOnChange, handleSubmitCreate } = useProductsForm();
-  const { categories } = useFetchCategories();
   const { back } = useRouter();
 
   const [varieties, setVarieties] = useState([]);
