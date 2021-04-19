@@ -6,7 +6,7 @@ import DashboardLayout from './DashboardLayout';
 const Layout = ({ children }) => {
   const { pathname } = useRouter();
   const isOnAdmin = () => pathname.includes('admin');
-
+  console.log(children);
   if (isOnAdmin()) {
     return <DashboardLayout>{children}</DashboardLayout>;
   }

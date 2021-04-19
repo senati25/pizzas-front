@@ -29,7 +29,7 @@ Actions.propTypes = {
   original: PropTypes.shape({
     id: PropTypes.number.isRequired,
     nombre: PropTypes.string.isRequired,
-    descripcion: PropTypes.string.isRequired,
+    // descripcion: PropTypes.string.isRequired,
     estado: PropTypes.string.isRequired,
   }).isRequired,
   deleteItem: PropTypes.func.isRequired,
@@ -44,7 +44,7 @@ const ProductsTable = ({ deleteItem, products, editItem }) => (
         headers = [
           { Header: 'ID', accessor: 'id' },
           { Header: 'NOMBRE', accessor: 'nombre' },
-          { Header: 'DESCRIPCION', accessor: 'descripcion' },
+          // { Header: 'DESCRIPCION', accessor: 'descripcion' },
           { Header: 'ESTADO', accessor: 'estado' },
         ];
       }
@@ -73,7 +73,7 @@ const ProductsTable = ({ deleteItem, products, editItem }) => (
         ...products.map((c) => ({
           id: c.id,
           nombre: c.nombre,
-          descripcion: c.descripcion,
+          // descripcion: c.descripcion,
           estado: c.estado,
         })),
       ],

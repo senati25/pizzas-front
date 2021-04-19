@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import Swal from 'sweetalert2';
+import ProductRepository from '../../api/ProductRepository';
 import ROUTES from '../helpers/constants';
 
 const useProductsForm = () => {
@@ -16,16 +17,8 @@ const useProductsForm = () => {
   };
 
   const handleSubmitCreate = async (varieties) => {
-    const body = { ...inputValues, variedades: JSON.stringify(varieties) };
-    // console.log(body);
     setIsLoading(true);
-    const response = await fetch(`${ROUTES.api}/dashboard/producto`, {
-      method: 'POST',
-      body: JSON.stringify(body),
-      headers: { 'Content-Type': 'application/json' },
-    });
-    const data = await response.json();
-
+    const data = await ProductRepository.create(inputValues, varieties);
     if (data) {
       setIsLoading(false);
       Swal.fire('', 'Producto Creado correctamente', 'success');
