@@ -1,8 +1,12 @@
 .search {
-  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.search input {
+  font-size: 1.2rem;
+  display: inline;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
-  margin-bottom: 2rem;
   box-shadow: 0 0 3px black;
   width: 100%;
 }

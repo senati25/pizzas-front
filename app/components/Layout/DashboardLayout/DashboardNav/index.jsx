@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import React from 'react';
-import ROUTES from '../../../helpers/constants';
 import styles from './styles.module.css';
+import ROUTES from '../../../../helpers/constants';
 
 const DashboardNav = () => {
   const { pathname } = useRouter();

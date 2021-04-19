@@ -1,10 +1,8 @@
 import router from 'next/router';
 import { useEffect, useState } from 'react';
 import ROUTES from '../helpers/constants';
-import useStoreContext from './useStoreContext';
 
 const useFetchCategories = () => {
-  const { setStore } = useStoreContext();
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -25,13 +23,6 @@ const useFetchCategories = () => {
   useEffect(() => {
     fetchCategories();
   }, []);
-
-  useEffect(() => {
-    setStore((prevState) => ({
-      ...prevState,
-      categories,
-    }));
-  }, [categories]);
 
   return { categories, fetchCategories, redirectToCategories, isLoading };
 };

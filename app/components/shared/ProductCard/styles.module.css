@@ -21,7 +21,43 @@
   width: 100%;
 }
 .productCard__description {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   margin: 1rem 0;
+}
+
+.productCard__tamanios {
+  display: flex;
+  /* justify-content: space-evenly; */
+  margin-top: auto;
+}
+
+.tamanios__button {
+  text-align: center;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+  padding: 0.5rem;
+  width: 2.3rem;
+  height: 2.3rem;
+  font-size: 1rem;
+  color: #231e36;
+  font-weight: 500;
+  box-shadow: 0 0 0px 2px #231e3685;
+  transition: all 0.3s ease-in-out;
+}
+
+.tamanios__button:hover {
+  background-color: #fc4d4d;
+  color: #fff;
+  box-shadow: 4px 4px 8px rgba(250, 92, 92, 0.5);
+}
+
+.tamanios__selected {
+  background-color: #fc4d4d;
+  color: #fff;
+  box-shadow: 4px 4px 8px rgba(250, 92, 92, 0.5);
 }
 
 .productCard__button {
@@ -35,7 +71,7 @@
   color: #231e36;
   transition: all 0.3s ease-in-out;
   font-weight: bold;
-  margin-top: auto;
+  margin-top: 1rem;
 }
 
 .productCard__button:hover {

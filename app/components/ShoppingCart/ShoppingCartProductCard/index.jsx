@@ -4,56 +4,59 @@ import { memo } from 'react';
 import getPrice from '../../../helpers/getPrice';
 import styles from './styles.module.css';
 
-const ShoppingCartProductCard = memo(({ product, plusOne, minusOne }) => (
-  <div className={styles.shoppingCartProductsGrid__item}>
-    <button
-      className={styles.deleteButton}
-      type="button"
-      onClick={() => {
-        plusOne(product);
-      }}
-    >
-      <i className="fas fa-times"></i>
-    </button>
+const ShoppingCartProductCard = memo(
+  ({ product, plusOne, minusOne, deleteProduct }) => (
+    <div className={styles.shoppingCartProductsGrid__item}>
+      <button
+        className={styles.deleteButton}
+        type="button"
+        onClick={() => {
+          deleteProduct(product);
+        }}
+      >
+        <i className="fas fa-times"></i>
+      </button>
 
-    <div className={styles.product__img}>
-      <Image src={product.img} width={200} height={200} layout="responsive" />
+      <div className={styles.product__img}>
+        <Image src={product.img} width={200} height={200} layout="responsive" />
+      </div>
+
+      <span className={styles.product__quantity}>
+        <button
+          type="button"
+          onClick={() => {
+            plusOne(product);
+          }}
+        >
+          +
+        </button>
+
+        {/* <input type="number" name="quantity" value={product.cantidad} /> */}
+        <span>{product.cantidad}</span>
+
+        <button
+          type="button"
+          onClick={() => {
+            minusOne(product);
+          }}
+        >
+          -
+        </button>
+      </span>
+
+      <span className={styles.product__name}>{product.nombre}</span>
+
+      <span className={styles.product__price}>
+        {(product.cantidad * getPrice(product)).toFixed(2)}
+      </span>
     </div>
-
-    <span className={styles.product__quantity}>
-      <button
-        type="button"
-        onClick={() => {
-          plusOne(product);
-        }}
-      >
-        +
-      </button>
-
-      {/* <input type="number" name="quantity" value={product.cantidad} /> */}
-      <span>{product.cantidad}</span>
-
-      <button
-        type="button"
-        onClick={() => {
-          minusOne(product);
-        }}
-      >
-        -
-      </button>
-    </span>
-
-    <span className={styles.product__name}>{product.nombre}</span>
-
-    <span className={styles.product__price}>
-      {(product.cantidad * getPrice(product)).toFixed(2)}
-    </span>
-  </div>
-));
+  )
+);
 
 ShoppingCartProductCard.propTypes = {
   minusOne: PropTypes.func.isRequired,
   plusOne: PropTypes.func.isRequired,
+  deleteProduct: PropTypes.func.isRequired,
 
   product: PropTypes.shape({
     id: PropTypes.number.isRequired,

@@ -1,14 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { memo, useMemo } from 'react';
-import ROUTES from '../../../helpers/constants';
-import useShoppingCart from '../../../hooks/useShoppingCart';
+import ROUTES from '../../../../helpers/constants';
+import useShoppingCartContext from '../../../../hooks/useShoppingCartContext';
 
 import Nav from '../Nav';
 import styles from './styles.module.css';
 
 const Header = memo(() => {
-  const { shoppingCartProducts } = useShoppingCart();
+  const { shoppingCartProducts } = useShoppingCartContext();
 
   const cantidad = useMemo(() => shoppingCartProducts.length, [
     shoppingCartProducts.length,

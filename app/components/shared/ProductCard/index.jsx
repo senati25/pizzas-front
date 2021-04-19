@@ -1,16 +1,17 @@
 import Image from 'next/image';
 import PropTypes from 'prop-types';
 import { memo, useState } from 'react';
-import useProductCard from '../../../hooks/useProductCard';
+import useShoppingCartHandlers from '../../../hooks/useShoppingCartHandlers';
 import styles from './styles.module.css';
 
 const ProductCard = memo(({ product }) => {
   const [currentVariety, setCurrentVariety] = useState(product.variedades[0]);
-  const { handleAddProduct, isLoading } = useProductCard();
+  const { handleAddProduct, isLoading } = useShoppingCartHandlers();
+
   const handleChangeVariety = (variety) => {
     setCurrentVariety({ ...variety });
   };
-  // console.log(product.nombre);
+
   return (
     <div className={styles.productCard}>
       <div className={styles.productCard__img}>
@@ -18,28 +19,31 @@ const ProductCard = memo(({ product }) => {
       </div>
       <div className={styles.productCard__content}>
         <h4 className={styles.productCard__title}>{product.nombre}</h4>
-        <p className={styles.productCard__description}>{product.descripcion}</p>
-        {/* <select name="precio" onChange={handlePriceChange}>
-          <option value="">Tamaño</option>
-          {product.variedades.map((variedades, index) => (
-            <option key={variedades.id} value={index}>
-              {variedades.denominacion}
-            </option>
+        <p
+          className={styles.productCard__description}
+          title={product.descripcion}
+        >
+          {product.descripcion}
+        </p>
+        {}
+        <div className={styles.productCard__tamanios}>
+          {product.variedades.map((variedad) => (
+            <button
+              className={`${styles.tamanios__button} ${
+                variedad.denominacion === currentVariety.denominacion &&
+                styles.tamanios__selected
+              }`}
+              key={variedad.denominacion}
+              title={variedad.denominacion}
+              type="button"
+              onClick={() => {
+                handleChangeVariety(variedad);
+              }}
+            >
+              {variedad.denominacion.toUpperCase()}
+            </button>
           ))}
-        </select> */}
-
-        {product.variedades.map((variedad) => (
-          <button
-            key={variedad.denominacion}
-            title={variedad.denominacion}
-            type="button"
-            onClick={() => {
-              handleChangeVariety(variedad);
-            }}
-          >
-            {variedad.denominacion[0]}
-          </button>
-        ))}
+        </div>
 
         {!isLoading ? (
           <button
@@ -50,7 +54,7 @@ const ProductCard = memo(({ product }) => {
             }}
           >
             Añadir
-            <span>S/ {parseInt(currentVariety.precio, 10).toFixed(2)}</span>
+            <span> S/{parseInt(currentVariety.precio, 10).toFixed(2)}</span>
           </button>
         ) : (
           <div>cargando</div>

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { memo } from 'react';
-import ROUTES from '../../../helpers/constants';
+import ROUTES from '../../../../helpers/constants';
 import styles from './styles.module.css';
 
 const NavGrid = memo(() => (
