@@ -9,7 +9,7 @@ const Categories = () => {
 
   return (
     <>
-      {categories.length !== 0 ? (
+      {categories ? (
         <div className={styles.categories}>
           <h1 className={styles.categories__title}>Categorias</h1>
           <Link href="/admin/categories/new">

@@ -21,7 +21,6 @@ const CategoryTable = ({ categories }) => {
             })),
           ];
         }
-
         return [
           ...headers,
           {
@@ -32,7 +31,10 @@ const CategoryTable = ({ categories }) => {
                 row: { original },
               },
             }) => (
-              <Actions original={original} deleteItem={handleDeleteCategory} />
+              <Actions
+                original={original}
+                handleDeleteCategory={handleDeleteCategory}
+              />
             ),
           },
         ];

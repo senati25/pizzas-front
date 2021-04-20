@@ -14,11 +14,9 @@ const EditCategoryForm = () => {
     handleUpdateCategory,
   } = useCategoryHandlers();
 
-  const { query } = useRouter();
-
   useEffect(() => {
-    setInputValues((prevState) => ({ ...prevState, ...query }));
-  }, [query]);
+    setInputValues((prevState) => ({ ...prevState, ...router.query }));
+  }, [router.query]);
 
   return (
     <div>
@@ -27,7 +25,7 @@ const EditCategoryForm = () => {
           handleSubmit={handleUpdateCategory}
           title="Edit Category"
           onCancel={() => {
-            router.push('/admin/categories');
+            router.back();
           }}
         >
           <input

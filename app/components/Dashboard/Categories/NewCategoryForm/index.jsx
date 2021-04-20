@@ -6,12 +6,12 @@ import SpinnerDashboard from '../../../shared/SpinnerDashboard';
 
 const NewCategoryForm = () => {
   const router = useRouter();
-
   const {
     isLoading,
     handleOnChange,
     handleCreateCategory,
   } = useCategoryHandlers();
+
   return (
     <>
       {!isLoading ? (
@@ -19,7 +19,7 @@ const NewCategoryForm = () => {
           handleSubmit={handleCreateCategory}
           title="Crear nueva categoria"
           onCancel={() => {
-            router.push('/admin/categories');
+            router.back();
           }}
         >
           <input

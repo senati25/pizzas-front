@@ -10,28 +10,26 @@ const action = {
 };
 
 const get = {
-  categories: CategoryRepository.getAll,
   products: ProductRepository.getAll,
+  categories: CategoryRepository.getAll,
 };
 
 const DashboardProvider = ({ children }) => {
-  const [state, setState] = useState({
-    products: [],
-    categories: [],
-  });
+  const [state, setState] = useState({});
 
   const handleRefresh = async (actionType) => {
     if (actionType) {
+      console.log(`refrescando ${actionType}`);
       const data = await get[actionType]();
-
       setState({ ...state, [actionType]: data });
     } else {
       const values = Object.values(action);
+      const promises = await values.map((value) => get[value]());
+      let data = await Promise.all(promises);
+      data = values.map((key, i) => [[key], data[i]]);
+      data = Object.fromEntries(data);
 
-      values.forEach(async (element) => {
-        const data = await get[element]();
-        setState({ ...state, [element]: data });
-      });
+      setState(data);
     }
   };
 

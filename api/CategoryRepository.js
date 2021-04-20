@@ -4,7 +4,6 @@ const CategoryRepository = {
   getAll: async () => {
     const response = await fetch(`${ROUTES.api}/dashboard/categoria`);
     const data = await response.json();
-
     return data;
   },
 

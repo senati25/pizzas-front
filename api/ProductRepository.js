@@ -7,6 +7,12 @@ const ProductRepository = {
     return data;
   },
 
+  getById: async (id) => {
+    const response = await fetch(`${ROUTES.api}/dashboard/producto/${id}`);
+    const data = await response.json();
+    return data;
+  },
+
   create: async (inputValues, varieties) => {
     const response = await fetch(`${ROUTES.api}/dashboard/producto`, {
       method: 'POST',
@@ -16,6 +22,20 @@ const ProductRepository = {
       }),
       headers: { 'Content-Type': 'application/json' },
     });
+
+    const data = await response.json();
+    return data;
+  },
+
+  update: async (inputValues) => {
+    const response = await fetch(
+      `${ROUTES.api}/dashboard/producto/${inputValues.id}`,
+      {
+        method: 'PATCH',
+        body: JSON.stringify(inputValues),
+        headers: { 'Content-Type': 'application/json' },
+      }
+    );
 
     const data = await response.json();
     return data;

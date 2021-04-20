@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import styles from './styles.module.css';
 
-const Actions = ({ original, deleteItem }) => {
+const Actions = ({ original, handleDeleteCategory }) => {
   const router = useRouter();
 
   return (
@@ -20,7 +20,7 @@ const Actions = ({ original, deleteItem }) => {
       </button>
       <button
         onClick={() => {
-          deleteItem(original.id);
+          handleDeleteCategory(original.id);
         }}
         type="button"
       >
@@ -36,7 +36,7 @@ Actions.propTypes = {
     denominacion: PropTypes.string.isRequired,
     estado: PropTypes.string.isRequired,
   }).isRequired,
-  deleteItem: PropTypes.func.isRequired,
+  handleDeleteCategory: PropTypes.func.isRequired,
 };
 
 export default Actions;

@@ -1,35 +1,36 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Swal from 'sweetalert2';
 import { useRouter } from 'next/router';
 import ProductRepository from '../../api/ProductRepository';
+import useDashboardContext from './useDashboardContext';
+import ROUTES from '../helpers/constants';
 
 const useProducts = () => {
-  const { push } = useRouter();
-  const [isLoading, setIsLoading] = useState(true);
-  const [products, setProducts] = useState([]);
+  const router = useRouter();
+  const { refreshProducts } = useDashboardContext();
 
-  const getProducts = async () => {
-    const data = await ProductRepository.getAll();
-    if (data) {
-      setProducts(data);
-      setIsLoading(false);
-    } else {
-      setIsLoading(false);
-    }
+  const [inputValues, setInputValues] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleOnChange = (e) => {
+    setInputValues((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
   };
 
-  const deleteItem = async (id) => {
+  const handleDeleteProduct = async (id) => {
     try {
       const { estado } = await ProductRepository.delete(id);
 
       if (estado === 'success') {
-        await getProducts();
+        // await refreshProducts();
+        await refreshProducts();
         Swal.fire(
           'Proceso dado de bajo',
           `Dado de baja correctamente ${id}`,
           'success'
         );
-        getProducts();
       }
     } catch (e) {
       console.log(e);
@@ -37,21 +38,66 @@ const useProducts = () => {
     }
   };
 
-  const editItem = (values) => {
-    push({ pathname: `/admin/products/${values.id}`, query: values });
+  const getDetalle = async (id) => {
+    if (id) {
+      const data = await ProductRepository.getById(id);
+
+      if (data) {
+        setInputValues(data);
+        setIsLoading(false);
+      } else {
+        setIsLoading(false);
+      }
+    }
+  };
+  const handleSubmitEdit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    const response = await fetch(
+      `${ROUTES.api}/dashboard/producto/${inputValues.id}`,
+      {
+        method: 'PATCH',
+        body: JSON.stringify(inputValues),
+        headers: { 'Content-Type': 'application/json' },
+      }
+    );
+
+    const data = await response.json();
+
+    if (data) {
+      setIsLoading(false);
+      Swal.fire('', 'Producto actualizado correctamente', 'success');
+    } else {
+      // TODO
+      setIsLoading(false);
+      Swal.fire('', 'No se a podido actualizar', 'info');
+    }
+
+    router.back();
   };
 
-  useEffect(() => {
-    getProducts();
-  }, []);
+  const handleSubmitCreate = async (varieties) => {
+    setIsLoading(true);
+    const data = await ProductRepository.create(inputValues, varieties);
+    if (data) {
+      setIsLoading(false);
+      Swal.fire('', 'Producto Creado correctamente', 'success');
+    } else {
+      // TODO
+      setIsLoading(false);
+      Swal.fire('', 'No se a podido crear el producto', 'info');
+    }
+    router.back();
+  };
 
   return {
-    products,
-    setProducts,
     isLoading,
-    getProducts,
-    editItem,
-    deleteItem,
+    inputValues,
+    getDetalle,
+    handleSubmitCreate,
+    handleSubmitEdit,
+    handleOnChange,
+    handleDeleteProduct,
   };
 };
 
