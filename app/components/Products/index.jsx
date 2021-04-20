@@ -3,11 +3,10 @@ import ProductsGrid from './ProductsGrid';
 import Search from './Search';
 import styles from './styles.module.css';
 import MyShoppingList from './MyShoppingList';
-
-import useProducts from '../../hooks/useProducts';
+import useProductsPublic from '../../hooks/useProductsPublic';
 
 const Products = () => {
-  const { products } = useProducts();
+  const { products, isLoading } = useProductsPublic();
 
   const [filterProducts, setFilterProducts] = useState([]);
   const handleSearchProducts = (query) => {
@@ -44,6 +43,7 @@ const Products = () => {
           </div>
           <div className={styles.productsGrid__wrapper}>
             <ProductsGrid
+              isLoading={isLoading}
               products={filterProducts.length ? filterProducts : products}
             />
           </div>

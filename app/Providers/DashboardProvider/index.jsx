@@ -1,17 +1,20 @@
 import { array, object, oneOfType } from 'prop-types';
 import { useEffect, useState } from 'react';
 import CategoryRepository from '../../../api/CategoryRepository';
+import ClientRepository from '../../../api/ClientRepository';
 import ProductRepository from '../../../api/ProductRepository';
 import dashboardContext from '../../context/dashboardContext';
 
 const action = {
   REFRESH_PRODUCTS: 'products',
   REFRESH_CATEGORIES: 'categories',
+  REFRESH_CLIENTS: 'clients',
 };
 
 const get = {
   products: ProductRepository.getAll,
   categories: CategoryRepository.getAll,
+  clients: ClientRepository.getAll,
 };
 
 const DashboardProvider = ({ children }) => {
@@ -42,8 +45,10 @@ const DashboardProvider = ({ children }) => {
       value={{
         categories: state.categories,
         products: state.products,
+        clients: state.clients,
         refreshCategories: () => handleRefresh(action.REFRESH_CATEGORIES),
         refreshProducts: () => handleRefresh(action.REFRESH_PRODUCTS),
+        refreshClients: () => handleRefresh(action.REFRESH_CLIENTS),
       }}
     >
       {children}

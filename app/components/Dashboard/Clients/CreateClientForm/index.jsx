@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import useClients from '../../../../hooks/useClientes';
+import useClients from '../../../../hooks/useClients';
 import DashboardForm from '../../../shared/DashBoardForm';
 import SpinnerDashboard from '../../../shared/SpinnerDashboard';
 

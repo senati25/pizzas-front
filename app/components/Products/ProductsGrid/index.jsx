@@ -4,24 +4,21 @@ import ProductCard from '../../shared/ProductCard';
 import Spinner from '../../shared/Spinner';
 import styles from './styles.module.css';
 
-const ProductsGrid = memo(({ products }) => {
-  const { isLoading } = useProducts();
-  return (
-    <>
-      {!isLoading ? (
-        <div className={styles.productsGrid}>
-          {products.map((product) => (
-            <ProductCard
-              key={`${product.id}${product.denominacion}`}
-              product={product}
-            />
-          ))}
-        </div>
-      ) : (
-        <Spinner />
-      )}
-    </>
-  );
-});
+const ProductsGrid = memo(({ products, isLoading }) => (
+  <>
+    {!isLoading ? (
+      <div className={styles.productsGrid}>
+        {products.map((product) => (
+          <ProductCard
+            key={`${product.id}${product.denominacion}`}
+            product={product}
+          />
+        ))}
+      </div>
+    ) : (
+      <Spinner />
+    )}
+  </>
+));
 
 export default ProductsGrid;

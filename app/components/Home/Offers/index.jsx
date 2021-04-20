@@ -1,11 +1,11 @@
-import useProducts from '../../../hooks/useProducts';
+import useProductsPublic from '../../../hooks/useProductsPublic';
 import useShoppingCart from '../../../hooks/useShoppingCart';
 import ProductCard from '../../shared/ProductCard';
 import Spinner from '../../shared/Spinner';
 import styles from './styles.module.css';
 
 const Offers = () => {
-  const { products, isLoading } = useProducts();
+  const { products, isLoading } = useProductsPublic();
   const { addProduct } = useShoppingCart();
 
   return (
