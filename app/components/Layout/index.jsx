@@ -4,6 +4,7 @@ import PublicLayout from './PublicLayout';
 import DashboardLayout from './DashboardLayout';
 import DashboardProvider from '../../Providers/DashboardProvider';
 import PublicProvider from '../../Providers/PublicProvider';
+import SessionDashboardProvider from '../../Providers/SessionDashboardProvider';
 
 const Layout = ({ children }) => {
   const { pathname } = useRouter();
@@ -11,11 +12,11 @@ const Layout = ({ children }) => {
 
   if (isOnAdmin()) {
     return (
-      <>
+      <SessionDashboardProvider>
         <DashboardProvider>
           <DashboardLayout>{children}</DashboardLayout>;
         </DashboardProvider>
-      </>
+      </SessionDashboardProvider>
     );
   }
 
