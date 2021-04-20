@@ -7,6 +7,12 @@ const CategoryRepository = {
     return data;
   },
 
+  getById: async (id) => {
+    const response = await fetch(`${ROUTES.api}/dashboard/categoria/${id}`);
+    const data = await response.json();
+    return data;
+  },
+
   create: async (inputValues) => {
     const response = await fetch(`${ROUTES.api}/dashboard/categoria`, {
       method: 'POST',

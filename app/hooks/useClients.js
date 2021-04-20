@@ -37,15 +37,13 @@ const useClients = () => {
   };
 
   const getDetalle = async (id) => {
-    if (id) {
-      const data = await ClientRepository.getById(id);
+    const data = await ClientRepository.getById(id);
 
-      if (data) {
-        setInputValues(data);
-        setIsLoading(false);
-      } else {
-        setIsLoading(false);
-      }
+    if (data) {
+      setInputValues(data);
+      setIsLoading(false);
+    } else {
+      setIsLoading(false);
     }
   };
 
@@ -60,7 +58,6 @@ const useClients = () => {
       setIsLoading(false);
       Swal.fire('', 'Producto actualizado correctamente', 'success');
     } else {
-      // TODO
       setIsLoading(false);
       Swal.fire('', 'No se a podido actualizar', 'info');
     }

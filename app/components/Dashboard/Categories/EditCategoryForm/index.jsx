@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-import useCategoryHandlers from '../../../../hooks/useCategoryHandlers';
+import useCategory from '../../../../hooks/useCategory';
 import DashboardForm from '../../../shared/DashBoardForm';
 import SpinnerDashboard from '../../../shared/SpinnerDashboard';
 
@@ -8,14 +8,14 @@ const EditCategoryForm = () => {
   const router = useRouter();
   const {
     isLoading,
-    setInputValues,
     inputValues,
+    handleGetDetails,
     handleOnChange,
     handleUpdateCategory,
-  } = useCategoryHandlers();
+  } = useCategory();
 
   useEffect(() => {
-    setInputValues((prevState) => ({ ...prevState, ...router.query }));
+    handleGetDetails(router.query.id);
   }, [router.query]);
 
   return (

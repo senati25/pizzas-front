@@ -24,7 +24,6 @@ const useProducts = () => {
       const { estado } = await ProductRepository.delete(id);
 
       if (estado === 'success') {
-        // await refreshProducts();
         await refreshProducts();
         Swal.fire(
           'Proceso dado de bajo',

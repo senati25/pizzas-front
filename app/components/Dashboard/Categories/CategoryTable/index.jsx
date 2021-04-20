@@ -4,10 +4,10 @@ import { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import DashboardTable from '../../../shared/DashboardTable';
 import Actions from './Actions';
-import useCategoryHandlers from '../../../../hooks/useCategoryHandlers';
+import useCategory from '../../../../hooks/useCategory';
 
 const CategoryTable = ({ categories }) => {
-  const { handleDeleteCategory } = useCategoryHandlers();
+  const { handleDeleteCategory } = useCategory();
 
   return (
     <DashboardTable

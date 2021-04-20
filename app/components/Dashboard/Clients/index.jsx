@@ -1,11 +1,10 @@
 import Link from 'next/link';
-import { React } from 'react';
+
+import useDashboardContext from '../../../hooks/useDashboardContext';
 import useClients from '../../../hooks/useClients';
 import ClientsTable from './ClientTable';
-
-import styles from './style.module.css';
 import SpinnerDashboard from '../../shared/SpinnerDashboard';
-import useDashboardContext from '../../../hooks/useDashboardContext';
+import styles from './style.module.css';
 
 const Clients = () => {
   const { clients } = useDashboardContext();

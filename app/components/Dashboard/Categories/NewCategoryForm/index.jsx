@@ -1,16 +1,12 @@
 import { useRouter } from 'next/router';
-import useCategoryHandlers from '../../../../hooks/useCategoryHandlers';
+import useCategory from '../../../../hooks/useCategory';
 import DashboardForm from '../../../shared/DashBoardForm';
 import SpinnerDashboard from '../../../shared/SpinnerDashboard';
 // import styles from './styles.module.css';
 
 const NewCategoryForm = () => {
   const router = useRouter();
-  const {
-    isLoading,
-    handleOnChange,
-    handleCreateCategory,
-  } = useCategoryHandlers();
+  const { isLoading, handleOnChange, handleCreateCategory } = useCategory();
 
   return (
     <>

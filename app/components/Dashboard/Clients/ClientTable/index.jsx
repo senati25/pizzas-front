@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
-import { useMemo } from 'react';
 import PropTypes from 'prop-types';
+import { useMemo } from 'react';
 import { useRouter } from 'next/router';
+
 import DashboardTable from '../../../shared/DashboardTable';
 import styles from '../style.module.css';
 
