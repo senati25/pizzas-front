@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import PublicLayout from './PublicLayout';
 import DashboardLayout from './DashboardLayout';
 import DashboardProvider from '../../Providers/DashboardProvider';
+import PublicProvider from '../../Providers/PublicProvider';
 
 const Layout = ({ children }) => {
   const { pathname } = useRouter();
@@ -18,7 +19,11 @@ const Layout = ({ children }) => {
     );
   }
 
-  return <PublicLayout>{children}</PublicLayout>;
+  return (
+    <PublicProvider>
+      <PublicLayout>{children}</PublicLayout>
+    </PublicProvider>
+  );
 };
 
 const elementOrArrayOfElementPropType = PropTypes.oneOfType([

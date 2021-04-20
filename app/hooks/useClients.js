@@ -7,11 +7,17 @@ import ClientRepository from '../../api/ClientRepository';
 const useClients = () => {
   const router = useRouter();
   const { refreshClients } = useDashboardContext();
-  const [isLoading, setIsLoading] = useState(false);
 
-  const [smsResponse, setSmsResponse] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const [inputValues, setInputValues] = useState({});
-  const [isLoadingRegister, setIsLoadingRegister] = useState(false);
+  const [smsResponse, setSmsResponse] = useState('');
+
+  const handleOnChange = (e) => {
+    setInputValues((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
   const handleDeleteClient = async (id) => {
     try {
@@ -69,6 +75,7 @@ const useClients = () => {
 
     if (data.estado === 'success') {
       setIsLoading(false);
+      await refreshClients();
       Swal.fire('Tu cuenta a sido creada con exito', '', 'success');
       router.back();
     } else if (data.estado === 'correoexiste') {
@@ -82,42 +89,6 @@ const useClients = () => {
     }
   };
 
-  const handleSubmitCreateCliente = async (e) => {
-    e.preventDefault();
-    console.log(inputValues);
-    setIsLoadingRegister(true);
-    const response = await fetch(
-      `http://127.0.0.1:8000/api/dashboard/cliente`,
-      {
-        method: 'POST',
-        body: JSON.stringify(inputValues),
-        headers: { 'Content-Type': 'application/json' },
-      }
-    );
-    const data = await response.json();
-    console.log(data);
-    if (data.estado === 'success') {
-      setIsLoadingRegister(false);
-      Swal.fire('Tu cuenta a sido creada con exito', '', 'success');
-      router.push('/login');
-    } else if (data.estado === 'correoexiste') {
-      const sms = `El correo ${inputValues.correo} ya esta registrado`;
-      setSmsResponse(sms);
-
-      setIsLoadingRegister(false);
-    } else {
-      const sms = `Tenemos problemas al crear tu cuenta intentalo mas tarde`;
-      setSmsResponse(sms);
-      setIsLoadingRegister(false);
-    }
-  };
-  const handleOnChange = (e) => {
-    setInputValues((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
   return {
     isLoading,
     inputValues,
@@ -126,12 +97,8 @@ const useClients = () => {
     handleSubmitEdit,
     handleOnChange,
     getDetalle,
-
     handleSubmitCreate,
-    handleSubmitCreateCliente,
-
     smsResponse,
-    isLoadingRegister,
   };
 };
 

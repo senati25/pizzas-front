@@ -1,18 +1,17 @@
-import React from 'react';
 import Link from 'next/link';
-import style from '../style.module.css';
 import SpinnerDashboard from '../../shared/SpinnerDashboard';
-import useClients from '../../../hooks/useClients';
+import useRegister from '../../../hooks/useRegister';
+import style from '../style.module.css';
 
 const RegisterForm = () => {
   const {
-    isLoadingRegister,
+    isLoading,
     smsResponse,
-
     handleSubmitCreateCliente,
     handleOnChange,
-  } = useClients();
-  return !isLoadingRegister ? (
+  } = useRegister();
+
+  return !isLoading ? (
     <div className={style.LoginContainer}>
       <form onSubmit={handleSubmitCreateCliente}>
         <h2 className={style.TitleLogin}>Registrarse</h2>

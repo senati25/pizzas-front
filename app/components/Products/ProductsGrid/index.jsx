@@ -1,12 +1,11 @@
 import { memo } from 'react';
-import useProducts from '../../../hooks/useProducts';
 import ProductCard from '../../shared/ProductCard';
 import Spinner from '../../shared/Spinner';
 import styles from './styles.module.css';
 
-const ProductsGrid = memo(({ products, isLoading }) => (
+const ProductsGrid = memo(({ products }) => (
   <>
-    {!isLoading ? (
+    {products ? (
       <div className={styles.productsGrid}>
         {products.map((product) => (
           <ProductCard

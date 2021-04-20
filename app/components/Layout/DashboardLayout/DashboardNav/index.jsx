@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import React from 'react';
+import React, { memo } from 'react';
 import styles from './styles.module.css';
 import ROUTES from '../../../../helpers/constants';
 
-const DashboardNav = () => {
+const DashboardNav = memo(() => {
   const { pathname } = useRouter();
   return (
     <nav className={styles.dashboardNav}>
@@ -51,6 +51,6 @@ const DashboardNav = () => {
       </Link>
     </nav>
   );
-};
+});
 
 export default DashboardNav;
