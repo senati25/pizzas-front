@@ -1,14 +1,15 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import DashboardForm from '../../../shared/DashBoardForm';
-import useFetchCategories from '../../../../hooks/useFetchCategories';
+
+import useDashboardContext from '../../../../hooks/useDashboardContext';
+import useProducts from '../../../../hooks/useProducts';
 import Varieties from './Varieties';
-import useProductsForm from '../../../../hooks/useProductsForm';
 
 const CreateProductForm = () => {
-  const { handleOnChange, handleSubmitCreate } = useProductsForm();
-  const { categories } = useFetchCategories();
-  const { back } = useRouter();
+  const { categories } = useDashboardContext();
+  const { handleOnChange, handleSubmitCreate } = useProducts();
+  const router = useRouter();
 
   const [varieties, setVarieties] = useState([]);
 
@@ -19,7 +20,7 @@ const CreateProductForm = () => {
         handleSubmitCreate(varieties);
       }}
       title="Crear Nuevo Producto"
-      onCancel={back}
+      onCancel={router.back}
     >
       <input
         type="text"
@@ -55,13 +56,12 @@ const CreateProductForm = () => {
         id="categoria"
       >
         <option value="">---categoria---</option>
-        {categories.length
-          ? categories.map((data) => (
-              <option key={data.id} value={data.id}>
-                {data.denominacion}
-              </option>
-            ))
-          : undefined}
+        {categories &&
+          categories.map((data) => (
+            <option key={data.id} value={data.id}>
+              {data.denominacion}
+            </option>
+          ))}
       </select>
 
       <Varieties varieties={varieties} setVarieties={setVarieties} />

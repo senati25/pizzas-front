@@ -1,9 +1,9 @@
-import Products from '../../../app/components/Dashboard/Products';
+import ProductsWrapper from '../../../app/components/Dashboard/Products';
 
-const Products2 = () => (
+const Products = () => (
   <>
-    <Products />
+    <ProductsWrapper />
   </>
 );
 
-export default Products2;
+export default Products;

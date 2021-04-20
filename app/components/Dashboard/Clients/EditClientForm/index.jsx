@@ -1,35 +1,37 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-import useClients from '../../../../hooks/useClientes';
+import useClients from '../../../../hooks/useClients';
 import DashboardForm from '../../../shared/DashBoardForm';
 import SpinnerDashboard from '../../../shared/SpinnerDashboard';
 
 // import styles from './styles.module.css';
 
 const EditClientForm = () => {
+  const router = useRouter();
   const {
+    isLoading,
+    inputValues,
+    getDetalle,
     handleSubmitEdit,
     handleOnChange,
-    isLoading,
-    getDetalle,
-    inputValues,
   } = useClients();
-  const { back, query } = useRouter();
+
   useEffect(() => {
-    getDetalle(query.id);
-  }, []);
+    getDetalle(router.query.id);
+  }, [router.query]);
+
   return (
     <>
       {!isLoading ? (
         <DashboardForm
           handleSubmit={handleSubmitEdit}
           title="Editar Cliente"
-          onCancel={back}
+          onCancel={router.back}
         >
           <input
             onChange={handleOnChange}
             type="text"
-            value={inputValues.nombre}
+            defaultValue={inputValues.nombre}
             name="nombre"
             id="nombre"
             required
@@ -39,14 +41,14 @@ const EditClientForm = () => {
             onChange={handleOnChange}
             type="text"
             name="apellido"
-            value={inputValues.apellido}
+            defaultValue={inputValues.apellido}
             required
             id="apellido"
             placeholder="Apellidos"
           />
           <input
             onChange={handleOnChange}
-            value={inputValues.correo}
+            defaultValue={inputValues.correo}
             type="email"
             name="correo"
             required
@@ -55,7 +57,7 @@ const EditClientForm = () => {
           />
           <input
             onChange={handleOnChange}
-            value={inputValues.dni}
+            defaultValue={inputValues.dni}
             type="string"
             name="dni"
             id="dni"
@@ -66,12 +68,16 @@ const EditClientForm = () => {
           <input
             onChange={handleOnChange}
             type="text"
-            value={inputValues.direccion}
+            defaultValue={inputValues.direccion}
             name="direccion"
             id="direccion"
             placeholder="Direccion"
           />
-          <select name="estado" id="" defaultValue={inputValues.estado}>
+          <select
+            name="estado"
+            onChange={handleOnChange}
+            value={inputValues.estado}
+          >
             <option value="activo">Activo</option>
             <option value="baja">Baja</option>
           </select>

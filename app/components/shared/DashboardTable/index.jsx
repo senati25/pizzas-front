@@ -1,83 +1,131 @@
 /* eslint-disable react/prop-types */
 // import PropTypes from 'prop-types';
-import { useTable } from 'react-table';
+import { useTable, usePagination } from 'react-table';
 import styles from './styles.module.css';
 
 const DashboardTable = ({ columns, data }) => {
-  const tableInstance = useTable({ columns, data });
+  const tableInstance = useTable(
+    {
+      columns,
+      data,
+      initialState: { pageIndex: 0 },
+    },
+    usePagination
+  );
+
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    rows,
     prepareRow,
+    page,
+    canPreviousPage,
+    canNextPage,
+    pageOptions,
+    pageCount,
+    gotoPage,
+    nextPage,
+    previousPage,
+    setPageSize,
+    state: { pageIndex, pageSize },
   } = tableInstance;
   return (
-    <table {...getTableProps()} className={styles.customTable}>
-      <thead>
-        {
-          // Loop over the header rows
-
-          headerGroups.map((headerGroup) => (
-            // Apply the header row props
-
+    <div>
+      <table {...getTableProps()} className={styles.customTable}>
+        <thead>
+          {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
-              {
-                // Loop over the headers in each row
-
-                headerGroup.headers.map((column) => (
-                  // Apply the header cell props
-
-                  <th {...column.getHeaderProps()}>
-                    {
-                      // Render the header
-
-                      column.render('Header')
-                    }
-                  </th>
-                ))
-              }
+              {headerGroup.headers.map((column) => (
+                <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+              ))}
             </tr>
-          ))
-        }
-      </thead>
-
-      {/* Apply the table body props */}
-
-      <tbody {...getTableBodyProps()}>
-        {
-          // Loop over the table rows
-          // eslint-disable-next-line react/prop-types
-          rows.map((row) => {
-            // Prepare the row for display
-
+          ))}
+        </thead>
+        <tbody {...getTableBodyProps()}>
+          {page.map((row) => {
             prepareRow(row);
-
             return (
-              // Apply the row props
-
               <tr {...row.getRowProps()}>
-                {
-                  // Loop over the rows cells
-
-                  row.cells.map((cell) => (
-                    // Apply the cell props
-
-                    <td {...cell.getCellProps()}>
-                      {
-                        // Render the cell contents
-
-                        cell.render('Cell')
-                      }
-                    </td>
-                  ))
-                }
+                {row.cells.map((cell) => (
+                  <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                ))}
               </tr>
             );
-          })
-        }
-      </tbody>
-    </table>
+          })}
+          {/* {rows.map((row) => {
+            prepareRow(row);
+            return (
+              <tr {...row.getRowProps()}>
+                {row.cells.map((cell) => (
+                  <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                ))}
+              </tr>
+            );
+          })} */}
+        </tbody>
+      </table>
+
+      <div className="pagination">
+        <button
+          type="button"
+          onClick={() => gotoPage(0)}
+          disabled={!canPreviousPage}
+        >
+          {'<<'}
+        </button>{' '}
+        <button
+          type="button"
+          onClick={() => previousPage()}
+          disabled={!canPreviousPage}
+        >
+          {'<'}
+        </button>{' '}
+        <button
+          type="button"
+          onClick={() => nextPage()}
+          disabled={!canNextPage}
+        >
+          {'>'}
+        </button>{' '}
+        <button
+          type="button"
+          onClick={() => gotoPage(pageCount - 1)}
+          disabled={!canNextPage}
+        >
+          {'>>'}
+        </button>{' '}
+        <span>
+          Page{' '}
+          <strong>
+            {pageIndex + 1} of {pageOptions.length}
+          </strong>{' '}
+        </span>
+        <span>
+          | Go to page:{' '}
+          <input
+            type="number"
+            defaultValue={pageIndex + 1}
+            onChange={(e) => {
+              const p = e.target.value ? Number(e.target.value) - 1 : 0;
+              gotoPage(p);
+            }}
+            style={{ width: '100px' }}
+          />
+        </span>{' '}
+        <select
+          value={pageSize}
+          onChange={(e) => {
+            setPageSize(Number(e.target.value));
+          }}
+        >
+          {[10, 20, 30, 40, 50].map((pz) => (
+            <option key={pz} value={pz}>
+              Show {pz}
+            </option>
+          ))}
+        </select>
+      </div>
+    </div>
   );
 };
 

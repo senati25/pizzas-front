@@ -1,11 +1,12 @@
-import { useRouter } from 'next/router';
+import router from 'next/router';
 import { useState } from 'react';
 import CategoryRepository from '../../api/CategoryRepository';
+import useDashboardContext from './useDashboardContext';
 
-const useCategory = () => {
-  const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
+const useCategoryHandlers = () => {
+  const { refreshCategories } = useDashboardContext();
   const [inputValues, setInputValues] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleOnChange = (e) => {
     setInputValues((prevState) => ({
@@ -14,11 +15,13 @@ const useCategory = () => {
     }));
   };
 
-  const createNewCategory = async () => {
+  const handleCreateCategory = async (e) => {
+    e.preventDefault();
     setIsLoading(true);
     const data = await CategoryRepository.create(inputValues);
 
     if (data) {
+      await refreshCategories();
       router.push('/admin/categories');
       setIsLoading(false);
     } else {
@@ -27,36 +30,38 @@ const useCategory = () => {
     }
   };
 
-  const handleCreateNewCategory = (e) => {
-    e.preventDefault();
-    createNewCategory();
+  const handleDeleteCategory = async (id) => {
+    const result = await CategoryRepository.delete(id);
+    if (result) {
+      refreshCategories();
+    }
   };
 
-  const editCategory = async () => {
+  const handleUpdateCategory = async (e) => {
+    e.preventDefault();
+
     setIsLoading(true);
     const data = await CategoryRepository.update(inputValues);
 
     if (data) {
+      await refreshCategories();
       setIsLoading(false);
+      router.push('/admin/categories');
     } else {
       // TODO
       setIsLoading(false);
     }
   };
 
-  const handleEditCategory = (e) => {
-    e.preventDefault();
-    editCategory();
-  };
-
   return {
-    handleCreateNewCategory,
-    handleEditCategory,
-    handleOnChange,
-    isLoading,
     inputValues,
     setInputValues,
+    isLoading,
+    handleOnChange,
+    handleCreateCategory,
+    handleUpdateCategory,
+    handleDeleteCategory,
   };
 };
 
-export default useCategory;
+export default useCategoryHandlers;

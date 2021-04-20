@@ -1,72 +1,103 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Swal from 'sweetalert2';
 import { useRouter } from 'next/router';
+import ProductRepository from '../../api/ProductRepository';
+import useDashboardContext from './useDashboardContext';
 import ROUTES from '../helpers/constants';
-import useStoreContext from './useStoreContext';
 
 const useProducts = () => {
-  const { setStore } = useStoreContext();
-  const { push } = useRouter();
-  const [isLoading, setIsLoading] = useState(true);
-  const [products, setProducts] = useState([]);
+  const router = useRouter();
+  const { refreshProducts } = useDashboardContext();
 
-  const getProducts = async () => {
-    const response = await fetch(`${ROUTES.api}/publico/productos`);
-    const data = await response.json();
+  const [inputValues, setInputValues] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
-    if (data) {
-      setProducts([...data]);
-      setIsLoading(false);
-    } else {
-      setIsLoading(false);
-    }
+  const handleOnChange = (e) => {
+    setInputValues((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
   };
 
-  const deleteItem = async (id) => {
+  const handleDeleteProduct = async (id) => {
     try {
-      fetch(`${ROUTES.api}/dashboard/producto/baja/${id}`, {
-        method: 'PATCH',
-      }).then(async (data) => {
-        if (data.status === 200) {
-          await getProducts();
-          Swal.fire(
-            'Proceso dado de bajo',
-            `Dado de baja correctamente ${id}`,
-            'success'
-          );
+      const { estado } = await ProductRepository.delete(id);
 
-          getProducts();
-        }
-      });
+      if (estado === 'success') {
+        // await refreshProducts();
+        await refreshProducts();
+        Swal.fire(
+          'Proceso dado de bajo',
+          `Dado de baja correctamente ${id}`,
+          'success'
+        );
+      }
     } catch (e) {
       console.log(e);
       Swal.fire('Error', 'error', 'error');
     }
   };
 
-  const editItem = (values) => {
-    push({ pathname: `/admin/products/${values.id}`, query: values });
+  const getDetalle = async (id) => {
+    if (id) {
+      const data = await ProductRepository.getById(id);
+
+      if (data) {
+        setInputValues(data);
+        setIsLoading(false);
+      } else {
+        setIsLoading(false);
+      }
+    }
+  };
+  const handleSubmitEdit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    const response = await fetch(
+      `${ROUTES.api}/dashboard/producto/${inputValues.id}`,
+      {
+        method: 'PATCH',
+        body: JSON.stringify(inputValues),
+        headers: { 'Content-Type': 'application/json' },
+      }
+    );
+
+    const data = await response.json();
+
+    if (data) {
+      setIsLoading(false);
+      Swal.fire('', 'Producto actualizado correctamente', 'success');
+    } else {
+      // TODO
+      setIsLoading(false);
+      Swal.fire('', 'No se a podido actualizar', 'info');
+    }
+
+    router.back();
   };
 
-  // const handleRedirectProducts = () => {
-  //   router.push('/admin/products');
-  // };
-
-  useEffect(() => {
-    getProducts();
-  }, []);
-
-  useEffect(() => {
-    setStore((prevState) => ({ ...prevState, products }));
-  }, [products]);
+  const handleSubmitCreate = async (varieties) => {
+    setIsLoading(true);
+    const data = await ProductRepository.create(inputValues, varieties);
+    if (data) {
+      setIsLoading(false);
+      Swal.fire('', 'Producto Creado correctamente', 'success');
+    } else {
+      // TODO
+      setIsLoading(false);
+      Swal.fire('', 'No se a podido crear el producto', 'info');
+    }
+    router.back();
+  };
 
   return {
-    products,
-    setProducts,
     isLoading,
-    getProducts,
-    editItem,
-    deleteItem,
+    inputValues,
+    getDetalle,
+    handleSubmitCreate,
+    handleSubmitEdit,
+    handleOnChange,
+    handleDeleteProduct,
   };
 };
 

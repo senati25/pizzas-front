@@ -1,27 +1,23 @@
 import Link from 'next/link';
-import { React } from 'react';
-import useProducts from '../../../hooks/useProducts';
-import ProductsTable from './ProductsTable';
 
-import styles from './style.module.css';
+import useDashboardContext from '../../../hooks/useDashboardContext';
+import ProductsTable from './ProductsTable';
 import SpinnerDashboard from '../../shared/SpinnerDashboard';
 
+import styles from './style.module.css';
+
 const Products = () => {
-  const { products, isLoading, deleteItem, editItem } = useProducts();
+  const { products } = useDashboardContext();
 
   return (
     <>
-      {!isLoading ? (
+      {products ? (
         <div className={styles.categories}>
           <h1 className={styles.categories__title}>Productos</h1>
           <Link href="/admin/products/new">
             <a className={styles.categories__link}>Nuevo</a>
           </Link>
-          <ProductsTable
-            deleteItem={deleteItem}
-            editItem={editItem}
-            products={products}
-          />
+          <ProductsTable products={products} />
         </div>
       ) : (
         <SpinnerDashboard />

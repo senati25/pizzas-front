@@ -1,35 +1,36 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import DashboardForm from '../../../shared/DashBoardForm';
-import useFetchCategories from '../../../../hooks/useFetchCategories';
-import useProductsForm from '../../../../hooks/useProductsForm';
+import useDashboardContext from '../../../../hooks/useDashboardContext';
+import useProducts from '../../../../hooks/useProducts';
 
 const EditProductForm = () => {
+  const { categories } = useDashboardContext();
+
   const {
     handleOnChange,
     handleSubmitEdit,
     inputValues,
     getDetalle,
-  } = useProductsForm();
-  const { categories } = useFetchCategories();
+  } = useProducts();
 
-  const { query, back } = useRouter();
+  const router = useRouter();
 
   useEffect(() => {
-    getDetalle(query.id);
-  }, [query]);
+    getDetalle(router.query.id);
+  }, [router.query]);
 
   return (
     <DashboardForm
       handleSubmit={handleSubmitEdit}
-      title="Editar  producto"
-      onCancel={back}
+      title="Editar producto"
+      onCancel={router.back}
     >
       <input
         type="text"
         name="nombre"
         id="nombre"
-        value={inputValues.nombre}
+        defaultValue={inputValues.nombre}
         placeholder="NOMBRE"
         required
         onChange={handleOnChange}
@@ -39,7 +40,7 @@ const EditProductForm = () => {
         name="img"
         id="img"
         required
-        value={inputValues.img}
+        defaultValue={inputValues.img}
         placeholder="IMAGEN"
         onChange={handleOnChange}
       />
@@ -47,7 +48,7 @@ const EditProductForm = () => {
       <textarea
         className="textArea_Product"
         name="descripcion"
-        value={inputValues.descripcion}
+        defaultValue={inputValues.descripcion}
         id="descripcion"
         required
         placeholder="DESCRIPCION"
@@ -55,18 +56,17 @@ const EditProductForm = () => {
       ></textarea>
       <select
         name="categoria_id"
-        value={inputValues.categoria_id}
+        defaultValue={inputValues.categoria_id}
         onChange={handleOnChange}
         id="categoria"
         required
       >
-        {categories.length
-          ? categories.map((data) => (
-              <option key={data.id} value={data.id}>
-                {data.denominacion}
-              </option>
-            ))
-          : undefined}
+        {categories &&
+          categories.map((data) => (
+            <option key={data.id} value={data.id}>
+              {data.denominacion}
+            </option>
+          ))}
       </select>
       <select
         required

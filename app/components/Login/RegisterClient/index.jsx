@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import useClients from '../../../hooks/useClientes';
 import style from '../style.module.css';
 import SpinnerDashboard from '../../shared/SpinnerDashboard';
+import useClients from '../../../hooks/useClients';
 
 const RegisterForm = () => {
   const {
@@ -14,7 +14,7 @@ const RegisterForm = () => {
   } = useClients();
   return !isLoadingRegister ? (
     <div className={style.LoginContainer}>
-      <form onSubmit={handleSubmitCreateCliente} method="post">
+      <form onSubmit={handleSubmitCreateCliente}>
         <h2 className={style.TitleLogin}>Registrarse</h2>
         <div className={style.FormGroup}>
           <label htmlFor="usuario">
