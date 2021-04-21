@@ -36,9 +36,11 @@ const useReclamo = () => {
       setIsLoading(false);
       setInputValues(response);
     } else {
+      setIsLoading(false);
       Swal.fire('Error', '', 'error');
     }
   };
+
   const handleDeleteClaim = async (e) => {
     await ClaimRepostory.delete(e);
     await refreshClaims();

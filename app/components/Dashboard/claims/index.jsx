@@ -12,7 +12,7 @@ const Claims = () => {
     <>
       {claims ? (
         <div className={styles.categories}>
-          <h1 className={styles.categories__title}>Categorias</h1>
+          <h1 className={styles.categories__title}>Reclamos</h1>
           <TableClaims claims={claims} handleDeleteClaim={handleDeleteClaim} />
         </div>
       ) : (

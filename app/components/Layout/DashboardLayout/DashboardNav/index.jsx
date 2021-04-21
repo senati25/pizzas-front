@@ -39,6 +39,15 @@ const DashboardNav = memo(() => {
           Categorias
         </a>
       </Link>
+      <Link href={`/${ROUTES.dashboard.root}/${ROUTES.dashboard.claims.root}`}>
+        <a
+          className={`${styles.dashboardNav__link} ${
+            pathname.includes('claims') && styles.dashboardNav__link__active
+          } `}
+        >
+          Reclamos
+        </a>
+      </Link>
 
       <Link href={`/${ROUTES.dashboard.root}/${ROUTES.dashboard.users.root}`}>
         <a

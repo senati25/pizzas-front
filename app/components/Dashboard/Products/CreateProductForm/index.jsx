@@ -20,6 +20,7 @@ const CreateProductForm = () => {
         handleSubmitCreate(varieties);
       }}
       title="Crear Nuevo Producto"
+      enctype="multipart/form-data"
       onCancel={router.back}
     >
       <input

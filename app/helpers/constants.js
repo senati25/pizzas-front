@@ -20,6 +20,10 @@ const ROUTES = {
       root: 'users',
       new: 'new',
     },
+    claims: {
+      root: 'claims',
+      new: 'new',
+    },
   },
 };
 

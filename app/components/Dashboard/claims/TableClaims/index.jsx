@@ -12,7 +12,7 @@ const Actions = ({ original, handleDeleteClaim }) => {
       <button
         onClick={() => {
           router.push({
-            pathname: `/admin/reclamo/${original.id}`,
+            pathname: `/admin/claims/${original.id}`,
             query: original,
           });
         }}
