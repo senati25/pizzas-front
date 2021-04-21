@@ -1,11 +1,14 @@
-import { useState } from 'react';
 import Swal from 'sweetalert2';
+import { useState } from 'react';
+import ClaimRepostory from '../../api/ClaimRepostory';
+import useDashboardContext from './useDashboardContext';
 
 const useReclamo = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [smsResponse, setSmsResponse] = useState('');
   const [inputValues, setInputValues] = useState({});
 
+  const { refreshClaims } = useDashboardContext();
   const handleSubmitCreate = async (e) => {
     e.preventDefault();
     console.log(inputValues);
@@ -26,7 +29,20 @@ const useReclamo = () => {
       setIsLoading(false);
     }
   };
-
+  const getDetail = async (e) => {
+    setIsLoading(true);
+    const response = await ClaimRepostory.getById(e);
+    if (response) {
+      setIsLoading(false);
+      setInputValues(response);
+    } else {
+      Swal.fire('Error', '', 'error');
+    }
+  };
+  const handleDeleteClaim = async (e) => {
+    await ClaimRepostory.delete(e);
+    await refreshClaims();
+  };
   const handleOnChange = (e) => {
     setInputValues((prevState) => ({
       ...prevState,
@@ -39,8 +55,10 @@ const useReclamo = () => {
     handleSubmitCreate,
     inputValues,
     setInputValues,
+    getDetail,
     handleOnChange,
     smsResponse,
+    handleDeleteClaim,
   };
 };
 
