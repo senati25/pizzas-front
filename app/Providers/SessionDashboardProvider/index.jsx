@@ -1,13 +1,17 @@
 import { array, object, oneOfType } from 'prop-types';
+import dynamic from 'next/dynamic';
 import React, { useEffect, useState } from 'react';
-import Login from '../../components/Dashboard/Login';
+// import Login from '../../components/Dashboard/Login';
 import sessionDashboardContext from '../../context/sessionDashboardContext';
+import isServer from '../../helpers/isServer';
 
-const isServer = () => typeof window === 'undefined';
+const Login = dynamic(() => import('../../components/Dashboard/Login'), {
+  ssr: false,
+});
 
 const SessionDashboardProvider = ({ children }) => {
   const [state, setState] = useState(
-    !isServer() ? JSON.parse(localStorage.getItem('session')) : null
+    !isServer() ? JSON.parse(localStorage.getItem('session')) : {}
   );
 
   const handleRefreshSession = () => {};
@@ -26,7 +30,7 @@ const SessionDashboardProvider = ({ children }) => {
         refreshSession: handleRefreshSession,
       }}
     >
-      {!state ? <Login /> : children}
+      {state && !isServer() ? <>{children}</> : <Login />}
     </sessionDashboardContext.Provider>
   );
 };

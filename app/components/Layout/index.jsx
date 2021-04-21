@@ -14,7 +14,7 @@ const Layout = ({ children }) => {
     return (
       <SessionDashboardProvider>
         <DashboardProvider>
-          <DashboardLayout>{children}</DashboardLayout>;
+          <DashboardLayout>{children}</DashboardLayout>
         </DashboardProvider>
       </SessionDashboardProvider>
     );

@@ -1,33 +1,35 @@
-import React, { useState } from 'react';
+import useLoginDashboard from '../../../hooks/useLoginDashboard';
 
 const Login = () => {
-  const [inputValues, setInputValues] = useState({});
-  const handleOnChange = (e) => {
-    setInputValues({ ...inputValues, [e.target.name]: e.target.value });
-    console.log(inputValues);
-  };
+  const { isLoading, handleOnChange, handleSubmitLogin } = useLoginDashboard();
 
   return (
-    <div>
-      <label htmlFor="usuario">
-        Usuario
-        <input
-          onChange={handleOnChange}
-          type="text"
-          name="usuario"
-          id="usuario"
-        />
-      </label>
-      <label htmlFor="contraseña">
-        Contraseña
-        <input
-          onChange={handleOnChange}
-          type="text"
-          name="contraseña"
-          id="contraseña"
-        />
-      </label>
-    </div>
+    <>
+      {!isLoading && (
+        <form onSubmit={handleSubmitLogin} autoComplete="off">
+          <label htmlFor="email">
+            Email
+            <input
+              onChange={handleOnChange}
+              type="text"
+              name="email"
+              id="email"
+            />
+          </label>
+          <label htmlFor="password">
+            Contraseña
+            <input
+              onChange={handleOnChange}
+              type="text"
+              name="password"
+              id="password"
+            />
+          </label>
+
+          <button type="submit">Login</button>
+        </form>
+      )}
+    </>
   );
 };
 
