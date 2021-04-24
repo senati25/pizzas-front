@@ -4,7 +4,7 @@ import sessionDashboardContext from '../context/sessionDashboardContext';
 /**
  * @returns {{
  * session: {},
- * setSession: function
+ * mutateSession: function
  * refreshSession: function }}
  */
 

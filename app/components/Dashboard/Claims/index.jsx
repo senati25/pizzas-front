@@ -1,19 +1,17 @@
 import useDashboardContext from '../../../hooks/useDashboardContext';
 import SpinnerDashboard from '../../shared/SpinnerDashboard';
-
-import useReclamo from '../../../hooks/useReclamo';
-import styles from './style.module.css';
 import TableClaims from './TableClaims';
+import styles from './style.module.css';
 
 const Claims = () => {
-  const { claims } = useDashboardContext();
-  const { handleDeleteClaim } = useReclamo();
+  const dashboardContext = useDashboardContext();
+
   return (
     <>
-      {claims ? (
+      {dashboardContext?.claims ? (
         <div className={styles.categories}>
           <h1 className={styles.categories__title}>Reclamos</h1>
-          <TableClaims claims={claims} handleDeleteClaim={handleDeleteClaim} />
+          <TableClaims claims={dashboardContext?.claims} />
         </div>
       ) : (
         <SpinnerDashboard />

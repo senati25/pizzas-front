@@ -1,28 +1,23 @@
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import PublicLayout from './PublicLayout';
-import DashboardLayout from './DashboardLayout';
-import DashboardProvider from '../../Providers/DashboardProvider';
 import PublicProvider from '../../Providers/PublicProvider';
 import SessionDashboardProvider from '../../Providers/SessionDashboardProvider';
+import ShoppingCartProvider from '../../Providers/ShoppingCartProvider';
 
 const Layout = ({ children }) => {
   const { pathname } = useRouter();
   const isOnAdmin = () => pathname.includes('admin');
 
   if (isOnAdmin()) {
-    return (
-      <SessionDashboardProvider>
-        <DashboardProvider>
-          <DashboardLayout>{children}</DashboardLayout>
-        </DashboardProvider>
-      </SessionDashboardProvider>
-    );
+    return <SessionDashboardProvider>{children}</SessionDashboardProvider>;
   }
 
   return (
     <PublicProvider>
-      <PublicLayout>{children}</PublicLayout>
+      <ShoppingCartProvider>
+        <PublicLayout>{children}</PublicLayout>
+      </ShoppingCartProvider>
     </PublicProvider>
   );
 };

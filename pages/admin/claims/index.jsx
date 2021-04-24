@@ -1,4 +1,4 @@
-import Claims from '../../../app/components/Dashboard/claims';
+import Claims from '../../../app/components/Dashboard/Claims';
 
 const LisClaims = () => (
   <>

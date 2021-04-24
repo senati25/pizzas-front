@@ -2,7 +2,6 @@ import ROUTES from '../app/helpers/constants';
 
 const UserRepository = {
   login: async ({ email, password }) => {
-    console.log(email, password);
     const response = await fetch(
       `${ROUTES.api}/dashboard/usuario/iniciar-sesion`,
       {

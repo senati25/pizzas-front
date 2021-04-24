@@ -4,6 +4,7 @@ import { useMemo } from 'react';
 import { useRouter } from 'next/router';
 import styles from '../style.module.css';
 import DashboardTable from '../../../shared/DashboardTable';
+import useReclamo from '../../../../hooks/useReclamo';
 
 const Actions = ({ original, handleDeleteClaim }) => {
   const router = useRouter();
@@ -43,47 +44,50 @@ Actions.propTypes = {
   handleDeleteClaim: PropTypes.func.isRequired,
 };
 
-const ClaimsTable = ({ handleDeleteClaim, claims }) => (
-  <DashboardTable
-    columns={useMemo(() => {
-      let headers = [];
-      if (claims.length) {
-        headers = [
-          { Header: 'ID', accessor: 'id' },
-          { Header: 'MENSAJE', accessor: 'mensaje' },
-          { Header: 'TIPO', accessor: 'tipo' },
-          { Header: 'ESTADO', accessor: 'estado' },
-        ];
-      }
+const ClaimsTable = ({ claims }) => {
+  const { handleDeleteClaim } = useReclamo();
+  return (
+    <DashboardTable
+      columns={useMemo(() => {
+        let headers = [];
+        if (claims.length) {
+          headers = [
+            { Header: 'ID', accessor: 'id' },
+            { Header: 'MENSAJE', accessor: 'mensaje' },
+            { Header: 'TIPO', accessor: 'tipo' },
+            { Header: 'ESTADO', accessor: 'estado' },
+          ];
+        }
 
-      return [
-        ...headers,
-        {
-          Header: 'ACCIONES',
-          accessor: `acciones`,
-          Cell: ({
-            cell: {
-              row: { original },
-            },
-          }) => (
-            <Actions
-              original={original}
-              handleDeleteClaim={handleDeleteClaim}
-            />
-          ),
-        },
-      ];
-    }, [claims])}
-    data={useMemo(
-      () => [
-        ...claims.map((claim) => ({
-          ...claim,
-        })),
-      ],
-      [claims]
-    )}
-  />
-);
+        return [
+          ...headers,
+          {
+            Header: 'ACCIONES',
+            accessor: `acciones`,
+            Cell: ({
+              cell: {
+                row: { original },
+              },
+            }) => (
+              <Actions
+                original={original}
+                handleDeleteClaim={handleDeleteClaim}
+              />
+            ),
+          },
+        ];
+      }, [claims])}
+      data={useMemo(
+        () => [
+          ...claims.map((claim) => ({
+            ...claim,
+          })),
+        ],
+        [claims]
+      )}
+    />
+  );
+};
 ClaimsTable.propTypes = {
   claims: PropTypes.arrayOf(
     PropTypes.shape({
@@ -93,7 +97,6 @@ ClaimsTable.propTypes = {
       estado: PropTypes.string.isRequired,
     })
   ).isRequired,
-  handleDeleteClaim: PropTypes.func.isRequired,
 };
 
 export default ClaimsTable;

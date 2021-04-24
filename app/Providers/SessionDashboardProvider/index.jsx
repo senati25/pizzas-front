@@ -1,36 +1,32 @@
+import useSWR from 'swr';
 import { array, object, oneOfType } from 'prop-types';
-import dynamic from 'next/dynamic';
-import React, { useEffect, useState } from 'react';
-// import Login from '../../components/Dashboard/Login';
 import sessionDashboardContext from '../../context/sessionDashboardContext';
-import isServer from '../../helpers/isServer';
-
-const Login = dynamic(() => import('../../components/Dashboard/Login'), {
-  ssr: false,
-});
+import DashboardProvider from '../DashboardProvider';
+import DashboardLayout from '../../components/Layout/DashboardLayout';
+import Login from '../../components/Dashboard/Login';
 
 const SessionDashboardProvider = ({ children }) => {
-  const [state, setState] = useState(
-    !isServer() ? JSON.parse(localStorage.getItem('session')) : {}
-  );
+  const { data: session, mutate: mutateSession } = useSWR('/api/user');
 
   const handleRefreshSession = () => {};
-
-  useEffect(() => {
-    if (!isServer()) {
-      localStorage.setItem('session', JSON.stringify(state));
-    }
-  }, [state]);
 
   return (
     <sessionDashboardContext.Provider
       value={{
-        session: state,
-        setSession: setState,
+        session,
+        mutateSession,
         refreshSession: handleRefreshSession,
       }}
     >
-      {state && !isServer() ? <>{children}</> : <Login />}
+      {session && session?.isLoggedIn ? (
+        <DashboardProvider>
+          <DashboardLayout>{children}</DashboardLayout>
+        </DashboardProvider>
+      ) : (
+        <>
+          <Login />
+        </>
+      )}
     </sessionDashboardContext.Provider>
   );
 };

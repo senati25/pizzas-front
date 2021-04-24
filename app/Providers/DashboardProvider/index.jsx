@@ -33,7 +33,7 @@ const DashboardProvider = ({ children }) => {
       const promises = await values.map((value) => get[value]());
       let data = await Promise.all(promises);
       data = values.map((key, i) => [[key], data[i]]);
-      console.log(data);
+
       data = Object.fromEntries(data);
       setState(data);
     }

@@ -7,17 +7,17 @@ import SpinnerDashboard from '../../shared/SpinnerDashboard';
 import styles from './style.module.css';
 
 const Products = () => {
-  const { products } = useDashboardContext();
+  const dashboardContext = useDashboardContext();
 
   return (
     <>
-      {products ? (
+      {dashboardContext?.products ? (
         <div className={styles.categories}>
           <h1 className={styles.categories__title}>Productos</h1>
           <Link href="/admin/products/new">
             <a className={styles.categories__link}>Nuevo</a>
           </Link>
-          <ProductsTable products={products} />
+          <ProductsTable products={dashboardContext?.products} />
         </div>
       ) : (
         <SpinnerDashboard />

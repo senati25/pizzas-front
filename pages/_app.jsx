@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
 import Head from 'next/head';
 import Layout from '../app/components/Layout';
-import ShoppingCartProvider from '../app/Providers/ShoppingCartProvider';
+import SWRProvider from '../app/Providers/SWRProvider';
 
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ShoppingCartProvider>
+    <SWRProvider>
       <Layout>
         <Head>
           <meta
@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps }) {
         </Head>
         <Component {...pageProps} />
       </Layout>
-    </ShoppingCartProvider>
+    </SWRProvider>
   );
 }
 

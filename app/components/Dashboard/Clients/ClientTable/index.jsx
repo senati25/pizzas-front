@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 
 import DashboardTable from '../../../shared/DashboardTable';
 import styles from '../style.module.css';
+import useClients from '../../../../hooks/useClients';
 
 const Actions = ({ original, handleDeleteClient }) => {
   const router = useRouter();
@@ -45,50 +46,54 @@ Actions.propTypes = {
   handleDeleteClient: PropTypes.func.isRequired,
 };
 
-const ClientsTable = ({ handleDeleteClient, clients }) => (
-  <DashboardTable
-    columns={useMemo(() => {
-      let headers = [];
-      if (clients.length) {
-        headers = [
-          { Header: 'ID', accessor: 'id' },
-          { Header: 'NOMBRE', accessor: 'nombre' },
-          { Header: 'APELLIDO', accessor: 'apellido' },
-          { Header: 'CORREO', accessor: 'correo' },
-          { Header: 'DNI', accessor: 'dni' },
-          { Header: 'DIRECCION', accessor: 'direccion' },
-          { Header: 'ESTADO', accessor: 'estado' },
-        ];
-      }
+const ClientsTable = ({ clients }) => {
+  const { handleDeleteClient } = useClients();
 
-      return [
-        ...headers,
-        {
-          Header: 'ACCIONES',
-          accessor: `acciones`,
-          Cell: ({
-            cell: {
-              row: { original },
-            },
-          }) => (
-            <Actions
-              original={original}
-              handleDeleteClient={handleDeleteClient}
-            />
-          ),
-        },
-      ];
-    }, [clients])}
-    data={useMemo(
-      () => [
-        ...clients.map((client) => ({
-          ...client,
-        })),
-      ],
-      [clients]
-    )}
-  />
-);
+  return (
+    <DashboardTable
+      columns={useMemo(() => {
+        let headers = [];
+        if (clients.length) {
+          headers = [
+            { Header: 'ID', accessor: 'id' },
+            { Header: 'NOMBRE', accessor: 'nombre' },
+            { Header: 'APELLIDO', accessor: 'apellido' },
+            { Header: 'CORREO', accessor: 'correo' },
+            { Header: 'DNI', accessor: 'dni' },
+            { Header: 'DIRECCION', accessor: 'direccion' },
+            { Header: 'ESTADO', accessor: 'estado' },
+          ];
+        }
+
+        return [
+          ...headers,
+          {
+            Header: 'ACCIONES',
+            accessor: `acciones`,
+            Cell: ({
+              cell: {
+                row: { original },
+              },
+            }) => (
+              <Actions
+                original={original}
+                handleDeleteClient={handleDeleteClient}
+              />
+            ),
+          },
+        ];
+      }, [clients])}
+      data={useMemo(
+        () => [
+          ...clients.map((client) => ({
+            ...client,
+          })),
+        ],
+        [clients]
+      )}
+    />
+  );
+};
 
 ClientsTable.propTypes = {
   clients: PropTypes.arrayOf(
@@ -101,7 +106,6 @@ ClientsTable.propTypes = {
       direccion: PropTypes.string.isRequired,
     })
   ).isRequired,
-  handleDeleteClient: PropTypes.func.isRequired,
 };
 
 export default ClientsTable;
