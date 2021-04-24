@@ -1,5 +1,5 @@
 import React from 'react';
-import useReclamo from '../../../hooks/useReclamo';
+import useClaims from '../../../hooks/useClaims';
 import SpinnerDashboard from '../../shared/SpinnerDashboard';
 import style from '../style.module.css';
 
@@ -9,7 +9,8 @@ const ReclamoForm = () => {
     smsResponse,
     handleSubmitCreate,
     handleOnChange,
-  } = useReclamo();
+  } = useClaims();
+
   return !isLoading ? (
     <div className={style.ReclamoContainer}>
       <form onSubmit={handleSubmitCreate} method="post">

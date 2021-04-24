@@ -1,4 +1,4 @@
-import GridDetailClaim from '../../../app/components/Dashboard/claims/GridDetail';
+import GridDetailClaim from '../../../app/components/Dashboard/Claims/GridDetail';
 
 const DetailClaim = () => (
   <>

@@ -1,5 +1,5 @@
-import { array, object, oneOfType } from 'prop-types';
 import { SWRConfig } from 'swr';
+import { array, object, oneOfType } from 'prop-types';
 import fetcher from '../../../lib/fetcher';
 
 const SWRProvider = ({ children }) => (

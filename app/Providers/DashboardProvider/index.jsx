@@ -25,7 +25,6 @@ const DashboardProvider = ({ children }) => {
 
   const handleRefresh = async (actionType) => {
     if (actionType) {
-      console.log(`refrescando ${actionType}`);
       const data = await get[actionType]();
       setState({ ...state, [actionType]: data });
     } else {

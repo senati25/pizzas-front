@@ -1,9 +1,9 @@
-import Claims from '../../../app/components/Dashboard/Claims';
+import ClaimsWrapper from '../../../app/components/Dashboard/Claims';
 
-const LisClaims = () => (
+const Claims = () => (
   <>
-    <Claims />
+    <ClaimsWrapper />
   </>
 );
 
-export default LisClaims;
+export default Claims;

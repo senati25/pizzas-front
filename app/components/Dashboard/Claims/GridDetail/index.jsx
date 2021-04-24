@@ -6,11 +6,13 @@ import useReclamo from '../../../../hooks/useReclamo';
 import style from '../style.module.css';
 
 const GridDetailClaim = () => {
-  const { inputValues, getDetail, isLoading } = useReclamo();
   const router = useRouter();
+  const { inputValues, getDetail, isLoading } = useReclamo();
+
   useEffect(() => {
     getDetail(router.query.id);
   }, [router.query]);
+
   return (
     <>
       {!isLoading && inputValues.cliente ? (
