@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import useLoginDashboard from '../../../hooks/useLoginDashboard';
 import SpinnerDashboard from '../../shared/SpinnerDashboard';
 import style from './style.module.css';
@@ -11,6 +12,15 @@ const Login = () => {
         <div className={style.form__content}>
           {!isLoading ? (
             <form onSubmit={handleSubmitLogin} autoComplete="off">
+              <div className={style.form__logo}>
+                <Image
+                  alt="brand logo"
+                  src="/images/brand-logo.png"
+                  width={70}
+                  height={70}
+                />
+              </div>
+
               <h1 className={style.TitleLogin}>INVVIAGGIO</h1>
               <div className={style.FormGroup}>
                 <label htmlFor="usuario">
