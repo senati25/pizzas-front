@@ -1,7 +1,8 @@
+import HomeDashBoard from '../../app/components/Dashboard/Home';
+
 const Admin = () => (
   <>
-    <div>contenido</div>
+    <HomeDashBoard />
   </>
 );
-
 export default Admin;
