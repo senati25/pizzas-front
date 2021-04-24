@@ -1,7 +1,8 @@
 .LoginContainer {
+  background: linear-gradient(to right, #1b2330 0%, rgb(13, 17, 24) 100%);
+  background-size: contain;
   display: grid;
   align-items: center;
-  background: linear-gradient(to right, #1b2330 0%, rgb(13, 17, 24) 100%);
   padding: 1rem;
   max-width: 100vw;
   min-height: 100vh;
@@ -9,6 +10,7 @@
 }
 
 .form__content {
+  box-shadow: 0 0 2px 3px #ffffff50;
   border-radius: 1.1rem;
   padding: 1rem;
   display: flex;
@@ -17,12 +19,17 @@
   justify-content: center;
   background-color: #fff;
   height: 100%;
-  /* width: 100%; */
 }
 
 .form__logo {
-  width: fit-content;
   margin: 0 auto;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 100%;
 }
 
 .TitleLogin {
@@ -35,6 +42,7 @@
   width: 100%;
   padding-bottom: 1em;
 }
+
 .FormGroup > label {
   color: #bbbbbb;
 }
@@ -56,7 +64,7 @@
   width: 100%;
   color: #fff;
   background-color: #252f3e;
-  padding: 0.7rem;
+  padding: 0.8rem;
   border-radius: 1.5rem;
   transition: background-color, transform 0.3s ease-in-out;
 }
@@ -65,8 +73,11 @@
   background-color: #0cb7e2;
 }
 
-@media only screen and (max-width: 720px) {
-  .LoginContainer {
-    width: 100%;
+@media only screen and (min-width: 640px) {
+  .form__content {
+    width: 80%;
+    height: 80%;
+    max-width: 50rem;
+    justify-self: center;
   }
 }

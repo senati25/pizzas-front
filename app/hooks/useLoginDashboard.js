@@ -9,7 +9,7 @@ const useLoginDashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [inputValues, setInputValues] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
-  const [_isMounted, setisMounted] = useState(true);
+  const [_isMounted, setIsMounted] = useState(true);
 
   const handleOnChange = (e) => {
     setInputValues({ ...inputValues, [e.target.name]: e.target.value });
@@ -18,9 +18,9 @@ const useLoginDashboard = () => {
   const handleSubmitLogin = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    console.log({ inputValues });
+
     try {
-      await mutateSession(
+      const { isLoggedIn } = await mutateSession(
         await fetcher('/api/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -31,7 +31,10 @@ const useLoginDashboard = () => {
         })
       );
 
-      if (_isMounted) {
+      console.log({ isLoggedIn });
+      console.log({ _isMounted });
+
+      if (_isMounted && !isLoggedIn) {
         setIsLoading(false);
       }
     } catch (error) {
@@ -47,9 +50,14 @@ const useLoginDashboard = () => {
     if (session && session?.isLoggedIn) {
       router.replace('/admin/analytics');
     }
-
-    return () => setisMounted(false);
   }, [session]);
+
+  useEffect(
+    () => () => {
+      setIsMounted(false);
+    },
+    []
+  );
 
   useEffect(() => {
     if (!session?.isLoggedIn) {

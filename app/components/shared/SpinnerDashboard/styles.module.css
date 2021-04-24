@@ -1,49 +1,114 @@
 .spinner {
-  width: 40px;
-  height: 40px;
-
-  position: relative;
-  margin: 100px auto;
+  width: 10rem;
+  height: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  border-radius: 100%;
 }
 
-.double_bounce1,
-.double_bounce2 {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background-color: #333;
-  opacity: 0.6;
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  -webkit-animation: sk-bounce 2s infinite ease-in-out;
-  animation: sk-bounce 2s infinite ease-in-out;
+.dank__ass__loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
-.double-bounce2 {
-  -webkit-animation-delay: -1s;
+.dank__ass__loader .row {
+  display: flex;
+}
+.arrow {
+  width: 0;
+  height: 0;
+  margin: 0 -6px;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 21.6px solid #06b6d4;
+  animation: blink 1s infinite;
+  filter: drop-shadow(0 0 18px #06b6d4);
+}
+.arrow.down {
+  transform: rotate(180deg);
+}
+.arrow.outer__1 {
+  animation-delay: -0.0555555556s;
+}
+.arrow.outer__2 {
+  animation-delay: -0.1111111111s;
+}
+.arrow.outer__3 {
+  animation-delay: -0.1666666667s;
+}
+.arrow.outer__4 {
+  animation-delay: -0.2222222222s;
+}
+.arrow.outer__5 {
+  animation-delay: -0.2777777778s;
+}
+.arrow.outer__6 {
+  animation-delay: -0.3333333333s;
+}
+.arrow.outer__7 {
+  animation-delay: -0.3888888889s;
+}
+.arrow.outer__8 {
+  animation-delay: -0.4444444444s;
+}
+.arrow.outer__9 {
+  animation-delay: -0.5s;
+}
+.arrow.outer__10 {
+  animation-delay: -0.5555555556s;
+}
+.arrow.outer__11 {
+  animation-delay: -0.6111111111s;
+}
+.arrow.outer__12 {
+  animation-delay: -0.6666666667s;
+}
+.arrow.outer__13 {
+  animation-delay: -0.7222222222s;
+}
+.arrow.outer__14 {
+  animation-delay: -0.7777777778s;
+}
+.arrow.outer__15 {
+  animation-delay: -0.8333333333s;
+}
+.arrow.outer__16 {
+  animation-delay: -0.8888888889s;
+}
+.arrow.outer__17 {
+  animation-delay: -0.9444444444s;
+}
+.arrow.outer__18 {
   animation-delay: -1s;
 }
-
-@-webkit-keyframes sk-bounce {
-  0%,
-  100% {
-    -webkit-transform: scale(0);
-  }
-  50% {
-    -webkit-transform: scale(1);
-  }
+.arrow.inner__1 {
+  animation-delay: -0.1666666667s;
 }
-
-@keyframes sk-bounce {
-  0%,
-  100% {
-    transform: scale(0);
-    -webkit-transform: scale(0);
+.arrow.inner__2 {
+  animation-delay: -0.3333333333s;
+}
+.arrow.inner__3 {
+  animation-delay: -0.5s;
+}
+.arrow.inner__4 {
+  animation-delay: -0.6666666667s;
+}
+.arrow.inner__5 {
+  animation-delay: -0.8333333333s;
+}
+.arrow.inner__6 {
+  animation-delay: -1s;
+}
+@keyframes blink {
+  0% {
+    opacity: 0.1;
   }
-  50% {
-    transform: scale(1);
-    -webkit-transform: scale(1);
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.1;
   }
 }
