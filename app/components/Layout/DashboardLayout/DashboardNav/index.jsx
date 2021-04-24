@@ -8,6 +8,15 @@ const DashboardNav = memo(() => {
   const { pathname } = useRouter();
   return (
     <nav className={styles.dashboardNav}>
+      <Link href="/admin/analytics">
+        <a
+          className={`${styles.dashboardNav__link} ${
+            pathname.includes('analytics') && styles.dashboardNav__link__active
+          } `}
+        >
+          DASHBOARD
+        </a>
+      </Link>
       <Link href="/admin/clients">
         <a
           className={`${styles.dashboardNav__link} ${

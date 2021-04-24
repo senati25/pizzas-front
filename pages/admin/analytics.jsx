@@ -1,5 +1,5 @@
-import React from 'react';
+import HomeDashBoard from '../../app/components/Dashboard/Home';
 
-const Analytics = () => <div>analytics</div>;
+const Analytics = () => <HomeDashBoard />;
 
 export default Analytics;
