@@ -17,8 +17,8 @@ export default withSession(async (req, res) => {
 
     let dashboardSession = { isLoggedIn: false };
 
-    if (user && user?.rol_id) {
-      dashboardSession = { isLoggedIn: true, ...user };
+    if (!user.error) {
+      dashboardSession = { isLoggedIn: true, ...user.user };
     }
 
     req.session.set('dashboardSession', dashboardSession);
