@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import DashboardForm from '../../../shared/DashBoardForm';
 import useDashboardContext from '../../../../hooks/useDashboardContext';
 import useProducts from '../../../../hooks/useProducts';
+import SpinnerDashboard from '../../../shared/SpinnerDashboard';
 
 const EditProductForm = () => {
   const { categories } = useDashboardContext();
@@ -10,6 +11,7 @@ const EditProductForm = () => {
   const {
     handleOnChange,
     handleSubmitEdit,
+    isLoading,
     inputValues,
     getDetalle,
   } = useProducts();
@@ -20,7 +22,7 @@ const EditProductForm = () => {
     getDetalle(router.query.id);
   }, [router.query]);
 
-  return (
+  return !isLoading ? (
     <DashboardForm
       handleSubmit={handleSubmitEdit}
       title="Editar producto"
@@ -79,6 +81,8 @@ const EditProductForm = () => {
         <option value="baja">Baja</option>
       </select>
     </DashboardForm>
+  ) : (
+    <SpinnerDashboard />
   );
 };
 export default EditProductForm;
