@@ -49,9 +49,11 @@ const useProducts = () => {
       }
     }
   };
+
   const handleSubmitEdit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+
     const response = await fetch(
       `${ROUTES.api}/dashboard/producto/${inputValues.id}`,
       {
