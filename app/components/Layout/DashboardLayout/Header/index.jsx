@@ -1,23 +1,32 @@
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import Image from 'next/image';
-import Link from 'next/link';
+import fetcher from '../../../../../lib/fetcher';
+import useSessionDashboardContext from '../../../../hooks/useSessionDashboardContext';
 import styles from './styles.module.css';
 
-const Header = ({ className }) => (
-  <header className={`${styles.dashboardHeader} ${className}`}>
-    <Link href="/admin">
-      <a>
-        <Image
-          alt="brand logo"
-          src="/images/brand-logo.png"
-          width={70}
-          height={70}
-        />
-      </a>
-    </Link>
-    <h1 className={styles.dashboardHeader__title}>Inviaggio Dashboard</h1>
-  </header>
-);
+const Header = ({ className }) => {
+  const router = useRouter();
+  const { mutateSession } = useSessionDashboardContext();
+
+  return (
+    <header className={`${styles.dashboardHeader} ${className}`}>
+      <button
+        className={styles.logout}
+        type="button"
+        onClick={async (e) => {
+          e.preventDefault();
+          mutateSession(
+            await fetcher('/api/logout', { method: 'POST' }),
+            false
+          );
+          router.push('/admin');
+        }}
+      >
+        Cerrar Sesión
+      </button>
+    </header>
+  );
+};
 
 Header.defaultProps = { className: '' };
 
