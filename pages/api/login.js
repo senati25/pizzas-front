@@ -4,9 +4,9 @@ import withSession from '../../lib/withSession';
 
 export default withSession(async (req, res) => {
   const { correo, password } = await req.body;
-  console.log(correo, password);
+
   try {
-    const user = await fetcher(
+    const response = await fetcher(
       `${ROUTES.api}/dashboard/usuario/iniciar-sesion`,
       {
         method: 'POST',
@@ -16,13 +16,16 @@ export default withSession(async (req, res) => {
     );
 
     let dashboardSession = { isLoggedIn: false };
-
-    if (user && user?.rol_id) {
-      dashboardSession = { isLoggedIn: true, ...user };
+    if (response.error) {
+      dashboardSession = { ...dashboardSession, message: response.message };
+    } else {
+      dashboardSession = { isLoggedIn: true, ...response.user };
     }
 
     req.session.set('dashboardSession', dashboardSession);
+
     await req.session.save();
+
     res.json(dashboardSession);
   } catch (error) {
     const { response: fetchResponse } = error;
