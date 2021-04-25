@@ -66,7 +66,9 @@ const useProducts = () => {
     const data = await response.json();
 
     if (data) {
+      await refreshProducts();
       setIsLoading(false);
+
       Swal.fire('', 'Producto actualizado correctamente', 'success');
     } else {
       // TODO
@@ -81,6 +83,7 @@ const useProducts = () => {
     setIsLoading(true);
     const data = await ProductRepository.create(inputValues, varieties);
     if (data) {
+      await refreshProducts();
       setIsLoading(false);
       Swal.fire('', 'Producto Creado correctamente', 'success');
     } else {
