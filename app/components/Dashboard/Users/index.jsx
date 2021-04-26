@@ -1,14 +1,10 @@
 import Link from 'next/link';
-import { React } from 'react';
-import useUsers from '../../../hooks/useUsers';
 import UsersTable from './UsersTable';
-
-import styles from './style.module.css';
 import SpinnerDashboard from '../../shared/SpinnerDashboard';
 import useDashboardContext from '../../../hooks/useDashboardContext';
+import styles from './style.module.css';
 
 const Users = () => {
-  const { deleteItem, editItem } = useUsers();
   const dashboardContext = useDashboardContext();
   return (
     <>
@@ -18,11 +14,7 @@ const Users = () => {
           <Link href="/admin/users/new">
             <a className={styles.categories__link}>Nuevo</a>
           </Link>
-          <UsersTable
-            deleteItem={deleteItem}
-            editItem={editItem}
-            users={dashboardContext?.users}
-          />
+          <UsersTable users={dashboardContext?.users} />
         </div>
       ) : (
         <SpinnerDashboard />

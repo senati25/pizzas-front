@@ -16,24 +16,24 @@ const EditFormUser = () => {
     getRoles,
     roles,
   } = useUsers();
+  console.log(inputValues);
   const { back, query } = useRouter();
   useEffect(() => {
     getDetalle(query.id);
     getRoles();
-    console.log(inputValues);
-  }, []);
+  }, [query.id]);
   return (
     <>
       {!isLoading ? (
         <DashboardForm
           handleSubmit={handleSubmitEdit}
-          title="Editar Cliente"
+          title="Editar Usuario"
           onCancel={back}
         >
           <input
             onChange={handleOnChange}
             type="text"
-            value={inputValues?.nombre}
+            defaultValue={inputValues?.nombre}
             name="nombre"
             id="nombre"
             required
@@ -43,14 +43,14 @@ const EditFormUser = () => {
             onChange={handleOnChange}
             type="text"
             name="apellido"
-            value={inputValues?.apellido}
+            defaultValue={inputValues?.apellido}
             required
             id="apellido"
             placeholder="Apellidos"
           />
           <input
             onChange={handleOnChange}
-            value={inputValues?.correo}
+            defaultValue={inputValues?.correo}
             type="email"
             name="correo"
             required
@@ -59,7 +59,7 @@ const EditFormUser = () => {
           />
           <input
             onChange={handleOnChange}
-            value={inputValues?.dni}
+            defaultValue={inputValues?.dni}
             type="string"
             name="dni"
             id="dni"
@@ -70,7 +70,7 @@ const EditFormUser = () => {
           <input
             onChange={handleOnChange}
             type="text"
-            value={inputValues?.direccion}
+            defaultValue={inputValues?.direccion}
             name="direccion"
             id="direccion"
             placeholder="Direccion"

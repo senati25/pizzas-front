@@ -1,10 +1,10 @@
 import { array, object, oneOfType } from 'prop-types';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import CategoryRepository from '../../../api/CategoryRepository';
 import ClientRepository from '../../../api/ClientRepository';
 import ProductRepository from '../../../api/ProductRepository';
 import ClaimRepostory from '../../../api/ClaimRepostory';
-import dashboardContext from '../../context/dashboardContext';
+import DashboardContext from '../../context/DashboardContext';
 import UserRepository from '../../../api/UserRepository';
 
 const action = {
@@ -29,15 +29,15 @@ const DashboardProvider = ({ children }) => {
   const handleRefresh = async (actionType) => {
     if (actionType) {
       const data = await get[actionType]();
-      setState({ ...state, [actionType]: data });
+      setState({ ...state, [actionType]: data.payload });
     } else {
       const values = Object.values(action);
       const promises = await values.map((value) => get[value]());
       let data = await Promise.all(promises);
-      data = values.map((key, i) => [[key], data[i].payload]);
-
-      data = Object.fromEntries(data);
       console.log({ data });
+      data = values.map((key, i) => [[key], data[i].payload]);
+      data = Object.fromEntries(data);
+
       setState(data);
     }
   };
@@ -47,22 +47,37 @@ const DashboardProvider = ({ children }) => {
   }, []);
 
   return (
-    <dashboardContext.Provider
+    <DashboardContext.Provider
       value={{
         categories: state.categories,
         products: state.products,
         clients: state.clients,
         users: state.users,
         claims: state.claims,
-        refreshCategories: () => handleRefresh(action.REFRESH_CATEGORIES),
-        refreshProducts: () => handleRefresh(action.REFRESH_PRODUCTS),
-        refreshClients: () => handleRefresh(action.REFRESH_CLIENTS),
-        refreshUsers: () => handleRefresh(action.REFRESH_USERS),
-        refreshClaims: () => handleRefresh(action.REFRESH_CLAIMS),
+        refreshCategories: useCallback(
+          () => handleRefresh(action.REFRESH_CATEGORIES),
+          []
+        ),
+        refreshProducts: useCallback(
+          () => handleRefresh(action.REFRESH_PRODUCTS),
+          []
+        ),
+        refreshClients: useCallback(
+          () => handleRefresh(action.REFRESH_CLIENTS),
+          []
+        ),
+        refreshUsers: useCallback(
+          () => handleRefresh(action.REFRESH_USERS),
+          []
+        ),
+        refreshClaims: useCallback(
+          () => handleRefresh(action.REFRESH_CLAIMS),
+          []
+        ),
       }}
     >
       {children}
-    </dashboardContext.Provider>
+    </DashboardContext.Provider>
   );
 };
 

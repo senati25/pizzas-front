@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import dashboardContext from '../context/dashboardContext';
+import DashboardContext from '../context/DashboardContext';
 /**
  * @returns {{
  * categories: [],
@@ -11,6 +11,6 @@ import dashboardContext from '../context/dashboardContext';
  * refreshUsers: function
  * refreshClients: function }}
  */
-const useDashboardContext = () => useContext(dashboardContext);
+const useDashboardContext = () => useContext(DashboardContext);
 
 export default useDashboardContext;

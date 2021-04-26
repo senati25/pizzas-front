@@ -1,4 +1,4 @@
-import Users from '../../../app/components/Dashboard/users';
+import Users from '../../../app/components/Dashboard/Users';
 
 const User = () => (
   <>

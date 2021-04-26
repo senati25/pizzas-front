@@ -1,4 +1,4 @@
-import EditUserForm from '../../../app/components/Dashboard/users/EditUserForm';
+import EditUserForm from '../../../app/components/Dashboard/Users/EditUserForm';
 
 const EditUser = () => (
   <>

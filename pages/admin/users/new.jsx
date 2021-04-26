@@ -1,4 +1,4 @@
-import CreateUserForm from '../../../app/components/Dashboard/users/CreateUserForm';
+import CreateUserForm from '../../../app/components/Dashboard/Users/CreateUserForm';
 
 const CreateUser = () => (
   <>

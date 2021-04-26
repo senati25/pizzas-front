@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import sessionDashboardContext from '../context/sessionDashboardContext';
+import SessionDashboardContext from '../context/SessionDashboardContext';
 
 /**
  * @returns {{
@@ -8,6 +8,6 @@ import sessionDashboardContext from '../context/sessionDashboardContext';
  * refreshSession: function }}
  */
 
-const useSessionDashboardContext = () => useContext(sessionDashboardContext);
+const useSessionDashboardContext = () => useContext(SessionDashboardContext);
 
 export default useSessionDashboardContext;

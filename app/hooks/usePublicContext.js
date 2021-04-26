@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import publicContext from '../context/publicContext';
+import PublicContext from '../context/PublicContext';
 /**
  * @returns {{ * products: [] }}
  */
-const usePublicContext = () => useContext(publicContext);
+const usePublicContext = () => useContext(PublicContext);
 
 export default usePublicContext;

@@ -1,11 +1,11 @@
 import { useContext } from 'react';
-import shoppingCartContext from '../context/shoppingCart';
+import ShoppingCartContext from '../context/ShoppingCartContext';
 /**
  * @returns {{
  * shoppingCartProducts: [],
  * setShoppingCartProducts: function,
  * refreshShoppingCart: function }}
  */
-const useShoppingCartContext = () => useContext(shoppingCartContext);
+const useShoppingCartContext = () => useContext(ShoppingCartContext);
 
 export default useShoppingCartContext;

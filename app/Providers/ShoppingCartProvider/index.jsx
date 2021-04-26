@@ -1,7 +1,7 @@
 import { array, object, oneOfType } from 'prop-types';
 import { useEffect, useState } from 'react';
 import ShoppingCartRepository from '../../../api/ShoppingCartRepository';
-import shoppingCartContext from '../../context/shoppingCart';
+import ShoppingCartContext from '../../context/ShoppingCartContext';
 
 const ShoppingCartProvider = ({ children }) => {
   const [state, setState] = useState([]);
@@ -18,7 +18,7 @@ const ShoppingCartProvider = ({ children }) => {
   }, []);
 
   return (
-    <shoppingCartContext.Provider
+    <ShoppingCartContext.Provider
       value={{
         shoppingCartProducts: state,
         setShoppingCartProducts: setState,
@@ -26,7 +26,7 @@ const ShoppingCartProvider = ({ children }) => {
       }}
     >
       {children}
-    </shoppingCartContext.Provider>
+    </ShoppingCartContext.Provider>
   );
 };
 

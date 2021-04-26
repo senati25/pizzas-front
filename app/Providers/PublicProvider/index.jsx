@@ -1,7 +1,7 @@
 import { array, object, oneOfType } from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import ProductRepository from '../../../api/ProductRepository';
-import publicContext from '../../context/publicContext';
+import PublicContext from '../../context/PublicContext';
 
 const get = {
   products: ProductRepository.getAll,
@@ -26,13 +26,13 @@ const PublicProvider = ({ children }) => {
   }, []);
 
   return (
-    <publicContext.Provider
+    <PublicContext.Provider
       value={{
         products: state.products,
       }}
     >
       {children}
-    </publicContext.Provider>
+    </PublicContext.Provider>
   );
 };
 

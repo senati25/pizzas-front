@@ -9,40 +9,32 @@ const useUsers = () => {
   const { refreshUsers } = useDashboardContext();
 
   const [isLoading, setIsLoading] = useState(true);
-
   const [smsResponse, setSmsResponse] = useState('');
   const [inputValues, setInputValues] = useState({});
   const [roles, setRoles] = useState([]);
 
   const deleteItem = async (id) => {
     try {
-      fetch(
-        `https://inviaggio-api.vercel.app/api/index.php/api/dashboard/usuarios/${id}`,
-        { method: 'DELETE' }
-      ).then(async (data) => {
-        if (data.status === 200) {
-          await refreshUsers();
-          Swal.fire(
-            'Proceso dado de bajo',
-            `Dado de baja correctamente ${id}`,
-            'success'
-          );
-        }
-      });
+      const data = await UserRepository.delete(id);
+
+      if (!data.error) {
+        await refreshUsers();
+        Swal.fire(
+          'Proceso dado de bajo',
+          `Dado de baja correctamente ${id}`,
+          'success'
+        );
+      }
     } catch (e) {
       console.log(e);
       Swal.fire('Error', 'error', 'error');
     }
   };
 
-  const editItem = (values) => {
-    router.push({ pathname: `/admin/users/${values.id}`, query: values });
-  };
-
   const getDetalle = async (id) => {
     if (id) {
-      const data = UserRepository.getById(id);
-
+      const data = await UserRepository.getById(id);
+      console.log(data);
       if (data) {
         setInputValues(data);
         setIsLoading(false);
@@ -51,33 +43,23 @@ const useUsers = () => {
       }
     }
   };
-  const handleRedirectClients = () => {
-    router.push('/admin/users');
-  };
+
   const handleSubmitEdit = async (e) => {
-    console.log(inputValues);
     e.preventDefault();
     setIsLoading(true);
-    const response = await fetch(
-      `${ROUTES.api}/dashboard/usuarios/${inputValues.id}`,
-      {
-        method: 'PATCH',
-        body: JSON.stringify(inputValues),
-        headers: { 'Content-Type': 'application/json' },
-      }
-    );
 
-    const data = await response.json();
-
+    const data = await UserRepository.update(inputValues);
+    console.log({ data });
     if (data) {
       setIsLoading(false);
+      await refreshUsers();
       Swal.fire('', 'Producto actualizado correctamente', 'success');
     } else {
       // TODO
       setIsLoading(false);
       Swal.fire('', 'No se a podido actualizar', 'info');
     }
-    handleRedirectClients();
+    router.back();
   };
   const getRoles = async () => {
     setIsLoading(true);
@@ -108,7 +90,7 @@ const useUsers = () => {
     if (data.estado === 'success') {
       setIsLoading(false);
       Swal.fire('Tu cuenta a sido creada con exito', '', 'success');
-      handleRedirectClients();
+      router.back();
     } else if (data.estado === 'correoexiste') {
       const sms = `El correo ${inputValues.correo} ya esta registrado`;
       setSmsResponse(sms);
@@ -129,13 +111,10 @@ const useUsers = () => {
 
   return {
     isLoading,
-    editItem,
     deleteItem,
     handleSubmitEdit,
     handleSubmitCreate,
     inputValues,
-    handleRedirectClients,
-    setInputValues,
     handleOnChange,
     roles,
     getRoles,

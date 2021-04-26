@@ -1,12 +1,26 @@
 import ROUTES from '../app/helpers/constants';
 
 const UserRepository = {
-  login: async ({ email, password }) => {
+  getAll: async () => {
+    const response = await fetch(`${ROUTES.api}/dashboard/usuarios`);
+    const data = await response.json();
+
+    return data;
+  },
+
+  getById: async (id) => {
+    const response = await fetch(`${ROUTES.api}/dashboard/usuarios/${id}`);
+
+    const data = await response.json();
+    return data;
+  },
+
+  update: async (inputValues) => {
     const response = await fetch(
-      `${ROUTES.api}/dashboard/usuario/iniciar-sesion`,
+      `${ROUTES.api}/dashboard/usuarios/${inputValues.id}`,
       {
-        method: 'POST',
-        body: JSON.stringify({ correo: email, password }),
+        method: 'PATCH',
+        body: JSON.stringify(inputValues),
         headers: { 'Content-Type': 'application/json' },
       }
     );
@@ -15,16 +29,13 @@ const UserRepository = {
     return data;
   },
 
-  getAll: async () => {
-    const response = await fetch(`${ROUTES.api}/dashboard/usuarios`);
-    const data = await response.json();
-
-    return data;
-  },
-  getById: async (id) => {
-    const response = await fetch(`${ROUTES.api}/dashboard/usuarios/${id}`);
+  delete: async (id) => {
+    const response = await fetch(`${ROUTES.api}/dashboard/usuarios/${id}`, {
+      method: 'DELETE',
+    });
 
     const data = await response.json();
+
     return data;
   },
 };

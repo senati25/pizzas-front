@@ -1,6 +1,6 @@
 import useSWR from 'swr';
 import { array, object, oneOfType } from 'prop-types';
-import sessionDashboardContext from '../../context/sessionDashboardContext';
+import SessionDashboardContext from '../../context/SessionDashboardContext';
 import DashboardProvider from '../DashboardProvider';
 import DashboardLayout from '../../components/Layout/DashboardLayout';
 import Login from '../../components/Dashboard/Login';
@@ -11,7 +11,7 @@ const SessionDashboardProvider = ({ children }) => {
   const handleRefreshSession = () => {};
 
   return (
-    <sessionDashboardContext.Provider
+    <SessionDashboardContext.Provider
       value={{
         session,
         mutateSession,
@@ -27,7 +27,7 @@ const SessionDashboardProvider = ({ children }) => {
           <Login />
         </>
       )}
-    </sessionDashboardContext.Provider>
+    </SessionDashboardContext.Provider>
   );
 };
 
