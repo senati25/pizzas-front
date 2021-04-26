@@ -1,27 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Swal from 'sweetalert2';
 import router from 'next/router';
 import ROUTES from '../helpers/constants';
+import UserRepository from '../../api/UserRepository';
+import useDashboardContext from './useDashboardContext';
 
 const useUsers = () => {
+  const { refreshUsers } = useDashboardContext();
+
   const [isLoading, setIsLoading] = useState(true);
-  const [users, setUsers] = useState([]);
+
   const [smsResponse, setSmsResponse] = useState('');
   const [inputValues, setInputValues] = useState({});
   const [roles, setRoles] = useState([]);
-
-  const getUsers = async () => {
-    const response = await fetch(`${ROUTES.api}/dashboard/usuarios`);
-    const data = await response.json();
-    console.log(data);
-    if (data) {
-      // console.log(`fetch`);
-      setUsers([...data.payload]);
-      setIsLoading(false);
-    } else {
-      setIsLoading(false);
-    }
-  };
 
   const deleteItem = async (id) => {
     try {
@@ -30,14 +21,12 @@ const useUsers = () => {
         { method: 'DELETE' }
       ).then(async (data) => {
         if (data.status === 200) {
-          await getUsers();
+          await refreshUsers();
           Swal.fire(
             'Proceso dado de bajo',
             `Dado de baja correctamente ${id}`,
             'success'
           );
-
-          getUsers();
         }
       });
     } catch (e) {
@@ -52,11 +41,8 @@ const useUsers = () => {
 
   const getDetalle = async (id) => {
     if (id) {
-      const response = await fetch(
-        `https://inviaggio-api.vercel.app/api/index.php/api/dashboard/usuarios/${id}`
-      );
-      const data = await response.json();
-      console.log(data);
+      const data = UserRepository.getById(id);
+
       if (data) {
         setInputValues(data);
         setIsLoading(false);
@@ -141,14 +127,8 @@ const useUsers = () => {
     }));
   };
 
-  useEffect(() => {
-    getUsers();
-  }, []);
-
   return {
-    users,
     isLoading,
-    getUsers,
     editItem,
     deleteItem,
     handleSubmitEdit,

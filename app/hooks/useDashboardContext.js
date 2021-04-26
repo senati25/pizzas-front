@@ -5,8 +5,10 @@ import dashboardContext from '../context/dashboardContext';
  * categories: [],
  * products: [],
  * clients: [],
+ * users: [],
  * refreshCategories: function
  * refreshProducts: function
+ * refreshUsers: function
  * refreshClients: function }}
  */
 const useDashboardContext = () => useContext(dashboardContext);

@@ -7,6 +7,7 @@ const useLoginDashboard = () => {
   const router = useRouter();
   const { session, mutateSession } = useSessionDashboardContext();
   const [isLoading, setIsLoading] = useState(true);
+
   const [inputValues, setInputValues] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
   const [_isMounted, setIsMounted] = useState(true);
@@ -30,9 +31,6 @@ const useLoginDashboard = () => {
           }),
         })
       );
-
-      console.log({ isLoggedIn });
-      console.log({ _isMounted });
 
       if (_isMounted && !isLoggedIn) {
         setIsLoading(false);

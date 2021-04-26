@@ -5,13 +5,14 @@ import UsersTable from './UsersTable';
 
 import styles from './style.module.css';
 import SpinnerDashboard from '../../shared/SpinnerDashboard';
+import useDashboardContext from '../../../hooks/useDashboardContext';
 
 const Users = () => {
-  const { users, isLoading, deleteItem, editItem } = useUsers();
-
+  const { deleteItem, editItem } = useUsers();
+  const dashboardContext = useDashboardContext();
   return (
     <>
-      {!isLoading ? (
+      {dashboardContext?.users ? (
         <div className={styles.categories}>
           <h1 className={styles.categories__title}>Usuarios</h1>
           <Link href="/admin/users/new">
@@ -20,7 +21,7 @@ const Users = () => {
           <UsersTable
             deleteItem={deleteItem}
             editItem={editItem}
-            clients={users}
+            users={dashboardContext?.users}
           />
         </div>
       ) : (

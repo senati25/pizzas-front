@@ -32,18 +32,18 @@ Actions.propTypes = {
     apellido: PropTypes.string.isRequired,
     correo: PropTypes.string.isRequired,
     dni: PropTypes.number.isRequired,
-    rolDenominacion: PropTypes.string.isRequired,
+    rol_denominacion: PropTypes.string.isRequired,
     direccion: PropTypes.string.isRequired,
   }).isRequired,
   deleteItem: PropTypes.func.isRequired,
   editItem: PropTypes.func.isRequired,
 };
 
-const UsersTable = ({ deleteItem, clients, editItem }) => (
+const UsersTable = ({ deleteItem, users, editItem }) => (
   <DashboardTable
     columns={useMemo(() => {
       let headers = [];
-      if (clients.length) {
+      if (users.length) {
         headers = [
           { Header: 'ID', accessor: 'id' },
           { Header: 'NOMBRE', accessor: 'nombre' },
@@ -51,7 +51,7 @@ const UsersTable = ({ deleteItem, clients, editItem }) => (
           { Header: 'CORREO', accessor: 'correo' },
           { Header: 'DNI', accessor: 'dni' },
           { Header: 'DIRECCION', accessor: 'direccion' },
-          { Header: 'ROL', accessor: 'rolDenominacion' },
+          { Header: 'ROL', accessor: 'rol_denominacion' },
         ];
       }
 
@@ -73,27 +73,27 @@ const UsersTable = ({ deleteItem, clients, editItem }) => (
           ),
         },
       ];
-    }, [clients])}
+    }, [users])}
     data={useMemo(
       () => [
-        ...clients.map((c) => ({
+        ...users.map((c) => ({
           ...c,
         })),
       ],
-      [clients]
+      [users]
     )}
   />
 );
 
 UsersTable.propTypes = {
-  clients: PropTypes.arrayOf(
+  users: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       nombre: PropTypes.string.isRequired,
       apellido: PropTypes.string.isRequired,
       correo: PropTypes.string.isRequired,
       dni: PropTypes.number.isRequired,
-      rolDenominacion: PropTypes.string.isRequired,
+      rol_denominacion: PropTypes.string.isRequired,
       direccion: PropTypes.string.isRequired,
     })
   ).isRequired,
