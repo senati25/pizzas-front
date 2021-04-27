@@ -5,15 +5,18 @@ import useSessionDashboardContext from './useSessionDashboardContext';
 
 const useLoginDashboard = () => {
   const router = useRouter();
-  const { session, mutateSession } = useSessionDashboardContext();
-  const [isLoading, setIsLoading] = useState(true);
+  const { mutateSession } = useSessionDashboardContext();
+  const [isLoading, setIsLoading] = useState(false);
 
   const [inputValues, setInputValues] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
   const [_isMounted, setIsMounted] = useState(true);
 
   const handleOnChange = (e) => {
-    setInputValues({ ...inputValues, [e.target.name]: e.target.value });
+    setInputValues((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   const handleSubmitLogin = async (e) => {
@@ -22,7 +25,7 @@ const useLoginDashboard = () => {
 
     try {
       const { isLoggedIn } = await mutateSession(
-        await fetcher('/api/login', {
+        await fetcher('/api/login-dashboard', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -44,11 +47,14 @@ const useLoginDashboard = () => {
     }
   };
 
-  useEffect(() => {
-    if (session && session?.isLoggedIn) {
-      router.replace('/admin/analytics');
-    }
-  }, [session]);
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    mutateSession(
+      await fetcher('/api/logout-dashboard', { method: 'POST' }),
+      false
+    );
+    router.push('/admin');
+  };
 
   useEffect(
     () => () => {
@@ -57,17 +63,10 @@ const useLoginDashboard = () => {
     []
   );
 
-  useEffect(() => {
-    if (!session?.isLoggedIn) {
-      setIsLoading(false);
-    } else if (!session) {
-      setIsLoading(false);
-    }
-  }, []);
-
   return {
     isLoading,
     handleOnChange,
+    handleLogout,
     handleSubmitLogin,
     errorMessage,
   };

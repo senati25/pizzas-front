@@ -1,34 +1,17 @@
-import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
-
-import ROUTES from '../helpers/constants';
+import fetcher from '../../lib/fetcher';
+import useSessionContext from './useSessionContext';
 
 const useLogin = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [cliente, setCliente] = useState({});
+  const router = useRouter();
+  const { mutateSession } = useSessionContext();
+  const [isLoading, setIsLoading] = useState(false);
+
   const [inputValues, setInputValues] = useState({});
-  const handleIniciarSesion = async (e) => {
-    console.log(inputValues);
-    e.preventDefault();
-    /*  setIsLoading(true);
-    const response = await fetch(`${ROUTES.api}/publico/login`, {
-      method: 'POST',
-      body: JSON.stringify(inputValues),
-      headers: { 'Content-Type': 'application/json' },
-    });
-
-    const data = await response.json();
-
-    if (data) {
-      setIsLoading(false);
-      setCliente(...data);
-      Swal.fire('', 'Hola Bienvenido de vuelta', 'success');
-    } else {
-      // TODO
-      setIsLoading(false);
-      Swal.fire('', 'Verifica que tus datos sean los correctos', 'info');
-    } */
-  };
+  const [errorMessage, setErrorMessage] = useState('');
+  const [_isMounted, setIsMounted] = useState(true);
 
   const handleOnChange = (e) => {
     setInputValues((prevState) => ({
@@ -37,11 +20,57 @@ const useLogin = () => {
     }));
   };
 
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      const { isLoggedIn } = await mutateSession(
+        await fetcher('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            correo: inputValues.email,
+            password: inputValues.password,
+          }),
+        })
+      );
+
+      if (_isMounted && isLoggedIn) {
+        setIsLoading(false);
+        Swal.fire('', 'Hola Bienvenido de vuelta', 'success');
+      } else {
+        setIsLoading(false);
+        Swal.fire('', 'Verifica que tus datos sean los correctos', 'info');
+      }
+    } catch (error) {
+      if (_isMounted) {
+        setIsLoading(false);
+        console.error('An unexpected error happened:', error);
+        setErrorMessage(error.data.message);
+      }
+    }
+  };
+
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    mutateSession(await fetcher('/api/logout', { method: 'POST' }), false);
+    router.push('/');
+  };
+
+  useEffect(
+    () => () => {
+      setIsMounted(false);
+    },
+    []
+  );
+
   return {
     isLoading,
-    setInputValues,
-    handleIniciarSesion,
     handleOnChange,
+    handleLogout,
+    handleLogin,
+    errorMessage,
   };
 };
 

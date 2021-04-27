@@ -15,18 +15,18 @@ export default withSession(async (req, res) => {
       }
     );
 
-    let session = { isLoggedIn: false };
+    let dashboardSession = { isLoggedIn: false };
     if (response.error) {
-      session = { ...session, message: response.message };
+      dashboardSession = { ...dashboardSession, message: response.message };
     } else {
-      session = { isLoggedIn: true, ...response.user };
+      dashboardSession = { isLoggedIn: true, ...response.user };
     }
 
-    req.session.set('session', session);
+    req.session.set('dashboardSession', dashboardSession);
 
     await req.session.save();
 
-    res.json(session);
+    res.json(dashboardSession);
   } catch (error) {
     const { response: fetchResponse } = error;
 

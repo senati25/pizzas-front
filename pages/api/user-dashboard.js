@@ -1,12 +1,12 @@
 import withSession from '../../lib/withSession';
 
 export default withSession(async (req, res) => {
-  const session = req.session.get('session');
+  const dashboardSession = req.session.get('dashboardSession');
 
-  if (session) {
+  if (dashboardSession) {
     res.json({
       isLoggedIn: true,
-      ...session,
+      ...dashboardSession,
     });
   } else {
     res.json({

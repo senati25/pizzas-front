@@ -6,7 +6,9 @@ import DashboardLayout from '../../components/Layout/DashboardLayout';
 import Login from '../../components/Dashboard/Login';
 
 const SessionDashboardProvider = ({ children }) => {
-  const { data: session, mutate: mutateSession } = useSWR('/api/user');
+  const { data: session, mutate: mutateSession } = useSWR(
+    '/api/user-dashboard'
+  );
 
   const handleRefreshSession = () => {};
 

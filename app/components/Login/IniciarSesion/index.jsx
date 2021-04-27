@@ -1,18 +1,16 @@
-import React, { useState } from 'react';
 import Link from 'next/link';
 import useLogin from '../../../hooks/useLogin';
 import style from '../style.module.css';
+import Spinner from '../../shared/Spinner';
 
 const IniciarSesion = () => {
-  const {
-    isLoading,
-    setInputValues,
-    handleIniciarSesion,
-    handleOnChange,
-  } = useLogin();
+  const { isLoading, handleLogin, handleOnChange } = useLogin();
+
+  if (isLoading) <Spinner />;
+
   return (
     <div className={style.LoginContainer}>
-      <form onSubmit={handleIniciarSesion} method="post">
+      <form onSubmit={handleLogin} method="post">
         <h2 className={style.TitleLogin}>LOGIN</h2>
         <div className={style.FormGroup}>
           <label htmlFor="usuario">
@@ -41,7 +39,7 @@ const IniciarSesion = () => {
         <div className={style.ButtonContainer}>
           <input
             type="submit"
-            value="INICIAR SESION"
+            value="Iniciar Sesion"
             className={style.ButtonRed}
           />
         </div>

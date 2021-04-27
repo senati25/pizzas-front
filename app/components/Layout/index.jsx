@@ -1,9 +1,7 @@
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import PublicLayout from './PublicLayout';
-import PublicProvider from '../../Providers/PublicProvider';
 import SessionDashboardProvider from '../../Providers/SessionDashboardProvider';
-import ShoppingCartProvider from '../../Providers/ShoppingCartProvider';
+import SessionProvider from '../../Providers/SessionProvider';
 
 const Layout = ({ children }) => {
   const { pathname } = useRouter();
@@ -13,13 +11,7 @@ const Layout = ({ children }) => {
     return <SessionDashboardProvider>{children}</SessionDashboardProvider>;
   }
 
-  return (
-    <PublicProvider>
-      <ShoppingCartProvider>
-        <PublicLayout>{children}</PublicLayout>
-      </ShoppingCartProvider>
-    </PublicProvider>
-  );
+  return <SessionProvider>{children}</SessionProvider>;
 };
 
 const elementOrArrayOfElementPropType = PropTypes.oneOfType([

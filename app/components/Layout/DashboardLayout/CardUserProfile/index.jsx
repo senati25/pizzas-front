@@ -16,7 +16,7 @@ const CardUserProfile = () => {
           layout="responsive"
         />
       </div>
-      <h3 className={styles.cardUserProfile__name}>{session.nombre}</h3>
+      <h3 className={styles.cardUserProfile__name}>{session?.nombre}</h3>
       <p className={styles.cardUserProfile__rol}>Cargo</p>
     </div>
   );
