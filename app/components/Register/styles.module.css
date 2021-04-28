@@ -67,48 +67,6 @@
   font-weight: 600;
 }
 
-.FormGroup {
-  width: 100%;
-  padding-bottom: 1em;
-}
-
-.FormGroup label {
-  display: block;
-  color: #242424;
-  font-size: 0.9rem;
-  margin-bottom: 0.5rem;
-  text-shadow: 0 0 10px #c4c4c4;
-}
-
-.formControl[type='number']::-webkit-inner-spin-button,
-.formControl[type='number']::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.formControl {
-  background-color: transparent;
-  border-bottom: 1.2px solid rgba(46, 46, 46, 0.1);
-  font-size: 1rem;
-  padding: 0.2rem 1rem;
-  transition: focus 0.3s ease;
-  width: 100%;
-}
-
-.formControl:focus {
-  border-color: #4c5086;
-}
-
-.is__invalid {
-  border-color: red;
-}
-
-.error {
-  margin-top: 0.2rem;
-  font-size: 0.8rem;
-  color: red;
-}
-
 .form__button[disabled] {
   opacity: 0.5;
   pointer-events: none;
@@ -129,11 +87,12 @@
 }
 
 .form__button:hover {
+  transform: scale(1.05);
   background-color: #fc4c4c;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 640px) {
   .form {
-    padding: 1rem 3rem;
+    padding: 1.5rem 3rem;
   }
 }

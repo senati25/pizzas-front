@@ -1,13 +1,14 @@
 import { useRouter } from 'next/router';
-import * as Yup from 'yup';
 import { useState } from 'react';
-import Swal from 'sweetalert2';
+import * as Yup from 'yup';
+import { toast } from 'react-toastify';
+
 import ClientRepository from '../../api/ClientRepository';
 
 const useRegister = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const [inputValues, setinputValues] = useState({
+  const [inputValues, setInputValues] = useState({
     nombre: '',
     apellido: '',
     correo: '',
@@ -16,7 +17,6 @@ const useRegister = () => {
     password: '',
     confirmPassword: '',
   });
-  const [smsResponse, setSmsResponse] = useState('');
 
   const schema = Yup.object({
     nombre: Yup.string()
@@ -54,38 +54,46 @@ const useRegister = () => {
       .required('*Confirmar contraseña es requerido'),
   });
 
-  const handleSubmitCreateCliente = async (values, event) => {
-    // event.preventDefault();
-    console.log(values);
-    setinputValues(values);
+  const handleSubmitCreateCliente = async (values) => {
+    setInputValues(values);
     setIsLoading(true);
 
-    setTimeout(() => {
+    const data = await ClientRepository.create(values);
+
+    console.log({ data });
+
+    if (!data.error) {
       setIsLoading(false);
-    }, 5000);
 
-    // const data = await ClientRepository.create(values);
+      toast.success(data.message, {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
 
-    // if (data.estado === 'success') {
-    //   setIsLoading(false);
-    //   Swal.fire('Tu cuenta a sido creada con exito', '', 'success');
-    //   router.push('/login');
-    // } else if (data.estado === 'correoexiste') {
-    // const sms = `El correo ${inputValues.correo} ya esta registrado`;
-    // setSmsResponse(sms);
-
-    //   setIsLoading(false);
-    // } else {
-    //   const sms = `Tenemos problemas al crear tu cuenta intentalo mas tarde`;
-    //   setSmsResponse(sms);
-    //   setIsLoading(false);
-    // }
+      router.push('/login');
+    } else {
+      toast.warn(data.message, {
+        position: 'top-center',
+        autoClose: 7000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      setIsLoading(false);
+    }
   };
+
   return {
     isLoading,
     inputValues,
     schema,
-    smsResponse,
     handleSubmitCreateCliente,
   };
 };

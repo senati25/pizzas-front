@@ -1,32 +1,11 @@
 /* eslint-disable react/prop-types */
 import Link from 'next/link';
-import { Formik, Form, ErrorMessage, useField } from 'formik';
+import { Formik, Form } from 'formik';
 import { useEffect, useState } from 'react';
-import useRegister from '../../../hooks/useRegister';
+import useRegister from '../../hooks/useRegister';
+import Spinner from '../shared/Spinner';
+import FormField from './FormField';
 import styles from './styles.module.css';
-import Spinner from '../../shared/Spinner';
-
-const TextField = ({ label, ...props }) => {
-  const [field, meta] = useField(props);
-  return (
-    <div className={styles.FormGroup}>
-      <label htmlFor={field.name}>{label}</label>
-      <input
-        className={`${styles.formControl} ${
-          meta.touched && meta.error && styles.is__invalid
-        }`}
-        {...field}
-        {...props}
-        autoComplete="nope"
-      />
-      <ErrorMessage
-        component="div"
-        name={field.name}
-        className={`${styles.error}`}
-      />
-    </div>
-  );
-};
 
 const RegisterForm = () => {
   const {
@@ -65,33 +44,33 @@ const RegisterForm = () => {
               </Link>
 
               <h1 className={styles.form__title}>Registro</h1>
-              <TextField
+              <FormField
                 label="Nombre"
                 name="nombre"
                 placeholder="Ingrese su nombre"
                 type="text"
               />
-              <TextField
+              <FormField
                 label="Apellido"
                 name="apellido"
                 placeholder="Ingrese su apellido"
                 type="text"
               />
-              <TextField
+              <FormField
                 label="Correo"
                 name="correo"
                 placeholder="Ingrese su correo"
                 type="email"
               />
 
-              <TextField
+              <FormField
                 label="Direccion"
                 name="direccion"
-                placeholder="Ingrese su direccion"
+                placeholder="Ingrese su dirección"
                 type="text"
               />
 
-              <TextField
+              <FormField
                 label="Dni"
                 name="dni"
                 placeholder="Ingrese su dni"
@@ -100,13 +79,13 @@ const RegisterForm = () => {
                 min={11111111}
                 type="number"
               />
-              <TextField
+              <FormField
                 label="Contraseña"
                 name="password"
                 placeholder="Ingrese su contraseña"
                 type="password"
               />
-              <TextField
+              <FormField
                 label="Confirmar contraseña"
                 name="confirmPassword"
                 placeholder="Ingrese su contraseña"
