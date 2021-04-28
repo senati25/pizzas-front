@@ -1,8 +1,15 @@
+import Image from 'next/image';
 import styles from './styles.module.css';
 
 const Spinner = () => (
   <div className={styles.spinner}>
-    <div className={styles.lds__hourglass}></div>
+    <Image
+      alt="food"
+      src="/images/pizza.gif"
+      width={200}
+      height={200}
+      layout="responsive"
+    />
   </div>
 );
 

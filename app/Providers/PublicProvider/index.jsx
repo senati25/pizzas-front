@@ -15,7 +15,7 @@ const PublicProvider = ({ children }) => {
     const promises = await keys.map((value) => get[value]());
 
     let data = await Promise.all(promises);
-    data = keys.map((key, i) => [[key], data[i]]);
+    data = keys.map((key, i) => [[key], data[i].payload]);
     data = Object.fromEntries(data);
 
     setState(data);

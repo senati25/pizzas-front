@@ -1,8 +1,8 @@
-import RegisterForm from '../../app/components/Login/RegisterClient';
+import RegisterClient from '../../app/components/Login/RegisterClient';
 
 const Register = () => (
   <>
-    <RegisterForm />
+    <RegisterClient />
   </>
 );
 
