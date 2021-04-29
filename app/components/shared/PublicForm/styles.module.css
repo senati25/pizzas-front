@@ -1,18 +1,20 @@
 .form__container {
-  padding: 0 1rem;
+  display: flex;
+  min-height: 80vh;
+  padding: 4rem 1rem;
   width: 100%;
 }
 
 .form {
+  background-color: #fff;
+  border-radius: 1rem;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  margin: auto;
   max-width: 30rem;
-  background-color: #fff;
   padding: 1rem;
-  border-radius: 1rem;
   position: relative;
-  margin: 3rem auto;
+  width: 100%;
 }
 
 .form::before {
@@ -58,7 +60,7 @@
   background-color: #fc4c4c;
 }
 
-@media only screen and (min-width: 640px) {
+@media only screen and (min-width: 641px) {
   .form {
     padding: 1.5rem 3rem;
   }

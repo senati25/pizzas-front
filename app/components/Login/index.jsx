@@ -6,7 +6,7 @@ import FormField from '../shared/FormField';
 import styles from './styles.module.css';
 
 const Login = () => {
-  const { isLoading, inputValues, schema } = useLogin();
+  const { isLoading, inputValues, schema, handleLogin } = useLogin();
 
   return (
     <PublicForm
@@ -14,6 +14,9 @@ const Login = () => {
       isLoading={isLoading}
       initialValues={inputValues}
       validationSchema={schema}
+      onSubmit={(values, event) => {
+        handleLogin(values, event);
+      }}
       formFooter={
         <div className={styles.form__footer}>
           <hr />

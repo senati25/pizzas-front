@@ -1,6 +1,6 @@
-import withSession from '../../lib/withSession';
+import { withDashboardSession } from '../../lib/withSession';
 
-export default withSession(async (req, res) => {
+export default withDashboardSession(async (req, res) => {
   const dashboardSession = req.session.get('dashboardSession');
 
   if (dashboardSession) {

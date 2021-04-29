@@ -1,8 +1,8 @@
 import ROUTES from '../../app/helpers/constants';
 import fetcher from '../../lib/fetcher';
-import withSession from '../../lib/withSession';
+import { withDashboardSession } from '../../lib/withSession';
 
-export default withSession(async (req, res) => {
+export default withDashboardSession(async (req, res) => {
   const { correo, password } = await req.body;
 
   try {

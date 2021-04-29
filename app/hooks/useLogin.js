@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import Swal from 'sweetalert2';
+import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 import fetcher from '../../lib/fetcher';
 import useSessionContext from './useSessionContext';
@@ -8,11 +8,10 @@ import useSessionContext from './useSessionContext';
 const useLogin = () => {
   const router = useRouter();
   const { mutateSession } = useSessionContext();
-  const [isLoading, setIsLoading] = useState(false);
 
-  const [inputValues, setInputValues] = useState({});
-  const [errorMessage, setErrorMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const [_isMounted, setIsMounted] = useState(true);
+  const inputValues = { correo: '', password: '' };
 
   const schema = Yup.object({
     correo: Yup.string()
@@ -29,42 +28,36 @@ const useLogin = () => {
       .required('*Contraseña es requerido'),
   });
 
-  const handleOnChange = (e) => {
-    setInputValues((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
+  const handleLogin = async (values) => {
     setIsLoading(true);
 
     try {
-      const { isLoggedIn } = await mutateSession(
+      const data = await mutateSession(
         await fetcher('/api/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            correo: inputValues.email,
-            password: inputValues.password,
-          }),
+          body: JSON.stringify(values),
         })
       );
 
-      if (_isMounted && isLoggedIn) {
-        setIsLoading(false);
-        Swal.fire('', 'Hola Bienvenido de vuelta', 'success');
+      if (!data.error) {
+        router.push('/products');
       } else {
-        setIsLoading(false);
-        Swal.fire('', 'Verifica que tus datos sean los correctos', 'info');
+        toast.warn(data.message, {
+          position: 'top-center',
+          autoClose: 7000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          style: { textAlign: 'center' },
+        });
+        if (_isMounted) setIsLoading(false);
       }
     } catch (error) {
-      if (_isMounted) {
-        setIsLoading(false);
-        console.error('An unexpected error happened:', error);
-        setErrorMessage(error.data.message);
-      }
+      if (_isMounted) setIsLoading(false);
+      console.error('An unexpected error happened:', error);
     }
   };
 

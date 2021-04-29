@@ -9,7 +9,7 @@ const useRegister = () => {
 
   const [_isMounted, setIsMounted] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  const [inputValues, setInputValues] = useState({
+  const inputValues = {
     nombre: '',
     apellido: '',
     correo: '',
@@ -17,7 +17,7 @@ const useRegister = () => {
     direccion: '',
     password: '',
     confirmPassword: '',
-  });
+  };
 
   const schema = Yup.object({
     nombre: Yup.string()
@@ -56,7 +56,6 @@ const useRegister = () => {
   });
 
   const handleSubmitCreateCliente = async (values) => {
-    setInputValues(values);
     setIsLoading(true);
 
     const data = await ClientRepository.create(values);
@@ -83,7 +82,6 @@ const useRegister = () => {
         draggable: true,
         progress: undefined,
       });
-
       if (_isMounted) setIsLoading(false);
     }
   };
