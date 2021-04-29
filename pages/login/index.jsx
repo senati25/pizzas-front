@@ -1,8 +1,8 @@
-import IniciarSesion from '../../app/components/Login/IniciarSesion';
+import LoginWrapper from '../../app/components/Login';
 
 const Login = () => (
   <>
-    <IniciarSesion />
+    <LoginWrapper />
   </>
 );
 

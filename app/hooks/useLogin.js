@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
+import * as Yup from 'yup';
 import fetcher from '../../lib/fetcher';
 import useSessionContext from './useSessionContext';
 
@@ -12,6 +13,21 @@ const useLogin = () => {
   const [inputValues, setInputValues] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
   const [_isMounted, setIsMounted] = useState(true);
+
+  const schema = Yup.object({
+    correo: Yup.string()
+      .trim()
+      .lowercase()
+      .email('*El correo es invalido')
+      .required('*Email es requerido'),
+    password: Yup.string()
+      .trim()
+      .matches(
+        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/,
+        '*La contraseña debe contener minimo 8 caracteres, una minuscula, una mayuscula y un número'
+      )
+      .required('*Contraseña es requerido'),
+  });
 
   const handleOnChange = (e) => {
     setInputValues((prevState) => ({
@@ -67,10 +83,10 @@ const useLogin = () => {
 
   return {
     isLoading,
-    handleOnChange,
+    inputValues,
+    schema,
     handleLogout,
     handleLogin,
-    errorMessage,
   };
 };
 

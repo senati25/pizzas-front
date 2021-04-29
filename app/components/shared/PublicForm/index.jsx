@@ -4,7 +4,13 @@ import { useEffect, useState } from 'react';
 import Spinner from '../Spinner';
 import styles from './styles.module.css';
 
-const PublicForm = ({ children, isLoading, ...props }) => (
+const PublicForm = ({
+  children,
+  formFooter,
+  buttonText,
+  isLoading,
+  ...props
+}) => (
   <div className={styles.form__container}>
     <Formik {...props}>
       {(formik) => {
@@ -27,8 +33,10 @@ const PublicForm = ({ children, isLoading, ...props }) => (
               disabled={submitDisabled}
               type="submit"
             >
-              Registrarse
+              {buttonText}
             </button>
+
+            {formFooter}
           </Form>
         );
       }}
@@ -36,8 +44,14 @@ const PublicForm = ({ children, isLoading, ...props }) => (
   </div>
 );
 
+PublicForm.defaultProps = {
+  formFooter: null,
+};
+
 PublicForm.propTypes = {
   isLoading: PropTypes.bool.isRequired,
+  formFooter: PropTypes.element,
+  buttonText: PropTypes.string.isRequired,
   children: PropTypes.oneOfType([array, object]).isRequired,
   validationSchema: PropTypes.oneOfType([object]).isRequired,
 };

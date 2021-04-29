@@ -15,6 +15,7 @@ const Register = () => {
   return (
     <PublicForm
       isLoading={isLoading}
+      buttonText="Registrarse"
       initialValues={inputValues}
       validationSchema={schema}
       onSubmit={(values, event) => {
@@ -26,6 +27,7 @@ const Register = () => {
       </Link>
 
       <h1 className={styles.form__title}>Registro</h1>
+
       <FormField
         label="Nombre"
         name="nombre"
