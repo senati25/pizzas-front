@@ -1,12 +1,13 @@
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
-
 import ClientRepository from '../../api/ClientRepository';
 
 const useRegister = () => {
   const router = useRouter();
+
+  const [_isMounted, setIsMounted] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [inputValues, setInputValues] = useState({
     nombre: '',
@@ -60,11 +61,7 @@ const useRegister = () => {
 
     const data = await ClientRepository.create(values);
 
-    console.log({ data });
-
     if (!data.error) {
-      setIsLoading(false);
-
       toast.success(data.message, {
         position: 'top-right',
         autoClose: 5000,
@@ -86,9 +83,17 @@ const useRegister = () => {
         draggable: true,
         progress: undefined,
       });
-      setIsLoading(false);
+
+      if (_isMounted) setIsLoading(false);
     }
   };
+
+  useEffect(
+    () => () => {
+      setIsMounted(false);
+    },
+    []
+  );
 
   return {
     isLoading,
