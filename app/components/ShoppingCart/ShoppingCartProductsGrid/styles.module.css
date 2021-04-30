@@ -1,13 +1,39 @@
 .shoppingCartProductsGrid {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 1rem 0;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px 1px #231e3650;
+  overflow: hidden;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 0.5fr auto auto auto;
+  row-gap: 1rem;
+  margin-bottom: 2rem;
 }
 
+.grid__header {
+  text-align: center;
+  font-weight: bold;
+  font-family: Lemonada, cursive;
+  position: relative;
+  top: 0;
+  z-index: 1;
+  color: #fff;
+  text-shadow: 0 0 4px #231e36;
+}
+
+.grid__header::before {
+  position: absolute;
+  content: '';
+  left: -1rem;
+  top: -1rem;
+  width: 200%;
+  height: 200%;
+  z-index: -1;
+  background-color: #fc4d4d;
+  box-shadow: 0 0 8px rgb(250 92 92 / 50%);
+}
 @media only screen and (min-width: 900px) {
   .shoppingCartProductsGrid {
-    padding: 0;
-    max-height: none;
+    margin-bottom: 0;
   }
 }

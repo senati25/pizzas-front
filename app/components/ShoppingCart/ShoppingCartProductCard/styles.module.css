@@ -1,36 +1,14 @@
-.shoppingCartProductsGrid__item {
-  border-bottom: 1px solid #c7c7c7;
-  display: grid;
-  grid-template-columns: auto 5rem auto minmax(4rem, 0.7fr) auto;
-  margin: 0 0.5rem 1rem 0.5rem;
-  column-gap: 1rem;
-  align-items: center;
-  padding-bottom: 1rem;
-}
-
-.shoppingCartProductsGrid__item:last-child {
-  border-bottom: 0;
-  margin-bottom: 0;
-  padding-bottom: 0;
-}
-
-.shoppingCartProductsGrid__item button {
-  cursor: pointer;
-  width: 2rem;
-  height: 2rem;
-  background-color: #e6e6e6;
-  padding: 0.5rem;
-  border-radius: 100%;
-  transition: background 0.3s ease;
+.product__details {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
 }
 
 .product__img {
-  width: 5rem;
+  min-width: 8rem;
   border-radius: 0.5rem;
   overflow: hidden;
+  margin-right: 1rem;
 }
 
 .product__quantity {
@@ -38,27 +16,44 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: auto;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.product__quantity button {
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1rem;
+  background-color: #e6e6e6;
+  transition: background 0.3s ease;
 }
 
 .product__quantity button:hover {
-  background-color: #231e36;
+  background-color: #fc4c4c;
   color: #f8f8f8;
 }
 
 .deleteButton {
-  place-self: center;
+  padding: 0.2rem 0;
+  color: #ff0000a6;
+  transition: all 0.3s ease-in-out;
+  font-size: 0.9rem;
+  font-weight: 600;
 }
+
 .deleteButton:hover {
-  background-color: rgba(255, 0, 0, 0.555);
+  color: #ff0000;
+  font-size: 1rem;
 }
 
 .product__quantity input {
-  padding-top: 0.3rem;
-  padding-bottom: 0.3rem;
-  margin: 0.2rem 0;
+  max-width: 2em;
+  height: 2em;
   text-align: center;
-  max-width: 4ch;
-  border: 1px solid #c7c7c7;
+  font-size: 1rem;
 }
 
 .product__quantity input::-webkit-inner-spin-button {
@@ -71,27 +66,15 @@
   font-weight: bold;
 }
 
-.product__price {
+.product__price,
+.product__subtotal {
   font-weight: 600;
   text-align: right;
+  text-align: center;
 }
 
 @media only screen and (min-width: 900px) {
-  .shoppingCartProductsGrid__item {
-    column-gap: 1.5rem;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 0 3px #231e36;
-  }
-  .shoppingCartProductsGrid__item:last-child {
-    padding-bottom: 0.5rem;
-  }
-
   .product__quantity {
-    flex-direction: row;
-  }
-
-  .product__quantity button {
-    margin: 0 0.5rem;
+    flex-direction: row-reverse;
   }
 }

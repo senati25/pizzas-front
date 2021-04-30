@@ -1,10 +1,10 @@
 .shopingCart__form {
-  box-shadow: 0 0 5px black;
   border-radius: 0.5rem;
-  padding: 1rem;
-  width: 100%;
+  box-shadow: 0 0 10px 1px #231e3650;
   display: flex;
   flex-direction: column;
+  padding: 1rem;
+  width: 100%;
   z-index: 2;
 }
 
@@ -13,6 +13,7 @@
   font-family: 'Nunito', sans-serif;
   font-size: 1rem;
   border: 1px solid #c7c7c7;
+  resize: none;
 }
 
 .form__paragraph {
@@ -24,34 +25,32 @@
 }
 
 .form__button {
-  background-color: #fc4c4c;
+  background-color: #d64141;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 5px #fc4c4c;
   color: #f8f8f8;
+  cursor: pointer;
   font-size: 1.3rem;
   font-weight: bold;
   padding: 0.3rem 1rem;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  background-color: #d64141;
-  box-shadow: 0 0 5px #fc4c4c;
-  transition: background, box-shadow 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .form__button:hover {
-  box-shadow: 12px 12px 24px rgba(252, 77, 77, 0.56);
   background-color: #fc4c4c;
+  transform: scale(1.02);
 }
 @media only screen and (min-width: 900px) {
   .shopingCart__form {
-    padding: 1rem;
+    align-self: flex-start;
+    align-self: flex-start;
     border-radius: 1rem;
     margin-left: 1rem;
-    max-width: 40%;
     max-width: 25rem;
-    align-self: flex-start;
+    padding: 1rem;
     position: -webkit-sticky;
     position: sticky;
     top: 6rem;
-    align-self: flex-start;
   }
 
   .shopingCart__form textarea {

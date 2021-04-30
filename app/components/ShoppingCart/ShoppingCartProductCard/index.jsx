@@ -6,20 +6,30 @@ import styles from './styles.module.css';
 
 const ShoppingCartProductCard = memo(
   ({ product, plusOne, minusOne, deleteProduct }) => (
-    <div className={styles.shoppingCartProductsGrid__item}>
-      <button
-        className={styles.deleteButton}
-        type="button"
-        onClick={() => {
-          deleteProduct(product);
-        }}
-      >
-        <i className="fas fa-times"></i>
-      </button>
+    <>
+      <span className={styles.product__details}>
+        <div className={styles.product__img}>
+          <Image
+            src={product.img}
+            width={200}
+            height={200}
+            layout="responsive"
+          />
+        </div>
 
-      <div className={styles.product__img}>
-        <Image src={product.img} width={200} height={200} layout="responsive" />
-      </div>
+        <span>
+          <h3 className={styles.product__name}>{product.nombre}</h3>
+          <button
+            className={styles.deleteButton}
+            type="button"
+            onClick={() => {
+              deleteProduct(product);
+            }}
+          >
+            Eliminar
+          </button>
+        </span>
+      </span>
 
       <span className={styles.product__quantity}>
         <button
@@ -31,8 +41,7 @@ const ShoppingCartProductCard = memo(
           +
         </button>
 
-        {/* <input type="number" name="quantity" value={product.cantidad} /> */}
-        <span>{product.cantidad}</span>
+        <input type="number" name="quantity" defaultValue={product.cantidad} />
 
         <button
           type="button"
@@ -44,12 +53,14 @@ const ShoppingCartProductCard = memo(
         </button>
       </span>
 
-      <span className={styles.product__name}>{product.nombre}</span>
-
       <span className={styles.product__price}>
+        {getPrice(product).toFixed(2)}
+      </span>
+
+      <span className={styles.product__subtotal}>
         {(product.cantidad * getPrice(product)).toFixed(2)}
       </span>
-    </div>
+    </>
   )
 );
 
