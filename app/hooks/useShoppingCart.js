@@ -33,8 +33,7 @@ const useShoppingCart = () => {
     const data = await ShoppingCartRepository.addProduct(
       product.id,
       carritoId,
-      currentVarietyDenomination,
-      1
+      currentVarietyDenomination
     );
 
     const { error, message } = data;

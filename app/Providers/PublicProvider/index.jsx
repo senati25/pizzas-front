@@ -25,9 +25,39 @@ const PublicProvider = ({ children }) => {
     handleRefresh();
   }, []);
 
+  useEffect(() => {
+    // console.log(state?.products);
+  }, [state]);
+
+  const groupProductsAndCategories = (products = []) => {
+    let productsGroups = products.reduce(
+      (acumulator, { denominacion }) =>
+        acumulator &&
+        !acumulator[denominacion]?.length && {
+          ...acumulator,
+          [denominacion]: [],
+        },
+      {}
+    );
+
+    productsGroups = products.reduce(
+      (acumulator, product) => ({
+        ...acumulator,
+        [product.denominacion]: [...acumulator[product.denominacion], product],
+      }),
+      productsGroups
+    );
+
+    return {
+      productsByCategory: productsGroups,
+      categories: Object.keys(productsGroups),
+    };
+  };
+
   return (
     <PublicContext.Provider
       value={{
+        ...groupProductsAndCategories(state.products),
         products: state.products,
       }}
     >

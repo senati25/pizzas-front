@@ -10,7 +10,7 @@ const ShoppingCartRepository = {
     return data;
   },
 
-  addProduct: async (productId, cartId, variety, quantity) => {
+  addProduct: async (productId, cartId, variety) => {
     const response = await fetch(
       `${ROUTES.api}/publico/carritoTieneProducto/aniadir`,
       {
@@ -19,7 +19,7 @@ const ShoppingCartRepository = {
           producto_id: productId,
           carrito_id: cartId,
           variedad: variety,
-          cantidad: quantity,
+          cantidad: 1,
         }),
         headers: { 'Content-Type': 'application/json' },
       }

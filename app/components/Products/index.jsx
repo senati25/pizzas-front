@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ProductsGrid from './ProductsGrid';
 import Search from './Search';
 import styles from './styles.module.css';
@@ -6,7 +6,11 @@ import MyShoppingList from './MyShoppingList';
 import usePublicContext from '../../hooks/usePublicContext';
 
 const Products = () => {
-  const { products } = usePublicContext();
+  const {
+    products,
+    productsByCategory = {},
+    categories = [],
+  } = usePublicContext();
 
   const [filterProducts, setFilterProducts] = useState([]);
   const handleSearchProducts = (query) => {
@@ -18,23 +22,37 @@ const Products = () => {
     setFilterProducts(result);
   };
 
+  const [currentCategory, setCurrentCategory] = useState('');
+
+  useEffect(() => {
+    if (categories.length) {
+      setCurrentCategory(categories[0]);
+    }
+  }, [categories]);
+
   return (
     <div className={styles.productsWrapper}>
       <div className={styles.products}>
-        <h2 className={styles.products__title}>Productos</h2>
+        <nav className={styles.products__nav}>
+          {categories.map((category) => (
+            <button
+              key={category}
+              type="button"
+              className={`${styles.nav__item} ${
+                currentCategory === category && styles.nav__item__active
+              }`}
+              onClick={() => {
+                if (currentCategory !== category) setCurrentCategory(category);
+              }}
+            >
+              {category.toUpperCase()}
+            </button>
+          ))}
+        </nav>
 
         <div className={styles.products__content}>
           <div className={styles.MyShoppingList__wrapper}>
             <div className={styles.MyShoppingList}>
-              {/* <button
-                className={styles.MyShoppingList__button}
-                type="button"
-                onClick={() => {
-                  router.push(ROUTES.public.shoppingCart);
-                }}
-              >
-                Ir al carrito
-              </button> */}
               <MyShoppingList />
             </div>
           </div>
@@ -43,7 +61,11 @@ const Products = () => {
           </div>
           <div className={styles.productsGrid__wrapper}>
             <ProductsGrid
-              products={filterProducts.length ? filterProducts : products}
+              products={
+                filterProducts.length
+                  ? filterProducts
+                  : productsByCategory[currentCategory]
+              }
             />
           </div>
         </div>
