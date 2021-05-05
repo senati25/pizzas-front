@@ -5,7 +5,11 @@ import getPrice from '../../../helpers/getPrice';
 import styles from './styles.module.css';
 
 const ShoppingCartProductCard = memo(
-  ({ product, plusOne, minusOne, deleteProduct }) => (
+  ({
+    product,
+    handleUpdateShoppingCartProduct,
+    handleDeleteShoppingCartProduct,
+  }) => (
     <>
       <span className={styles.product__details}>
         <div className={styles.product__img}>
@@ -23,7 +27,7 @@ const ShoppingCartProductCard = memo(
             className={styles.deleteButton}
             type="button"
             onClick={() => {
-              deleteProduct(product);
+              handleDeleteShoppingCartProduct(product);
             }}
           >
             Eliminar
@@ -35,18 +39,25 @@ const ShoppingCartProductCard = memo(
         <button
           type="button"
           onClick={() => {
-            plusOne(product);
+            handleUpdateShoppingCartProduct({
+              ...product,
+              cantidad: product.cantidad + 1,
+            });
           }}
         >
           +
         </button>
 
-        <input type="number" name="quantity" defaultValue={product.cantidad} />
+        {/* <input type="number" name="cantidad" value={product.cantidad} /> */}
+        <span>{product.cantidad}</span>
 
         <button
           type="button"
           onClick={() => {
-            minusOne(product);
+            handleUpdateShoppingCartProduct({
+              ...product,
+              cantidad: product.cantidad - 1,
+            });
           }}
         >
           -
@@ -65,9 +76,8 @@ const ShoppingCartProductCard = memo(
 );
 
 ShoppingCartProductCard.propTypes = {
-  minusOne: PropTypes.func.isRequired,
-  plusOne: PropTypes.func.isRequired,
-  deleteProduct: PropTypes.func.isRequired,
+  handleUpdateShoppingCartProduct: PropTypes.func.isRequired,
+  handleDeleteShoppingCartProduct: PropTypes.func.isRequired,
 
   product: PropTypes.shape({
     id: PropTypes.number.isRequired,

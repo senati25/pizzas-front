@@ -1,101 +1,118 @@
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import ShoppingCartRepository from '../../api/ShoppingCartRepository';
+import useSessionContext from './useSessionContext';
 import useShoppingCartContext from './useShoppingCartContext';
 
 const useShoppingCart = () => {
+  const router = useRouter();
+  const sessionContext = useSessionContext();
+  const cartId = sessionContext?.session?.carrito_id;
+
   const {
     shoppingCartProducts,
-    setShoppingCartProducts,
+    refreshShoppingCart,
   } = useShoppingCartContext();
 
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [_isMounted, setIsMounted] = useState(true);
 
-  const fetchShoppingCart = async () => {
-    const id = 1;
-    const data = await ShoppingCartRepository.getAllProducts(id);
-    const { error, payload } = data;
+  const verifyProductAlreadyAdded = (product, currentVarietyDenomination) =>
+    shoppingCartProducts?.find(
+      ({ producto_id: productId, variedad }) =>
+        variedad === currentVarietyDenomination && productId === product.id
+    );
+
+  const addNewProduct = async (
+    product,
+    carritoId,
+    currentVarietyDenomination
+  ) => {
+    setIsLoading(true);
+
+    const data = await ShoppingCartRepository.addProduct(
+      product.id,
+      carritoId,
+      currentVarietyDenomination,
+      1
+    );
+
+    const { error, message } = data;
+
+    if (!error) {
+      setIsLoading(false);
+      refreshShoppingCart();
+      console.log(message);
+    } else {
+      console.log(message);
+    }
+  };
+
+  const handleUpdateShoppingCartProduct = async (shoppingCartProduct) => {
+    setIsLoading(true);
+    const {
+      error,
+      message,
+    } = await ShoppingCartRepository.changeProductQuantity(shoppingCartProduct);
+
     if (!error && _isMounted) {
+      refreshShoppingCart();
       setIsLoading(false);
-      setShoppingCartProducts([...payload]);
-    } else if (_isMounted) {
+      console.log(message);
+    } else {
+      setIsLoading(false);
+      console.log(message);
+    }
+  };
+
+  const handleAddProduct = async (product, currentVarietyDenomination) => {
+    if (!sessionContext?.session?.isLoggedIn) return router.push('/login');
+
+    const foundProduct = verifyProductAlreadyAdded(
+      product,
+      currentVarietyDenomination
+    );
+
+    if (foundProduct)
+      return handleUpdateShoppingCartProduct({
+        ...foundProduct,
+        cantidad: foundProduct.cantidad + 1,
+      });
+
+    return addNewProduct(product, cartId, currentVarietyDenomination);
+  };
+
+  const handleDeleteShoppingCartProduct = async (shoppingCartProduct) => {
+    setIsLoading(true);
+
+    const data = await ShoppingCartRepository.deleteProduct(
+      shoppingCartProduct.id,
+      cartId
+    );
+
+    const { error, message } = data;
+
+    if (error) {
+      setIsLoading(false);
+      console.warn(message);
+    } else {
+      refreshShoppingCart();
       setIsLoading(false);
     }
   };
 
-  // const addProduct = async (product, currentVarietyDenomination) => {
-  //   setIsLoading(true);
-  //   const carritoId = 1;
-
-  //   const foundProduct = verifyProductAlreadyAdded(
-  //     product,
-  //     currentVarietyDenomination
-  //   );
-
-  //   if (foundProduct) {
-  //     setIsLoading(false);
-  //   } else {
-  //   }
-
-  //   // ------------------------------
-  //   if (verifyProductAlreadyAdded(newProduct)) {
-  //     const newState = shoppingCartProducts.map((product) => {
-  //       if (product.id === newProduct.id) {
-  //         const { cantidad } = product;
-  //         return {
-  //           ...newProduct,
-  //           cantidad: cantidad + 1,
-  //           precio: newProduct.subcategoria[index].precio,
-  //         };
-  //       }
-  //       return product;
-  //     });
-  //     setShoppingCartProducts(newState);
-  //   } else {
-  //     setShoppingCartProducts((prevState) => [
-  //       ...prevState,
-  //       {
-  //         ...newProduct,
-  //         cantidad: 1,
-  //         precio: newProduct.subcategoria[index].precio,
-  //       },
-  //     ]);
-  //   }
-  // };
-
-  const deleteProduct = (id) => {
-    shoppingCartProducts.splice(id, 1);
-    setShoppingCartProducts([...shoppingCartProducts]);
-  };
-
-  const minusOne = (index) => {
-    if (shoppingCartProducts[index].cantidad !== 0) {
-      shoppingCartProducts[index].cantidad -= 1;
-      setShoppingCartProducts([...shoppingCartProducts]);
-    }
-  };
-
-  const handleOnChange = (event, index) => {
-    shoppingCartProducts[index].cantidad = parseInt(event.target.value, 10);
-    setShoppingCartProducts([...shoppingCartProducts]);
-  };
-
-  useEffect(() => {
-    fetchShoppingCart();
-
-    return () => {
+  useEffect(
+    () => () => {
       setIsMounted(false);
-    };
-  }, []);
+    },
+    []
+  );
 
   return {
-    shoppingCartProducts,
+    handleAddProduct,
     isLoading,
-    deleteProduct,
-    shoppingCardActions: {
-      minusOne,
-      handleOnChange,
-    },
+    handleUpdateShoppingCartProduct,
+    handleDeleteShoppingCartProduct,
   };
 };
 

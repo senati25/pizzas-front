@@ -1,13 +1,13 @@
 import calculateTotal from '../../../helpers/calculateTotal';
 import getPrice from '../../../helpers/getPrice';
 import useShoppingCartContext from '../../../hooks/useShoppingCartContext';
-import useShoppingCartHandlers from '../../../hooks/useShoppingCartHandlers';
+import useShoppingCart from '../../../hooks/useShoppingCart';
 import InformationMessage from '../../shared/InformationMessage';
 import styles from './styles.module.css';
 
 const MyShoppingList = () => {
   const { shoppingCartProducts } = useShoppingCartContext();
-  const { handleDeleteProduct } = useShoppingCartHandlers();
+  const { handleDeleteShoppingCartProduct } = useShoppingCart();
   return (
     <div className={styles.myShoppingList}>
       <h3 className={styles.myShoppingList__title}>Mis articulos</h3>
@@ -37,7 +37,7 @@ const MyShoppingList = () => {
                     <button
                       type="button"
                       onClick={() => {
-                        handleDeleteProduct(product);
+                        handleDeleteShoppingCartProduct(product);
                       }}
                     >
                       <i className="fas fa-times"></i>

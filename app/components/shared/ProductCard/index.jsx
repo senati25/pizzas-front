@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import PropTypes from 'prop-types';
 import { memo, useState } from 'react';
-import useShoppingCartHandlers from '../../../hooks/useShoppingCartHandlers';
+import useShoppingCart from '../../../hooks/useShoppingCart';
 import styles from './styles.module.css';
 
 const ProductCard = memo(({ product }) => {
   const [currentVariety, setCurrentVariety] = useState(product.variedades[0]);
-  const { handleAddProduct, isLoading } = useShoppingCartHandlers();
+  const { handleAddProduct, isLoading } = useShoppingCart();
 
   const handleChangeVariety = (variety) => {
     setCurrentVariety({ ...variety });
@@ -77,8 +77,6 @@ ProductCard.propTypes = {
       }).isRequired
     ),
   }).isRequired,
-  // handleAddProduct: PropTypes.func.isRequired,
-  // isLoading: PropTypes.bool.isRequired,
 };
 
 export default ProductCard;

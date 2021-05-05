@@ -49,16 +49,11 @@
   font-size: 1rem;
 }
 
-.product__quantity input {
-  max-width: 2em;
-  height: 2em;
+.product__quantity > span {
+  margin: auto;
+  width: 2em;
   text-align: center;
   font-size: 1rem;
-}
-
-.product__quantity input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  -moz-appearance: textfield;
 }
 
 .product__name {

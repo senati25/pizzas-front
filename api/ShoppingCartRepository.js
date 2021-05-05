@@ -7,7 +7,6 @@ const ShoppingCartRepository = {
     );
 
     const data = await response.json();
-
     return data;
   },
 
@@ -42,16 +41,15 @@ const ShoppingCartRepository = {
     );
 
     const data = await response.json();
-
     return data;
   },
 
-  changeProductQuantity: async (id, newQuantity) => {
+  changeProductQuantity: async (shoppingCartProduct) => {
     const response = await fetch(
-      `${ROUTES.api}/publico/carritoTieneProducto/aumentarUnidad/${id}`,
+      `${ROUTES.api}/publico/carritoTieneProducto/aumentarUnidad/${shoppingCartProduct.id}`,
       {
         method: 'POST',
-        body: JSON.stringify({ cantidad: newQuantity }),
+        body: JSON.stringify({ cantidad: shoppingCartProduct.cantidad }),
         headers: { 'Content-Type': 'application/json' },
       }
     );

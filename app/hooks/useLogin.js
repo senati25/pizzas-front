@@ -41,7 +41,7 @@ const useLogin = () => {
       );
 
       if (!data.error) {
-        router.push('/products');
+        router.back();
       } else {
         toast.warn(data.message, {
           position: 'top-center',

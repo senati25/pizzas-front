@@ -1,15 +1,14 @@
 import { oneOfType, array } from 'prop-types';
-import useShoppingCartHandlers from '../../../hooks/useShoppingCartHandlers';
+import useShoppingCart from '../../../hooks/useShoppingCart';
 import InformationMessage from '../../shared/InformationMessage';
 import ShoppingCartProductCard from '../ShoppingCartProductCard';
 import styles from './styles.module.css';
 
 const ShoppingCartProductsGrid = ({ shoppingCartProducts }) => {
   const {
-    handlePlusOne,
-    handleMinusOne,
-    handleDeleteProduct,
-  } = useShoppingCartHandlers();
+    handleUpdateShoppingCartProduct,
+    handleDeleteShoppingCartProduct,
+  } = useShoppingCart();
 
   if (!shoppingCartProducts.length)
     return (
@@ -26,10 +25,9 @@ const ShoppingCartProductsGrid = ({ shoppingCartProducts }) => {
       {shoppingCartProducts.map((product) => (
         <ShoppingCartProductCard
           key={product.id}
-          plusOne={handlePlusOne}
-          minusOne={handleMinusOne}
+          handleUpdateShoppingCartProduct={handleUpdateShoppingCartProduct}
           product={product}
-          deleteProduct={handleDeleteProduct}
+          handleDeleteShoppingCartProduct={handleDeleteShoppingCartProduct}
         />
       ))}
     </div>
