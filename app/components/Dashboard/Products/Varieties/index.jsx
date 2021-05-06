@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import useProductVariety from '../../../../../hooks/useProductVariety';
+import useProductVariety from '../../../../hooks/useProductVariety';
 import styles from './styles.module.css';
 
 const VarietyItem = ({ variety, index, handleRemoveVariety }) => (
@@ -25,7 +25,7 @@ const VarietyItem = ({ variety, index, handleRemoveVariety }) => (
 VarietyItem.propTypes = {
   variety: PropTypes.shape({
     denominacion: PropTypes.string.isRequired,
-    precio: PropTypes.string.isRequired,
+    precio: PropTypes.number.isRequired,
   }).isRequired,
   index: PropTypes.number.isRequired,
   handleRemoveVariety: PropTypes.func.isRequired,
@@ -95,7 +95,7 @@ Varieties.propTypes = {
   varieties: PropTypes.arrayOf(
     PropTypes.shape({
       denominacion: PropTypes.string,
-      price: PropTypes.string,
+      precio: PropTypes.number,
     })
   ),
   setVarieties: PropTypes.func.isRequired,

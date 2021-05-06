@@ -4,7 +4,9 @@ const useProductVariety = (varieties, setVarieties) => {
   const [values, setValues] = useState({ precio: '', denominacion: '' });
 
   const handleOnChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
+    let { value } = e.target;
+    if (e.target.name === 'precio') value = parseInt(value, 10);
+    setValues({ ...values, [e.target.name]: value });
   };
 
   const handleAddVariety = () => {

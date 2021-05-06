@@ -4,7 +4,7 @@ import DashboardForm from '../../../shared/DashBoardForm';
 
 import useDashboardContext from '../../../../hooks/useDashboardContext';
 import useProducts from '../../../../hooks/useProducts';
-import Varieties from './Varieties';
+import Varieties from '../Varieties';
 
 const CreateProductForm = () => {
   const { categories } = useDashboardContext();

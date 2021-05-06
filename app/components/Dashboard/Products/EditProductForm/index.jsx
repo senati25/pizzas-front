@@ -1,9 +1,10 @@
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import DashboardForm from '../../../shared/DashBoardForm';
 import useDashboardContext from '../../../../hooks/useDashboardContext';
 import useProducts from '../../../../hooks/useProducts';
 import SpinnerDashboard from '../../../shared/SpinnerDashboard';
+import Varieties from '../Varieties';
 
 const EditProductForm = () => {
   const { categories } = useDashboardContext();
@@ -18,9 +19,17 @@ const EditProductForm = () => {
 
   const router = useRouter();
 
+  const [varieties, setVarieties] = useState(
+    inputValues?.variedades ? inputValues?.variedades : []
+  );
+
   useEffect(() => {
     getDetalle(router.query.id);
   }, [router.query]);
+
+  useEffect(() => {
+    setVarieties(inputValues?.variedades);
+  }, [inputValues.variedades]);
 
   return !isLoading ? (
     <DashboardForm
@@ -81,6 +90,8 @@ const EditProductForm = () => {
         <option value="activo">Activo</option>
         <option value="baja">Baja</option>
       </select>
+
+      <Varieties varieties={varieties} setVarieties={setVarieties} />
     </DashboardForm>
   ) : (
     <SpinnerDashboard />

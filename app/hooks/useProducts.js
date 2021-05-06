@@ -40,9 +40,12 @@ const useProducts = () => {
   const getDetalle = async (id) => {
     if (id) {
       const data = await ProductRepository.getById(id);
-
+      console.log(data);
       if (data) {
-        setInputValues(data);
+        setInputValues({
+          ...data,
+          variedades: JSON.parse(data.variedades),
+        });
         setIsLoading(false);
       } else {
         setIsLoading(false);
