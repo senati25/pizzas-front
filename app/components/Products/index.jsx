@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import ProductsGrid from './ProductsGrid';
 import Search from './Search';
-import styles from './styles.module.css';
 import MyShoppingList from './MyShoppingList';
 import usePublicContext from '../../hooks/usePublicContext';
+import useFilterProducts from '../../hooks/useFilterProducts';
+import styles from './styles.module.css';
 
 const Products = () => {
   const {
@@ -12,15 +13,7 @@ const Products = () => {
     categories = [],
   } = usePublicContext();
 
-  const [filterProducts, setFilterProducts] = useState([]);
-  const handleSearchProducts = (query) => {
-    const result = products.filter(
-      (product) =>
-        product.nombre.toLowerCase().includes(query.toLowerCase()) ||
-        product.descripcion.toLowerCase().includes(query.toLowerCase())
-    );
-    setFilterProducts(result);
-  };
+  const { filterProducts, handleSearchProducts } = useFilterProducts(products);
 
   const [currentCategory, setCurrentCategory] = useState('');
 

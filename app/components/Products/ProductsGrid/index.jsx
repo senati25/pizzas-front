@@ -21,8 +21,12 @@ const ProductsGrid = memo(({ products }) => (
   </>
 ));
 
+ProductsGrid.defaultProps = {
+  products: [],
+};
+
 ProductsGrid.propTypes = {
-  products: PropTypes.oneOfType([PropTypes.array.isRequired]).isRequired,
+  products: PropTypes.oneOfType([PropTypes.array.isRequired]),
 };
 
 export default ProductsGrid;
