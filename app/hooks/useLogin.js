@@ -18,7 +18,7 @@ const useLogin = () => {
       .trim()
       .lowercase()
       .email('*El correo es invalido')
-      .required('*Email es requerido'),
+      .required('*El correo es requerido'),
     password: Yup.string()
       .trim()
       .matches(

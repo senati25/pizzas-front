@@ -22,13 +22,11 @@ const useRegister = () => {
   const schema = Yup.object({
     nombre: Yup.string()
       .trim()
-      .min(1, '*Debe contener minimo 1 caracter')
       .max(50, '*Debe contener 50 caracteres o menos')
       .ensure()
       .required('*Requerido'),
     apellido: Yup.string()
       .trim()
-      .min(1, '*Debe contener minimo 1 caracter')
       .max(50, '*Debe contener 50 caracteres o menos')
       .ensure()
       .required('*Requerido'),
@@ -36,7 +34,7 @@ const useRegister = () => {
       .trim()
       .lowercase()
       .email('*El correo es invalido')
-      .required('*Email es requerido'),
+      .required('*El correo es requerido'),
     dni: Yup.number()
       .max(99999999, '*Debe contener 8 caracteres')
       .required('*Requerido'),

@@ -37,6 +37,7 @@ const EditProductForm = () => {
         required
         onChange={handleOnChange}
       />
+
       <input
         type="text"
         name="img"

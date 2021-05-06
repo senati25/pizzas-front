@@ -55,8 +55,9 @@ const CreateProductForm = () => {
         required
         onChange={handleOnChange}
         id="categoria"
+        defaultValue=""
       >
-        <option value="">---categoria---</option>
+        <option value="">Selecciona una categoria</option>
         {categories &&
           categories.map((data) => (
             <option key={data.id} value={data.id}>
