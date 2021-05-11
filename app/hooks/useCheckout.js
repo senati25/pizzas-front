@@ -25,12 +25,13 @@ const useCheckout = () => {
       }));
 
       const {
-        session: { id },
+        session: { id, carrito_id: carritoId },
       } = sessionContext;
       console.log(`autenticated`);
 
       const data = await OrderRepository.create({
         cliente_id: id,
+        carrito_id: carritoId,
         tipo: 'web',
         detalles: details,
       });

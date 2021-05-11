@@ -1,4 +1,4 @@
-# Specifies where to get the base image (Node v12 in our case) and creates a new container for it
+
 FROM node:14.16-alpine
 
 RUN mkdir -p /usr/src/app
@@ -13,6 +13,5 @@ COPY . .
 
 EXPOSE 3000
 
-# RUN npm run build
 
 CMD [ "npm", "run", "dev" ]
