@@ -7,13 +7,9 @@ const ROUTES = {
     shoppingCart: 'shopping-cart',
   },
   dashboard: {
-    root: 'admin',
+    root: 'dashboard',
     categories: {
       root: 'categories',
-      new: 'new',
-    },
-    subCategories: {
-      root: 'subcategories',
       new: 'new',
     },
     users: {

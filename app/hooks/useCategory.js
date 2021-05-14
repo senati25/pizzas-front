@@ -22,7 +22,7 @@ const useCategory = () => {
 
     if (data) {
       await refreshCategories();
-      router.push('/admin/categories');
+      router.push('/dashboard/administrador/categories');
       setIsLoading(false);
     } else {
       // TODO
@@ -60,7 +60,7 @@ const useCategory = () => {
     if (data) {
       await refreshCategories();
       setIsLoading(false);
-      router.push('/admin/categories');
+      router.push('/dashboard/administrador/categories');
     } else {
       // TODO
       setIsLoading(false);

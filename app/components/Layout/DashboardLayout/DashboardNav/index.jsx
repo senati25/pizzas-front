@@ -2,7 +2,6 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import React, { memo } from 'react';
 import styles from './styles.module.css';
-import ROUTES from '../../../../helpers/constants';
 
 const DashboardNav = memo(() => {
   const { pathname } = useRouter();
@@ -10,7 +9,7 @@ const DashboardNav = memo(() => {
     <nav className={styles.dashboardNav}>
       {/* <details>
         <summary>das</summary>
-        <Link href="/admin/clients">
+        <Link href="/dashboard/administrador/clients">
           <a
             className={`${styles.dashboardNav__link} ${
               pathname.includes('clients') && styles.dashboardNav__link__active
@@ -21,16 +20,17 @@ const DashboardNav = memo(() => {
         </Link>
       </details> */}
 
-      <Link href="/admin/analytics">
+      <Link href="/dashboard/administrador/analytics">
         <a
           className={`${styles.dashboardNav__link} ${
             pathname.includes('analytics') && styles.dashboardNav__link__active
           } `}
         >
-          DASHBOARD
+          Analytics
         </a>
       </Link>
-      <Link href="/admin/clients">
+
+      <Link href="/dashboard/administrador/clients">
         <a
           className={`${styles.dashboardNav__link} ${
             pathname.includes('clients') && styles.dashboardNav__link__active
@@ -40,7 +40,7 @@ const DashboardNav = memo(() => {
         </a>
       </Link>
 
-      <Link href="/admin/products">
+      <Link href="/dashboard/administrador/products">
         <a
           className={`${styles.dashboardNav__link} ${
             pathname.includes('products') && styles.dashboardNav__link__active
@@ -50,9 +50,7 @@ const DashboardNav = memo(() => {
         </a>
       </Link>
 
-      <Link
-        href={`/${ROUTES.dashboard.root}/${ROUTES.dashboard.categories.root}`}
-      >
+      <Link href="/dashboard/administrador/categories">
         <a
           className={`${styles.dashboardNav__link} ${
             pathname.includes('categories') && styles.dashboardNav__link__active
@@ -61,7 +59,8 @@ const DashboardNav = memo(() => {
           Categorias
         </a>
       </Link>
-      <Link href={`/${ROUTES.dashboard.root}/${ROUTES.dashboard.claims.root}`}>
+
+      <Link href="/dashboard/administrador/claims">
         <a
           className={`${styles.dashboardNav__link} ${
             pathname.includes('claims') && styles.dashboardNav__link__active
@@ -71,7 +70,7 @@ const DashboardNav = memo(() => {
         </a>
       </Link>
 
-      <Link href={`/${ROUTES.dashboard.root}/${ROUTES.dashboard.users.root}`}>
+      <Link href="/dashboard/administrador/users">
         <a
           className={`${styles.dashboardNav__link} ${
             pathname.includes('users') && styles.dashboardNav__link__active

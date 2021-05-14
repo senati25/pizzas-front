@@ -12,7 +12,7 @@ const Clients = () => {
       {dashboardContext?.clients ? (
         <div className={styles.categories}>
           <h1 className={styles.categories__title}>Clientes</h1>
-          <Link href="/admin/clients/new">
+          <Link href="clients/new">
             <a className={styles.categories__link}>Nuevo</a>
           </Link>
           <ClientsTable clients={dashboardContext?.clients} />

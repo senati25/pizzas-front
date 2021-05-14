@@ -1,4 +1,4 @@
-import Clients from '../../../app/components/Dashboard/Clients';
+import Clients from '../../../../app/components/Dashboard/Clients';
 
 const Clients2 = () => (
   <>

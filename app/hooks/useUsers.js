@@ -61,6 +61,7 @@ const useUsers = () => {
     }
     router.back();
   };
+
   const getRoles = async () => {
     setIsLoading(true);
     const response = await fetch(`${ROUTES.api}/dashboard/roles`);
@@ -73,6 +74,7 @@ const useUsers = () => {
       setIsLoading(false);
     }
   };
+
   const handleSubmitCreate = async (e) => {
     e.preventDefault();
     console.log(inputValues);

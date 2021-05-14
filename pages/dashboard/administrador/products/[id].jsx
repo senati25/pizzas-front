@@ -1,4 +1,4 @@
-import EditProductForm from '../../../app/components/Dashboard/Products/EditProductForm';
+import EditProductForm from '../../../../app/components/Dashboard/Products/EditProductForm';
 
 const EditCategory = () => (
   <>

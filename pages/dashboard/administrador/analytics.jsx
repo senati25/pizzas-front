@@ -1,4 +1,4 @@
-import HomeDashBoard from '../../app/components/Dashboard/Home';
+import HomeDashBoard from '../../../app/components/Dashboard/Home';
 
 const Analytics = () => <HomeDashBoard />;
 

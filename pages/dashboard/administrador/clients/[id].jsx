@@ -1,4 +1,4 @@
-import EditClientForm from '../../../app/components/Dashboard/Clients/EditClientForm';
+import EditClientForm from '../../../../app/components/Dashboard/Clients/EditClientForm';
 
 const DetailClient = () => (
   <>

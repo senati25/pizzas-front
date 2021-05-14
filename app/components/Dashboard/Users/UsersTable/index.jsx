@@ -13,7 +13,7 @@ const Actions = ({ original, deleteItem }) => {
       <button
         onClick={() => {
           router.push({
-            pathname: `/admin/users/${original.id}`,
+            pathname: `/dashboard/administrador/users/${original.id}`,
             query: original,
           });
         }}

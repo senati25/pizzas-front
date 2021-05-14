@@ -1,15 +1,14 @@
 import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import SpinnerDashboard from '../../app/components/shared/SpinnerDashboard';
 
-const Admin = () => {
+const dashboard = () => {
   const router = useRouter();
-
   useEffect(() => {
-    router.push('/admin/analytics');
+    router.push('/dashboard/administrador/administrador');
   }, []);
 
   return <SpinnerDashboard />;
 };
 
-export default Admin;
+export default dashboard;

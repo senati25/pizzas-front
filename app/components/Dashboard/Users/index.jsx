@@ -11,7 +11,7 @@ const Users = () => {
       {dashboardContext?.users ? (
         <div className={styles.categories}>
           <h1 className={styles.categories__title}>Usuarios</h1>
-          <Link href="/admin/users/new">
+          <Link href="users/new">
             <a className={styles.categories__link}>Nuevo</a>
           </Link>
           <UsersTable users={dashboardContext?.users} />

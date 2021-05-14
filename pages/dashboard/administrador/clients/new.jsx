@@ -1,4 +1,4 @@
-import CreateClientFrom from '../../../app/components/Dashboard/Clients/CreateClientForm';
+import CreateClientFrom from '../../../../app/components/Dashboard/Clients/CreateClientForm';
 
 const CreateClient = () => (
   <>

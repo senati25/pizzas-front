@@ -1,4 +1,4 @@
-import CategoriesWrapper from '../../../app/components/Dashboard/Categories';
+import CategoriesWrapper from '../../../../app/components/Dashboard/Categories';
 
 const Admin = () => (
   <>

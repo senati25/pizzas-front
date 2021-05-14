@@ -14,7 +14,7 @@ const Actions = ({ original, handleDeleteClient }) => {
       <button
         onClick={() => {
           router.push({
-            pathname: `/admin/clients/${original.id}`,
+            pathname: `/dashboard/administrador/clients/${original.id}`,
             query: original,
           });
         }}

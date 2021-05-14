@@ -10,7 +10,7 @@ const Actions = ({ original, handleDeleteCategory }) => {
       <button
         onClick={() => {
           router.push({
-            pathname: `/admin/categories/${original.id}`,
+            pathname: `/dashboard/administrador/categories/${original.id}`,
             query: original,
           });
         }}

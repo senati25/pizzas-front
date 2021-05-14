@@ -1,4 +1,4 @@
-import ProductsWrapper from '../../../app/components/Dashboard/Products';
+import ProductsWrapper from '../../../../app/components/Dashboard/Products';
 
 const Products = () => (
   <>

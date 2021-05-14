@@ -1,4 +1,4 @@
-import CreateProductForm from '../../../app/components/Dashboard/Products/CreateProductForm';
+import CreateProductForm from '../../../../app/components/Dashboard/Products/CreateProductForm';
 
 const CreateProduct = () => (
   <>

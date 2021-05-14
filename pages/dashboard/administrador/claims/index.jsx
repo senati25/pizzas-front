@@ -1,4 +1,4 @@
-import ClaimsWrapper from '../../../app/components/Dashboard/Claims';
+import ClaimsWrapper from '../../../../app/components/Dashboard/Claims';
 
 const Claims = () => (
   <>

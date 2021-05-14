@@ -14,7 +14,7 @@ const Actions = ({ original, handleDeleteProduct }) => {
       <button
         onClick={() => {
           router.push({
-            pathname: `/admin/products/${original.id}`,
+            pathname: `/dashboard/administrador/products/${original.id}`,
             query: original,
           });
         }}

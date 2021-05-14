@@ -53,7 +53,7 @@ const useLoginDashboard = () => {
       await fetcher('/api/logout-dashboard', { method: 'POST' }),
       false
     );
-    router.push('/admin');
+    router.push('/dashboard');
   };
 
   useEffect(

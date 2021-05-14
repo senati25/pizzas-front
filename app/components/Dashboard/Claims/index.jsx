@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import useDashboardContext from '../../../hooks/useDashboardContext';
 import SpinnerDashboard from '../../shared/SpinnerDashboard';
 import TableClaims from './TableClaims';
@@ -7,11 +6,9 @@ import styles from './style.module.css';
 const Claims = () => {
   const dashboardContext = useDashboardContext();
 
-  const router = useRouter();
-
   if (dashboardContext?.claims?.length === 0)
     return <div>Esta sección aun no cuenta con ningún registro</div>;
-  console.log(router);
+
   return (
     <>
       {dashboardContext?.claims ? (
