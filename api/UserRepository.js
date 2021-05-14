@@ -4,7 +4,6 @@ const UserRepository = {
   getAll: async () => {
     const response = await fetch(`${ROUTES.api}/dashboard/usuarios`);
     const data = await response.json();
-
     return data;
   },
 
@@ -35,7 +34,15 @@ const UserRepository = {
     });
 
     const data = await response.json();
+    return data;
+  },
 
+  sectionData: async (rol) => {
+    const response = await fetch(`${ROUTES.api}/dashboard/info/${rol}`, {
+      method: 'get',
+    });
+
+    const data = await response.json();
     return data;
   },
 };

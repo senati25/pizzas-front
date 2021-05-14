@@ -31,14 +31,8 @@ const DashboardProvider = ({ children }) => {
       const data = await get[actionType]();
       setState({ ...state, [actionType]: data.payload });
     } else {
-      const values = Object.values(action);
-      const promises = await values.map((value) => get[value]());
-      let data = await Promise.all(promises);
-      console.log({ data });
-      data = values.map((key, i) => [[key], data[i].payload]);
-      data = Object.fromEntries(data);
-
-      setState(data);
+      const data = await UserRepository.sectionData('administrador');
+      if (!data.error) setState(data.payload);
     }
   };
 
