@@ -28,8 +28,9 @@ const DashboardNav = memo(() => {
             >
               <a
                 className={`${styles.dashboardNav__link} ${
-                  pathname.includes(subruta.denominacionIngles) &&
-                  styles.dashboardNav__link__active
+                  pathname.includes(
+                    `/${ruta.raiz}/${subruta.denominacionIngles}`
+                  ) && styles.dashboardNav__link__active
                 } `}
               >
                 {subruta.denominacion.charAt(0).toUpperCase() +
