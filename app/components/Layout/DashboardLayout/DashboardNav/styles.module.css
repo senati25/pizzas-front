@@ -20,11 +20,19 @@
 }
 
 .dashboardNav__link__active {
-  /* border-left: 4px solid #fc4c4c; */
-  /* border-top-left-radius: 0.2rem; */
-  /* border-bottom-left-radius: 0.2rem; */
   background-color: rgba(255, 255, 255, 0.1);
-
   color: #fc4c4c;
-  /* color: #f8f8f8; */
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+}
+
+.details__summary {
+  color: #f8f8f8;
+}
+
+.details[open] > .details__summary {
+  color: #fc4c4c;
 }

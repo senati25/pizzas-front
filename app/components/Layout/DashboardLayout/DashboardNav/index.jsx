@@ -1,26 +1,46 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import React, { memo } from 'react';
+import { memo } from 'react';
+import useSessionDashboardContext from '../../../../hooks/useSessionDashboardContext';
 import styles from './styles.module.css';
 
 const DashboardNav = memo(() => {
+  const {
+    session: { rutas },
+  } = useSessionDashboardContext();
   const { pathname } = useRouter();
+
   return (
     <nav className={styles.dashboardNav}>
-      {/* <details>
-        <summary>das</summary>
-        <Link href="/dashboard/administrador/clients">
-          <a
-            className={`${styles.dashboardNav__link} ${
-              pathname.includes('clients') && styles.dashboardNav__link__active
-            } `}
-          >
-            Clientes
-          </a>
-        </Link>
-      </details> */}
+      {rutas.map((ruta) => (
+        <details
+          key={ruta.raiz}
+          className={styles.details}
+          open={pathname.includes(ruta.raiz)}
+        >
+          <summary className={styles.details__summary}>
+            {ruta.raiz.toUpperCase()}
+          </summary>
+          {ruta.subrutas.map((subruta) => (
+            <Link
+              key={subruta.denominacion}
+              href={`/dashboard/${ruta.raiz}/${subruta.denominacionIngles}`}
+            >
+              <a
+                className={`${styles.dashboardNav__link} ${
+                  pathname.includes(subruta.denominacionIngles) &&
+                  styles.dashboardNav__link__active
+                } `}
+              >
+                {subruta.denominacion.charAt(0).toUpperCase() +
+                  subruta.denominacion.slice(1)}
+              </a>
+            </Link>
+          ))}
+        </details>
+      ))}
 
-      <Link href="/dashboard/administrador/analytics">
+      {/* <Link href="/dashboard/administrador/analytics">
         <a
           className={`${styles.dashboardNav__link} ${
             pathname.includes('analytics') && styles.dashboardNav__link__active
@@ -78,7 +98,7 @@ const DashboardNav = memo(() => {
         >
           Usuarios
         </a>
-      </Link>
+      </Link> */}
     </nav>
   );
 });

@@ -1,5 +1,7 @@
 import useSWR from 'swr';
 import { array, object, oneOfType } from 'prop-types';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import SessionDashboardContext from '../../context/SessionDashboardContext';
 import DashboardProvider from '../DashboardProvider';
 import DashboardLayout from '../../components/Layout/DashboardLayout';
@@ -9,8 +11,21 @@ const SessionDashboardProvider = ({ children }) => {
   const { data: session, mutate: mutateSession } = useSWR(
     '/api/user-dashboard'
   );
+  const router = useRouter();
 
   const handleRefreshSession = () => {};
+
+  useEffect(() => {
+    if (session && session.rutas) {
+      const routeRol = router.pathname
+        .split('/')
+        .filter((value) => value.length !== 0)[1];
+
+      if (!session.rutas.some(({ raiz }) => raiz === routeRol)) {
+        router.replace(`/dashboard/${session.rol}/home`);
+      }
+    }
+  }, [router.pathname, session]);
 
   return (
     <SessionDashboardContext.Provider

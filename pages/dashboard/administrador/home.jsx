@@ -1,5 +1,5 @@
 import HomeDashBoard from '../../../app/components/Dashboard/Home';
 
-const Analytics = () => <HomeDashBoard />;
+const home = () => <HomeDashBoard />;
 
-export default Analytics;
+export default home;

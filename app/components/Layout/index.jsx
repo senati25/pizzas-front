@@ -5,7 +5,7 @@ import SessionProvider from '../../Providers/SessionProvider';
 
 const Layout = ({ children }) => {
   const { pathname } = useRouter();
-  const isOnAdmin = () => pathname.includes('admin');
+  const isOnAdmin = () => pathname.includes('dashboard');
 
   if (isOnAdmin()) {
     return <SessionDashboardProvider>{children}</SessionDashboardProvider>;
