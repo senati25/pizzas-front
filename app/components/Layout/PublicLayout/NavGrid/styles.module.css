@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  height: 100vh;
 }
 
 .nav__gridItem {
@@ -28,10 +28,37 @@
   background-color: #fc4c4c;
 }
 
+.nav__gridButtons {
+  position: absolute;
+  bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+.nav__gridButtons > button {
+  color: #f8f8f8;
+  background-color: #fc4c4c;
+  padding: 0.5rem;
+  width: 45vw;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav__gridButtons > button:hover {
+  transform: scale(1.1);
+}
+
 @media only screen and (min-width: 768px) {
   .nav__grid {
     flex-direction: row;
     justify-content: center;
+    height: 100%;
+  }
+
+  .nav__gridButtons {
+    display: none;
   }
 
   .nav__gridItem {
@@ -42,32 +69,17 @@
   .nav__link {
     margin: 0;
     min-width: none;
-    padding: 0.5rem;
     display: inline;
     border-radius: 0;
     overflow: hidden;
-  }
-
-  .nav__link::after {
-    content: '';
-    width: 0%;
-    height: 20px;
-    position: absolute;
-    bottom: -0.3rem;
-    left: 0;
-    border-bottom: 2px solid #ff0000;
-    transition: width 0.3s linear;
-  }
-
-  .nav__link:hover::after {
-    width: 100%;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease-in-out;
   }
 
   .nav__link:hover {
-    /* border-radius: 0.3rem; */
+    border-radius: 0.5rem;
     color: #f8f8f8;
-    /* color: #231e36; */
-    /* background-color: rgba(0, 0, 0, 0.1); */
-    background-color: transparent;
+    background-color: #fc4c4c;
   }
 }

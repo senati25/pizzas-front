@@ -16,6 +16,11 @@ const NavGrid = memo(() => (
         <a className={styles.nav__link}>Productos</a>
       </Link>
     </li>
+
+    <li className={styles.nav__gridButtons}>
+      <button type="button">Iniciar session</button>
+      <button type="button">Registro</button>
+    </li>
   </ul>
 ));
 
