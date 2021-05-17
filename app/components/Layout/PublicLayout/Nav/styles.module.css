@@ -75,6 +75,10 @@
     background-color: transparent;
   }
 
+  .mainHeader__nav::after {
+    display: none;
+  }
+
   .hamburger {
     display: none;
   }

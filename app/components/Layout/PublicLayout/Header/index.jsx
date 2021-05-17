@@ -78,10 +78,10 @@ const Header = memo(() => {
 
             {dropdownIsHovered && (
               <ul className={styles.dropdown__grid}>
-                <Link href="my-account-info">
-                  <a className={styles.dropdown__link}>Mis datos</a>
+                <Link href="/my-account/profile">
+                  <a className={styles.dropdown__link}>Mi Perfil</a>
                 </Link>
-                <Link href="my-account-orders">
+                <Link href="/my-account/orders">
                   <a className={styles.dropdown__link}>Mis ordenes</a>
                 </Link>
               </ul>

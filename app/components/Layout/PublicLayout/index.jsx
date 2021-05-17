@@ -7,7 +7,7 @@ import styles from './styles.module.css';
 const PublicLayout = ({ children }) => (
   <div className={styles.container}>
     <Head>
-      <title>Inviaggio pizzas</title>
+      <title>Inviaggio Pizzeria</title>
       <link rel="icon" href="/images/brand-logo.png" />
     </Head>
 

@@ -7,7 +7,7 @@ import Header from './Header';
 const DashboardLayout = ({ children }) => (
   <div className={styles.container}>
     <Head>
-      <title>Invviaggio Dashboard</title>
+      <title>Inviaggio Dashboard</title>
       <link rel="icon" href="/images/brand-logo.png" />
     </Head>
 
