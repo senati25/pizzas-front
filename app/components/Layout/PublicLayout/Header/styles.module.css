@@ -7,7 +7,6 @@
   box-shadow: 0 0 3px #625f6f;
   top: 0;
   z-index: 3;
-  overflow: hidden;
   place-items: center;
 }
 
@@ -56,8 +55,8 @@
     height: 5rem;
   }
 
-  .others__linkLogin,
-  .others__linkRegister {
+  .others__link,
+  .others__link {
     display: initial;
     color: #f8f8f8;
     font-weight: bold;
@@ -67,6 +66,34 @@
   }
 
   .others__link:hover {
+    background-color: #fc4c4c;
+  }
+
+  .others__myAccountDropdown {
+    position: relative;
+    padding: 0.5rem 0;
+  }
+
+  .dropdown__grid {
+    position: absolute;
+    top: 98%;
+    right: -12%;
+    background-color: #000000dc;
+    width: max-content;
+    color: #fff;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .dropdown__link {
+    text-align: center;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .dropdown__link:hover {
     background-color: #fc4c4c;
   }
 }

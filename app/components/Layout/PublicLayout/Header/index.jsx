@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { memo, useMemo } from 'react';
+import { memo, useMemo, useState } from 'react';
 import ROUTES from '../../../../helpers/constants';
 import useSessionContext from '../../../../hooks/useSessionContext';
 import useShoppingCartContext from '../../../../hooks/useShoppingCartContext';
@@ -14,6 +14,8 @@ const Header = memo(() => {
   const cantidad = useMemo(() => shoppingCartProducts.length, [
     shoppingCartProducts.length,
   ]);
+
+  const [dropdownIsHovered, setDropdownIsHovered] = useState(false);
 
   return (
     <header className={styles.mainHeader}>
@@ -63,14 +65,27 @@ const Header = memo(() => {
             </li>
           </>
         ) : (
-          <li>
-            <Link href="/my-account">
-              <a
-                className={`${styles.others__link} ${styles.others__linkRegister}`}
-              >
-                <span>Mi cuenta</span>
-              </a>
-            </Link>
+          <li
+            className={styles.others__myAccountDropdown}
+            onMouseEnter={() => setDropdownIsHovered(true)}
+            onMouseLeave={() => setDropdownIsHovered(false)}
+          >
+            <div
+              className={`${styles.others__link} ${styles.others__linkRegister}`}
+            >
+              <span>Mi cuenta</span>
+            </div>
+
+            {dropdownIsHovered && (
+              <ul className={styles.dropdown__grid}>
+                <Link href="my-account-info">
+                  <a className={styles.dropdown__link}>Mis datos</a>
+                </Link>
+                <Link href="my-account-orders">
+                  <a className={styles.dropdown__link}>Mis ordenes</a>
+                </Link>
+              </ul>
+            )}
           </li>
         )}
       </ul>
