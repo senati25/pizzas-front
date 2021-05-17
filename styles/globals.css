@@ -63,6 +63,24 @@ select {
   max-height: fit-content;
 } */
 
+body::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+body::-webkit-scrollbar-track {
+  background: #1b2330;
+}
+
+body::-webkit-scrollbar-track-piece {
+  color: #fc4d4d;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #fc4d4ddd;
+  border-radius: 0.5rem;
+}
+
 .container,
 .container_fluid,
 .container_lg,
