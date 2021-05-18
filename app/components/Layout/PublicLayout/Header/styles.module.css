@@ -72,12 +72,13 @@
   .others__myAccountDropdown {
     position: relative;
     padding: 0.5rem 0;
+    cursor: pointer;
   }
 
   .dropdown__grid {
     position: absolute;
     top: 98%;
-    right: -12%;
+    right: 0;
     background-color: #000000dc;
     width: max-content;
     color: #fff;
@@ -91,6 +92,9 @@
     text-align: center;
     padding: 0.5rem 1rem;
     transition: all 0.3s ease-in-out;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
   }
 
   .dropdown__link:hover {

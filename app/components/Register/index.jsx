@@ -41,6 +41,7 @@ const Register = () => {
         placeholder="Ingrese su apellido"
         type="text"
       />
+
       <FormField
         label="Correo"
         name="correo"

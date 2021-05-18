@@ -1,7 +1,7 @@
 import Container from '../Container';
 
 const Orders = () => (
-  <Container>
+  <Container title="Mis ordenes">
     <div>Orders</div>
   </Container>
 );

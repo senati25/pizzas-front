@@ -1,0 +1,45 @@
+.FormGroup {
+  width: 100%;
+  padding-bottom: 1em;
+}
+
+.FormGroup label {
+  display: block;
+  color: #242424;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 10px #c4c4c4;
+}
+
+.formControl[type='number']::-webkit-inner-spin-button,
+.formControl[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.formControl {
+  background-color: transparent;
+  border: 1.2px solid rgba(46, 46, 46, 0.5);
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  transition: focus 0.3s ease;
+  width: 100%;
+  background-color: #231e3610;
+}
+
+.formControl:focus {
+  border: none;
+  box-shadow: 0 0 3px 1px #fc4c4c;
+  background-color: transparent;
+}
+
+.is__invalid {
+  border-color: red;
+}
+
+.error {
+  margin-top: 0.2rem;
+  font-size: 0.8rem;
+  color: red;
+}

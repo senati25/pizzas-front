@@ -1,8 +1,11 @@
+import Head from 'next/head';
 import OrdersWrapper from '../../app/components/MyAccount/Orders';
 
 const orders = () => (
   <>
-    <title>Inviaggio Pizzeria | Mis ordenes</title>
+    <Head>
+      <title>Inviaggio Pizzeria | Mis ordenes</title>
+    </Head>
     <OrdersWrapper />
   </>
 );

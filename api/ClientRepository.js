@@ -40,6 +40,17 @@ const ClientRepository = {
     return data;
   },
 
+  updateProfile: async (userId, inputValues) => {
+    const response = await fetch(`${ROUTES.api}/publico/cliente/${userId}`, {
+      method: 'PATCH',
+      body: JSON.stringify(inputValues),
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    const data = await response.json();
+    return data;
+  },
+
   delete: async (id) => {
     const response = await fetch(`${ROUTES.api}/dashboard/cliente/${id}`, {
       method: 'DELETE',

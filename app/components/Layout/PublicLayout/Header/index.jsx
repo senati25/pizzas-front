@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { memo, useMemo, useState } from 'react';
 import ROUTES from '../../../../helpers/constants';
+import useLogin from '../../../../hooks/useLogin';
 import useSessionContext from '../../../../hooks/useSessionContext';
 import useShoppingCartContext from '../../../../hooks/useShoppingCartContext';
 
@@ -11,6 +12,7 @@ import styles from './styles.module.css';
 const Header = memo(() => {
   const { shoppingCartProducts } = useShoppingCartContext();
   const { session } = useSessionContext();
+  const { handleLogout } = useLogin();
   const cantidad = useMemo(() => shoppingCartProducts.length, [
     shoppingCartProducts.length,
   ]);
@@ -78,12 +80,20 @@ const Header = memo(() => {
 
             {dropdownIsHovered && (
               <ul className={styles.dropdown__grid}>
-                <Link href="/my-account/profile">
+                <Link href="/account/profile">
                   <a className={styles.dropdown__link}>Mi Perfil</a>
                 </Link>
-                <Link href="/my-account/orders">
+                <Link href="/account/orders">
                   <a className={styles.dropdown__link}>Mis ordenes</a>
                 </Link>
+
+                <button
+                  type="button"
+                  className={styles.dropdown__link}
+                  onClick={handleLogout}
+                >
+                  Cerrar session
+                </button>
               </ul>
             )}
           </li>

@@ -1,8 +1,11 @@
+import Head from 'next/head';
 import ProfileWrapper from '../../app/components/MyAccount/Profile';
 
 const profile = () => (
   <>
-    <title>Inviaggio Pizzeria | Mi perfil</title>
+    <Head>
+      <title>Inviaggio Pizzeria | Mi perfil</title>
+    </Head>
     <ProfileWrapper />
   </>
 );

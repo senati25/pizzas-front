@@ -4,15 +4,18 @@
   width: 100%;
   max-width: 1400px;
   padding: 3rem 1rem;
-  justify-items: center;
   height: 100%;
+  min-height: 80vh;
+}
+
+.sidebar {
+  margin-right: 1rem;
 }
 
 .grid {
   display: flex;
   flex-direction: column;
-
-  min-width: 10rem;
+  /* min-width: 10rem; */
   height: 100%;
   border-right: 1px solid #35353550;
   width: max-content;
@@ -22,11 +25,34 @@
   font-weight: 600;
   padding: 0.5rem 1rem;
   transition: all 0.3s ease-in-out;
+  display: grid;
+  grid-template-columns: 1.5rem auto;
+  align-items: center;
+  column-gap: 0.5rem;
 }
+
+.grid__item > span {
+  display: none;
+}
+.grid__item > i {
+  place-self: center;
+}
+
 .grid__item:hover {
-  background-color: #fc4c4c80;
+  color: #fc4c4c;
 }
 
 .active {
-  background-color: #fc4c4c80;
+  color: #fc4c4c;
+}
+
+.title {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .grid__item > span {
+    display: initial;
+  }
 }

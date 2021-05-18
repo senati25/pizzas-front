@@ -1,0 +1,42 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form__grid {
+  display: grid;
+  grid-template-columns: auto;
+  column-gap: 1.5rem;
+  row-gap: 0.5rem;
+}
+
+.form__button[disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.form__button {
+  background-color: #d64141;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 5px #fc4c4c;
+  color: #f8f8f8;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  padding: 0.5rem 2rem;
+  transition: all 0.3s ease-in-out;
+
+  margin-right: auto;
+}
+
+.form__button:hover {
+  transform: scale(1.05);
+  background-color: #fc4c4c;
+}
+
+@media only screen and (min-width: 768px) {
+  .form__grid {
+    grid-template-columns: repeat(2, minmax(15rem, 17rem));
+  }
+}
