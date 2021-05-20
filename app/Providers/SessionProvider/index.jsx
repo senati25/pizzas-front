@@ -2,6 +2,7 @@ import useSWR from 'swr';
 import { array, object, oneOfType } from 'prop-types';
 import SessionContext from '../../context/SessionContext';
 import PublicProvider from '../PublicProvider';
+import OrdersProvider from '../OrdersProvider';
 import ShoppingCartProvider from '../ShoppingCartProvider';
 import PublicLayout from '../../components/Layout/PublicLayout';
 
@@ -20,7 +21,9 @@ const SessionProvider = ({ children }) => {
     >
       <PublicProvider>
         <ShoppingCartProvider>
-          <PublicLayout>{children}</PublicLayout>
+          <OrdersProvider>
+            <PublicLayout>{children}</PublicLayout>
+          </OrdersProvider>
         </ShoppingCartProvider>
       </PublicProvider>
     </SessionContext.Provider>

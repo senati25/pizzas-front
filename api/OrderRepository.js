@@ -6,10 +6,12 @@ const OrderRepository = {
     const response = await fetch(`${ROUTES.api}/dashboard/pedido`, {
       method: 'POST',
       body: JSON.stringify(values),
-      //   headers: { 'Content-Type': 'application/json' },
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
     });
 
-    console.log({ response });
     const data = await response.json();
     return data;
   },

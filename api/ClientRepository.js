@@ -59,6 +59,15 @@ const ClientRepository = {
     const data = await response.json();
     return data;
   },
+
+  orders: async (clienteId) => {
+    const response = await fetch(
+      `${ROUTES.api}/publico/cliente/${clienteId}/ordenes`
+    );
+
+    const data = await response.json();
+    return data;
+  },
 };
 
 export default ClientRepository;

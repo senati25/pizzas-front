@@ -18,6 +18,7 @@ const ShoppingCartProductCard = memo(
             width={200}
             height={200}
             layout="responsive"
+            objectFit="cover"
           />
         </div>
 

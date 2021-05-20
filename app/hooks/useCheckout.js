@@ -15,6 +15,7 @@ const useCheckout = () => {
   const handleCreateOrder = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+
     if (sessionContext?.session && sessionContext.session.isLoggedIn) {
       const details = shoppingCartProducts.map((product) => ({
         cantidad: product.cantidad,
@@ -22,6 +23,7 @@ const useCheckout = () => {
           ({ denominacion }) => denominacion === product.variedad
         ).precio,
         producto_id: product.id,
+        variedad: product.variedad,
       }));
 
       const {
