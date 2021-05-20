@@ -39,7 +39,7 @@ const Container = ({ children, title }) => {
           </Link>
         </ul>
       </span>
-      <span>
+      <span className={styles.main}>
         {title && <h1 className={styles.title}>{title}</h1>}
         {children}
       </span>

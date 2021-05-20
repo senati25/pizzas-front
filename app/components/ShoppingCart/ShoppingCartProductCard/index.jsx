@@ -49,7 +49,6 @@ const ShoppingCartProductCard = memo(
           +
         </button>
 
-        {/* <input type="number" name="cantidad" value={product.cantidad} /> */}
         <span>{product.cantidad}</span>
 
         <button

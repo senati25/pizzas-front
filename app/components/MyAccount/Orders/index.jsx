@@ -26,7 +26,12 @@ const Orders = () => {
               </span>
               <button
                 type="button"
-                onClick={() => router.push(`/account/orders/${order.id}`)}
+                onClick={() => {
+                  router.push({
+                    pathname: `/account/orders/${order.id}`,
+                    query: { order: JSON.stringify(order) },
+                  });
+                }}
               >
                 Ver detalles
               </button>
