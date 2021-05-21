@@ -3,16 +3,14 @@ import useCheckout from '../../../hooks/useCheckout';
 import styles from './styles.module.css';
 
 const ShoppingCartForm = ({ totalCost }) => {
-  const { handleCreateOrder } = useCheckout();
+  const { handleCreateOrder, handleOnChange } = useCheckout();
   return (
     <form className={styles.shopingCart__form} onSubmit={handleCreateOrder}>
       <textarea
         placeholder="Dejanos un mensaje"
-        name="message"
+        name="mensaje"
         rows="5"
-        onChange={(e) => {
-          console.log(e.target.value);
-        }}
+        onChange={handleOnChange}
         maxLength="250"
       ></textarea>
       <p className={styles.form__paragraph}>Total S/ {totalCost}</p>

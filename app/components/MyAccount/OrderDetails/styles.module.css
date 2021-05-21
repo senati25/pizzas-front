@@ -29,6 +29,7 @@
   top: 0;
   color: #fff;
   text-shadow: 0 0 4px #231e36;
+  padding: 0 0.5rem;
 }
 
 .grid__header::before {
@@ -73,7 +74,7 @@
 }
 
 .grid__footer {
-  padding: 0.5rem 0;
+  padding: 0.5rem;
   font-family: Lemonada, cursive;
   font-size: 1.3rem;
   font-weight: 600;

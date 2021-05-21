@@ -22,7 +22,7 @@ const Orders = () => {
                 <strong>Total:</strong> S/ {parseFloat(order.total).toFixed(2)}
               </span>
               <span>
-                <strong>Estado:</strong> {order.estado_pedido_id}
+                <strong>Estado:</strong> {order.estado_pedido_denominacion}
               </span>
               <button
                 type="button"

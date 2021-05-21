@@ -4,8 +4,10 @@ import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 import fetcher from '../../lib/fetcher';
 import useSessionContext from './useSessionContext';
+import useShoppingCartContext from './useShoppingCartContext';
 
 const useLogin = () => {
+  const { setShoppingCartProducts } = useShoppingCartContext();
   const router = useRouter();
   const { mutateSession } = useSessionContext();
 
@@ -64,6 +66,7 @@ const useLogin = () => {
   const handleLogout = async (e) => {
     e.preventDefault();
     mutateSession(await fetcher('/api/logout', { method: 'POST' }), false);
+    setShoppingCartProducts([]);
     router.push('/');
   };
 

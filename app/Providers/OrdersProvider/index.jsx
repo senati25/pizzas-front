@@ -23,7 +23,7 @@ const OrdersProvider = ({ children }) => {
     <OrdersContext.Provider
       value={{
         orders: state,
-        refreshOrders: useCallback(() => handleRefresh(), []),
+        refreshOrders: useCallback(async () => handleRefresh(), [session?.id]),
       }}
     >
       {children}

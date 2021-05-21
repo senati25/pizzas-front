@@ -16,7 +16,9 @@ const OrderDetails = () => {
   return (
     <Container title={`Pedido No. ${order.id}  |  ${order.fecha}`}>
       <div className={styles.wrapper}>
-        <h2 className={styles.status}>Estado: {order.estado_pedido_id}</h2>
+        <h2 className={styles.status}>
+          Estado: {order.estado_pedido_denominacion}
+        </h2>
 
         <div className={styles.grid}>
           <span className={styles.grid__header}>Item</span>
@@ -54,7 +56,7 @@ const OrderDetails = () => {
           <span className={styles.grid__footer}></span>
           <span className={styles.grid__footer}>Total</span>
           <span className={`${styles.grid__footer} ${styles.total}`}>
-            {parseFloat(order.total).toFixed(2)}
+            S/.{parseFloat(order.total).toFixed(2)}
           </span>
         </div>
       </div>
