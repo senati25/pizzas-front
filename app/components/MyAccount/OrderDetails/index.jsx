@@ -20,6 +20,8 @@ const OrderDetails = () => {
           Estado: {order.estado_pedido_denominacion}
         </h2>
 
+        {order && <div>{order.mensaje}</div>}
+
         <div className={styles.grid}>
           <span className={styles.grid__header}>Item</span>
           <span className={styles.grid__header}>Cantidad</span>

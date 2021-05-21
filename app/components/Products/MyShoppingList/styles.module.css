@@ -60,12 +60,8 @@ td.data__quantity {
 td.data__info {
   min-width: 5rem;
   text-align: right;
-  font-weight: 500;
   font-size: 1.2rem;
   font-weight: 600;
-}
-td.data__info:last-child {
-  text-align: left;
 }
 
 td.data__price {

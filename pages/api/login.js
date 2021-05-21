@@ -15,7 +15,6 @@ export default withSession(async (req, res) => {
     let session = {};
 
     if (!response.error) {
-      console.log('encontrado');
       session = { isLoggedIn: true, ...response.user };
       req.session.set('session', session);
       await req.session.save();

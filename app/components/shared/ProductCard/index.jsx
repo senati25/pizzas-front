@@ -2,6 +2,7 @@ import Image from 'next/image';
 import PropTypes from 'prop-types';
 import { memo, useState } from 'react';
 import useShoppingCart from '../../../hooks/useShoppingCart';
+import SpinnerV2 from '../SpinerV2';
 import styles from './styles.module.css';
 
 const ProductCard = memo(({ product }) => {
@@ -45,20 +46,23 @@ const ProductCard = memo(({ product }) => {
           ))}
         </div>
 
-        {!isLoading ? (
-          <button
-            type="button"
-            className={styles.productCard__button}
-            onClick={() => {
-              handleAddProduct(product, currentVariety.denominacion);
-            }}
-          >
-            Añadir
-            <span> S/{parseInt(currentVariety.precio, 10).toFixed(2)}</span>
-          </button>
-        ) : (
-          <div>cargando</div>
-        )}
+        <button
+          type="button"
+          className={styles.productCard__button}
+          onClick={() => {
+            handleAddProduct(product, currentVariety.denominacion);
+          }}
+          disabled={isLoading}
+        >
+          {!isLoading ? (
+            <>
+              Añadir
+              <span> S/{parseInt(currentVariety.precio, 10).toFixed(2)}</span>
+            </>
+          ) : (
+            <SpinnerV2 />
+          )}
+        </button>
       </div>
     </div>
   );

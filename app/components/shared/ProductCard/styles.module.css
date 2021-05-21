@@ -30,7 +30,6 @@
 
 .productCard__tamanios {
   display: flex;
-  /* justify-content: space-evenly; */
   margin-top: auto;
 }
 
@@ -77,4 +76,9 @@
 .productCard__button:hover {
   background-color: #fc4c4c;
   color: #f5f5f5;
+}
+
+.productCard__button[disabled] {
+  opacity: 0.5;
+  pointer-events: none;
 }

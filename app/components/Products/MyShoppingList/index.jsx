@@ -51,7 +51,7 @@ const MyShoppingList = () => {
                   Total
                 </td>
                 <td colSpan="2" className={styles.data__info}>
-                  S/ {calculateTotal(shoppingCartProducts)}
+                  S/.{calculateTotal(shoppingCartProducts)}
                 </td>
               </tr>
             </tbody>

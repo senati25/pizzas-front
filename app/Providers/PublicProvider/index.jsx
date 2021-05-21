@@ -52,8 +52,6 @@ const PublicProvider = ({ children }) => {
       productsGroups
     );
 
-    console.log(productsGroups);
-
     return {
       productsByCategory: productsGroups,
       categories: Object.keys(productsGroups),
