@@ -4,13 +4,14 @@ import SessionDashboardContext from '../../context/SessionDashboardContext';
 import DashboardProvider from '../DashboardProvider';
 import DashboardLayout from '../../components/Layout/DashboardLayout';
 import Login from '../../components/Dashboard/Login';
+import ShoppingCartDashboardProvider from '../ShoppingCartDashboardProvider';
 
 const SessionDashboardProvider = ({ children }) => {
   const { data: session, mutate: mutateSession } = useSWR(
     '/api/user-dashboard'
   );
 
-  const handleRefreshSession = () => {};
+  const handleRefreshSession = () => { };
 
   return (
     <SessionDashboardContext.Provider
@@ -22,7 +23,9 @@ const SessionDashboardProvider = ({ children }) => {
     >
       {session && session?.isLoggedIn ? (
         <DashboardProvider>
-          <DashboardLayout>{children}</DashboardLayout>
+          <ShoppingCartDashboardProvider>
+            <DashboardLayout>{children}</DashboardLayout>
+          </ShoppingCartDashboardProvider>
         </DashboardProvider>
       ) : (
         <>

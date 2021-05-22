@@ -5,6 +5,7 @@ import MyShoppingList from './MyShoppingList';
 import usePublicContext from '../../hooks/usePublicContext';
 import useFilterProducts from '../../hooks/useFilterProducts';
 import styles from './styles.module.css';
+import useShoppingCart from '../../hooks/useShoppingCart';
 
 const Products = () => {
   const {
@@ -12,17 +13,13 @@ const Products = () => {
     productsByCategory = {},
     categories = [],
   } = usePublicContext();
-
   const { filterProducts, handleSearchProducts } = useFilterProducts(products);
-
   const [currentCategory, setCurrentCategory] = useState('');
-
   useEffect(() => {
     if (categories.length) {
       setCurrentCategory(categories[0]);
     }
   }, [categories]);
-
   return (
     <div className={styles.productsWrapper}>
       <div className={styles.products}>
@@ -59,6 +56,7 @@ const Products = () => {
                   ? filterProducts
                   : productsByCategory[currentCategory]
               }
+              
             />
           </div>
         </div>

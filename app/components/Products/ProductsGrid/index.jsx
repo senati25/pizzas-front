@@ -4,7 +4,7 @@ import ProductCard from '../../shared/ProductCard';
 import Spinner from '../../shared/Spinner';
 import styles from './styles.module.css';
 
-const ProductsGrid = memo(({ products }) => (
+const ProductsGrid = memo(({ products}) => (
   <>
     {products ? (
       <div className={styles.productsGrid}>
