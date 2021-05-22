@@ -11,13 +11,13 @@ const Products = () => {
 
   return (
     <>
-      {dashboardContext?.products ? (
+      {dashboardContext?.administrador?.products ? (
         <div className={styles.categories}>
           <h1 className={styles.categories__title}>Productos</h1>
           <Link href="products/new">
             <a className={styles.categories__link}>Nuevo</a>
           </Link>
-          <ProductsTable products={dashboardContext?.products} />
+          <ProductsTable products={dashboardContext?.administrador?.products} />
         </div>
       ) : (
         <SpinnerDashboard />

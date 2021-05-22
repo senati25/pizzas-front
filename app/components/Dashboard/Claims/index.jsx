@@ -6,15 +6,15 @@ import styles from './style.module.css';
 const Claims = () => {
   const dashboardContext = useDashboardContext();
 
-  if (dashboardContext?.claims?.length === 0)
+  if (dashboardContext?.administrador?.claims?.length === 0)
     return <div>Esta sección aun no cuenta con ningún registro</div>;
 
   return (
     <>
-      {dashboardContext?.claims ? (
+      {dashboardContext?.administrador?.claims ? (
         <div className={styles.categories}>
           <h1 className={styles.categories__title}>Reclamos</h1>
-          <TableClaims claims={dashboardContext?.claims} />
+          <TableClaims claims={dashboardContext?.administrador?.claims} />
         </div>
       ) : (
         <SpinnerDashboard />

@@ -8,10 +8,10 @@ import DashboardLayout from '../../components/Layout/DashboardLayout';
 import Login from '../../components/Dashboard/Login';
 
 const SessionDashboardProvider = ({ children }) => {
+  const router = useRouter();
   const { data: session, mutate: mutateSession } = useSWR(
     '/api/user-dashboard'
   );
-  const router = useRouter();
 
   const handleRefreshSession = () => {};
 
@@ -24,6 +24,7 @@ const SessionDashboardProvider = ({ children }) => {
       if (!session.rutas.some(({ raiz }) => raiz === routeRol)) {
         router.replace(`/dashboard/${session.rol}/home`);
       }
+      console.log(session.rutas);
     }
   }, [router.pathname, session]);
 

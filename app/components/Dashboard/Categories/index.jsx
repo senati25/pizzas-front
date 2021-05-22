@@ -9,13 +9,15 @@ const Categories = () => {
 
   return (
     <>
-      {dashboardContext?.categories ? (
+      {dashboardContext?.administrador?.categories ? (
         <div className={styles.categories}>
           <h1 className={styles.categories__title}>Categorias</h1>
           <Link href="/dashboard/administrador/categories/new">
             <a className={styles.categories__link}>Nuevo</a>
           </Link>
-          <CategoryTable categories={dashboardContext?.categories} />
+          <CategoryTable
+            categories={dashboardContext?.administrador?.categories}
+          />
         </div>
       ) : (
         <SpinnerDashboard />

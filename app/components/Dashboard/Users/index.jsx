@@ -8,13 +8,13 @@ const Users = () => {
   const dashboardContext = useDashboardContext();
   return (
     <>
-      {dashboardContext?.users ? (
+      {dashboardContext?.administrador?.users ? (
         <div className={styles.categories}>
           <h1 className={styles.categories__title}>Usuarios</h1>
           <Link href="users/new">
             <a className={styles.categories__link}>Nuevo</a>
           </Link>
-          <UsersTable users={dashboardContext?.users} />
+          <UsersTable users={dashboardContext?.administrador?.users} />
         </div>
       ) : (
         <SpinnerDashboard />

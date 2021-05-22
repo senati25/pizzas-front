@@ -9,13 +9,13 @@ const Clients = () => {
 
   return (
     <>
-      {dashboardContext?.clients ? (
+      {dashboardContext?.administrador?.clients ? (
         <div className={styles.categories}>
           <h1 className={styles.categories__title}>Clientes</h1>
           <Link href="clients/new">
             <a className={styles.categories__link}>Nuevo</a>
           </Link>
-          <ClientsTable clients={dashboardContext?.clients} />
+          <ClientsTable clients={dashboardContext?.administrador?.clients} />
         </div>
       ) : (
         <SpinnerDashboard />

@@ -35,6 +35,7 @@ const EditClientForm = () => {
             required
             placeholder="Nombre"
           />
+
           <input
             onChange={handleOnChange}
             type="text"
@@ -44,6 +45,7 @@ const EditClientForm = () => {
             id="apellido"
             placeholder="Apellidos"
           />
+
           <input
             onChange={handleOnChange}
             defaultValue={inputValues.correo}

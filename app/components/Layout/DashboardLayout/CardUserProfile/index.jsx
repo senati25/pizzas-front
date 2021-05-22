@@ -17,7 +17,9 @@ const CardUserProfile = () => {
         />
       </div>
       <h3 className={styles.cardUserProfile__name}>{session?.nombre}</h3>
-      <p className={styles.cardUserProfile__rol}>Cargo</p>
+      <p className={styles.cardUserProfile__rol}>
+        {session?.rol.toUpperCase()}
+      </p>
     </div>
   );
 };
