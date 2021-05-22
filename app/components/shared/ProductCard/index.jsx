@@ -1,18 +1,14 @@
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { memo, useState } from 'react';
 import useShoppingCart from '../../../hooks/useShoppingCart';
 import SpinnerV2 from '../SpinerV2';
-import useShoppingCartDashboard from '../../../hooks/useShoppingCartDashboard';
 import styles from './styles.module.css';
 
 const ProductCard = memo(({ product }) => {
   const [currentVariety, setCurrentVariety] = useState(product.variedades[0]);
-  const route = useRouter();
-  const { handleAddProduct, isLoading } = !route.pathname.includes('admin')
-    ? useShoppingCart()
-    : useShoppingCartDashboard();
+  const { handleAddProduct, isLoading } = useShoppingCart();
+
   const handleChangeVariety = (variety) => {
     setCurrentVariety({ ...variety });
   };

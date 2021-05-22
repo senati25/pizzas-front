@@ -12,13 +12,17 @@ const Products = () => {
     productsByCategory = {},
     categories = [],
   } = usePublicContext();
+
   const { filterProducts, handleSearchProducts } = useFilterProducts(products);
+
   const [currentCategory, setCurrentCategory] = useState('');
+
   useEffect(() => {
     if (categories.length) {
       setCurrentCategory(categories[0]);
     }
   }, [categories]);
+
   return (
     <div className={styles.productsWrapper}>
       <div className={styles.products}>
