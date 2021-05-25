@@ -18,73 +18,71 @@ const EditClientForm = () => {
     getDetalle(router.query.id);
   }, [router.query]);
 
+  if (isLoading) return <SpinnerDashboard />;
+
   return (
     <>
-      {!isLoading ? (
-        <DashboardForm
-          handleSubmit={handleSubmitEdit}
-          title="Editar Cliente"
-          onCancel={router.back}
+      <DashboardForm
+        handleSubmit={handleSubmitEdit}
+        title="Editar Cliente"
+        onCancel={router.back}
+      >
+        <input
+          onChange={handleOnChange}
+          type="text"
+          defaultValue={inputValues.nombre}
+          name="nombre"
+          id="nombre"
+          required
+          placeholder="Nombre"
+        />
+
+        <input
+          onChange={handleOnChange}
+          type="text"
+          name="apellido"
+          defaultValue={inputValues.apellido}
+          required
+          id="apellido"
+          placeholder="Apellidos"
+        />
+
+        <input
+          onChange={handleOnChange}
+          defaultValue={inputValues.correo}
+          type="email"
+          name="correo"
+          required
+          id="correo"
+          placeholder="Correo"
+        />
+        <input
+          onChange={handleOnChange}
+          defaultValue={inputValues.dni}
+          type="string"
+          name="dni"
+          id="dni"
+          maxLength="8"
+          required
+          placeholder="Dni"
+        />
+        <input
+          onChange={handleOnChange}
+          type="text"
+          defaultValue={inputValues.direccion}
+          name="direccion"
+          id="direccion"
+          placeholder="Direccion"
+        />
+        <select
+          name="estado"
+          onChange={handleOnChange}
+          value={inputValues.estado}
         >
-          <input
-            onChange={handleOnChange}
-            type="text"
-            defaultValue={inputValues.nombre}
-            name="nombre"
-            id="nombre"
-            required
-            placeholder="Nombre"
-          />
-
-          <input
-            onChange={handleOnChange}
-            type="text"
-            name="apellido"
-            defaultValue={inputValues.apellido}
-            required
-            id="apellido"
-            placeholder="Apellidos"
-          />
-
-          <input
-            onChange={handleOnChange}
-            defaultValue={inputValues.correo}
-            type="email"
-            name="correo"
-            required
-            id="correo"
-            placeholder="Correo"
-          />
-          <input
-            onChange={handleOnChange}
-            defaultValue={inputValues.dni}
-            type="string"
-            name="dni"
-            id="dni"
-            maxLength="8"
-            required
-            placeholder="Dni"
-          />
-          <input
-            onChange={handleOnChange}
-            type="text"
-            defaultValue={inputValues.direccion}
-            name="direccion"
-            id="direccion"
-            placeholder="Direccion"
-          />
-          <select
-            name="estado"
-            onChange={handleOnChange}
-            value={inputValues.estado}
-          >
-            <option value="activo">Activo</option>
-            <option value="baja">Baja</option>
-          </select>
-        </DashboardForm>
-      ) : (
-        <SpinnerDashboard />
-      )}
+          <option value="activo">Activo</option>
+          <option value="baja">Baja</option>
+        </select>
+      </DashboardForm>
     </>
   );
 };

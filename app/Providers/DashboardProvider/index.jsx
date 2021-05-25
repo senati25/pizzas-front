@@ -42,8 +42,7 @@ const DashboardProvider = ({ children }) => {
     <DashboardContext.Provider
       value={{
         administrador: state.administrador,
-
-        refreshCategories: useCallback(() => handleRefresh(), []),
+        refreshData: useCallback(() => handleRefresh(), []),
       }}
     >
       {children}

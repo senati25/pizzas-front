@@ -6,7 +6,7 @@ import UserRepository from '../../api/UserRepository';
 import useDashboardContext from './useDashboardContext';
 
 const useUsers = () => {
-  const { refreshUsers } = useDashboardContext();
+  const { refreshData } = useDashboardContext();
 
   const [isLoading, setIsLoading] = useState(true);
   const [smsResponse, setSmsResponse] = useState('');
@@ -18,7 +18,7 @@ const useUsers = () => {
       const data = await UserRepository.delete(id);
 
       if (!data.error) {
-        await refreshUsers();
+        await refreshData();
         Swal.fire(
           'Proceso dado de bajo',
           `Dado de baja correctamente ${id}`,
@@ -52,7 +52,7 @@ const useUsers = () => {
     console.log({ data });
     if (data) {
       setIsLoading(false);
-      await refreshUsers();
+      await refreshData();
       Swal.fire('', 'Producto actualizado correctamente', 'success');
     } else {
       // TODO

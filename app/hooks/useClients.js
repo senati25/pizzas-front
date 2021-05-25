@@ -6,7 +6,7 @@ import ClientRepository from '../../api/ClientRepository';
 
 const useClients = () => {
   const router = useRouter();
-  const { refreshClients } = useDashboardContext();
+  const { refreshData } = useDashboardContext();
 
   const [isLoading, setIsLoading] = useState(false);
   const [inputValues, setInputValues] = useState({});
@@ -23,7 +23,7 @@ const useClients = () => {
     try {
       const data = await ClientRepository.delete(id);
       if (data.estado === 'success') {
-        await refreshClients();
+        await refreshData();
         Swal.fire(
           'Proceso dado de bajo',
           `Dado de baja correctamente ${id}`,
@@ -50,13 +50,14 @@ const useClients = () => {
   const handleSubmitEdit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+    console.log({ inputValues });
 
     const data = await ClientRepository.update(inputValues);
 
     if (data) {
-      await refreshClients();
+      await refreshData();
       setIsLoading(false);
-      Swal.fire('', 'Producto actualizado correctamente', 'success');
+      Swal.fire('', 'Cliente actualizado correctamente', 'success');
     } else {
       setIsLoading(false);
       Swal.fire('', 'No se a podido actualizar', 'info');
@@ -72,7 +73,7 @@ const useClients = () => {
 
     if (data.estado === 'success') {
       setIsLoading(false);
-      await refreshClients();
+      await refreshData();
       Swal.fire('Tu cuenta a sido creada con exito', '', 'success');
       router.back();
     } else if (data.estado === 'correoexiste') {

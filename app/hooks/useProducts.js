@@ -7,7 +7,7 @@ import ROUTES from '../helpers/constants';
 
 const useProducts = () => {
   const router = useRouter();
-  const { refreshProducts } = useDashboardContext();
+  const { refreshData } = useDashboardContext();
 
   const [inputValues, setInputValues] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -24,7 +24,7 @@ const useProducts = () => {
       const { estado } = await ProductRepository.delete(id);
 
       if (estado === 'success') {
-        await refreshProducts();
+        await refreshData();
         Swal.fire(
           'Proceso dado de bajo',
           `Dado de baja correctamente ${id}`,
@@ -69,7 +69,7 @@ const useProducts = () => {
     const data = await response.json();
 
     if (data) {
-      await refreshProducts();
+      await refreshData();
       setIsLoading(false);
 
       Swal.fire('', 'Producto actualizado correctamente', 'success');
@@ -86,7 +86,7 @@ const useProducts = () => {
     setIsLoading(true);
     const data = await ProductRepository.create(inputValues, varieties);
     if (data) {
-      await refreshProducts();
+      await refreshData();
       setIsLoading(false);
       Swal.fire('', 'Producto Creado correctamente', 'success');
     } else {

@@ -1,5 +1,9 @@
-import React from 'react';
+import useDashboardContext from '../../../hooks/useDashboardContext';
 
-const Kitchen = () => <div>Kitchen</div>;
+const Kitchen = () => {
+  const { products } = useDashboardContext();
+  console.log({ products });
+  return <div>Kitchen</div>;
+};
 
 export default Kitchen;

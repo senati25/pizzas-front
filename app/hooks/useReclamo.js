@@ -7,7 +7,7 @@ const useReclamo = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [inputValues, setInputValues] = useState({});
 
-  const { refreshClaims } = useDashboardContext();
+  const { refreshData } = useDashboardContext();
 
   const getDetail = async (e) => {
     setIsLoading(true);
@@ -23,7 +23,7 @@ const useReclamo = () => {
 
   const handleDeleteClaim = async (e) => {
     await ClaimRepostory.delete(e);
-    await refreshClaims();
+    await refreshData();
   };
 
   const handleOnChange = (e) => {

@@ -7,7 +7,7 @@ import SpinnerDashboard from '../../../shared/SpinnerDashboard';
 import Varieties from '../Varieties';
 
 const EditProductForm = () => {
-  const { categories } = useDashboardContext();
+  const { administrador } = useDashboardContext();
 
   const {
     handleOnChange,
@@ -68,13 +68,13 @@ const EditProductForm = () => {
       ></textarea>
       <select
         name="categoria_id"
-        defaultValue={inputValues.categoria_id}
+        value={inputValues.categoria_id}
         onChange={handleOnChange}
-        id="categoria"
+        // id="categoria"
         required
       >
-        {categories &&
-          categories.map((data) => (
+        {administrador?.categories &&
+          administrador?.categories.map((data) => (
             <option key={data.id} value={data.id}>
               {data.denominacion}
             </option>

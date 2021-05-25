@@ -2,14 +2,9 @@ import { useContext } from 'react';
 import DashboardContext from '../context/DashboardContext';
 /**
  * @returns {{
- * categories: [],
- * products: [],
- * clients: [],
- * users: [],
- * refreshCategories: function
- * refreshProducts: function
- * refreshUsers: function
- * refreshClients: function }}
+ * administrador: [],
+ * refreshData: function
+ * }}
  */
 const useDashboardContext = () => useContext(DashboardContext);
 

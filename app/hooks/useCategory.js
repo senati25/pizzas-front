@@ -4,7 +4,7 @@ import useDashboardContext from './useDashboardContext';
 import CategoryRepository from '../../api/CategoryRepository';
 
 const useCategory = () => {
-  const { refreshCategories } = useDashboardContext();
+  const { refreshData } = useDashboardContext();
   const [inputValues, setInputValues] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
@@ -21,7 +21,7 @@ const useCategory = () => {
     const data = await CategoryRepository.create(inputValues);
 
     if (data) {
-      await refreshCategories();
+      await refreshData();
       router.push('/dashboard/administrador/categories');
       setIsLoading(false);
     } else {
@@ -47,7 +47,7 @@ const useCategory = () => {
   const handleDeleteCategory = async (id) => {
     const result = await CategoryRepository.delete(id);
     if (result) {
-      refreshCategories();
+      refreshData();
     }
   };
 
@@ -58,7 +58,7 @@ const useCategory = () => {
     const data = await CategoryRepository.update(inputValues);
 
     if (data) {
-      await refreshCategories();
+      await refreshData();
       setIsLoading(false);
       router.push('/dashboard/administrador/categories');
     } else {
