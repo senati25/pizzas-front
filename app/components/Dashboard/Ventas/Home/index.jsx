@@ -26,6 +26,7 @@ const Ventas = () => {
           stepsList[currentStep] === stepsList[0] && styles.stepActive
         }`}
       />
+
       <div
         className={`${styles.step} ${
           stepsList[currentStep] === stepsList[1] && styles.stepActive

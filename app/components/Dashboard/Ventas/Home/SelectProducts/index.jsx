@@ -5,6 +5,7 @@ import SpinnerDashboard from '../../../../shared/SpinnerDashboard';
 import NavProductsCategories from '../../NavProductsCategories';
 import ProductsGrid from '../ProductsGrid';
 import Search from '../Search';
+import styles from './styles.module.css';
 
 const SelectProducts = (props) => {
   const { ventas } = useDashboardContext();
@@ -15,7 +16,13 @@ const SelectProducts = (props) => {
 
   const [currentCategory, setCurrentCategory] = useState('');
 
-  if (!ventas?.products) return <SpinnerDashboard />;
+  if (!ventas?.products)
+    return (
+      <div className={styles.spinnerWrapper}>
+        <SpinnerDashboard />
+      </div>
+    );
+
   return (
     <div {...props}>
       {ventas?.categoriesDenominationList?.length > 0 && (
