@@ -1,13 +1,13 @@
 import Image from 'next/image';
 import PropTypes from 'prop-types';
 import { memo, useState } from 'react';
-import useShoppingCart from '../../../hooks/useShoppingCart';
-import SpinnerV2 from '../SpinerV2';
+import SpinnerV2 from '../../../../shared/SpinerV2';
+
 import styles from './styles.module.css';
 
 const ProductCard = memo(({ product }) => {
   const [currentVariety, setCurrentVariety] = useState(product.variedades[0]);
-  const { handleAddProduct, isLoading } = useShoppingCart();
+  const { handleAddProduct, isLoading } = [() => {}, false];
 
   const handleChangeVariety = (variety) => {
     setCurrentVariety({ ...variety });
@@ -20,12 +20,13 @@ const ProductCard = memo(({ product }) => {
       </div>
       <div className={styles.productCard__content}>
         <h4 className={styles.productCard__title}>{product.nombre}</h4>
-        <p
+
+        {/* <p
           className={styles.productCard__description}
           title={product.descripcion}
         >
           {product.descripcion}
-        </p>
+        </p> */}
 
         <div className={styles.productCard__tamanios}>
           {product.variedades.map((variedad) => (

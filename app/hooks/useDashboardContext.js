@@ -3,6 +3,7 @@ import DashboardContext from '../context/DashboardContext';
 /**
  * @returns {{
  * administrador: [],
+ * ventas: [],
  * refreshData: function
  * }}
  */

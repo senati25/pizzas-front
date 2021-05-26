@@ -5,10 +5,13 @@ const useFilterProducts = (products) => {
   const handleSearchProducts = (query) => {
     const result = products.filter(
       (product) =>
-        product.nombre.toLowerCase().includes(query.toLowerCase()) ||
-        product.descripcion.toLowerCase().includes(query.toLowerCase())
+        product.nombre.toLowerCase().includes(query.toLowerCase().trim()) ||
+        product.descripcion.toLowerCase().includes(query.toLowerCase().trim())
     );
-    setFilterProducts(result);
+
+    if (query.trim() === '') return setFilterProducts([]);
+
+    return setFilterProducts(result);
   };
 
   return { filterProducts, handleSearchProducts };

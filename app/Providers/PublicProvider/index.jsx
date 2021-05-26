@@ -2,6 +2,7 @@ import { array, object, oneOfType } from 'prop-types';
 import React, { useCallback, useEffect, useState } from 'react';
 import ProductRepository from '../../../api/ProductRepository';
 import PublicContext from '../../context/PublicContext';
+import groupProductsAndCategories from '../../helpers/groupProductsAndCategories';
 
 const action = {
   REFRESH_PRODUCTS: 'products',
@@ -32,31 +33,6 @@ const PublicProvider = ({ children }) => {
   useEffect(() => {
     handleRefresh();
   }, []);
-
-  const groupProductsAndCategories = (products = []) => {
-    let productsGroups = products.reduce(
-      (acumulator, { denominacion }) =>
-        acumulator &&
-        !acumulator[denominacion]?.length && {
-          ...acumulator,
-          [denominacion]: [],
-        },
-      {}
-    );
-
-    productsGroups = products.reduce(
-      (acumulator, product) => ({
-        ...acumulator,
-        [product.denominacion]: [...acumulator[product.denominacion], product],
-      }),
-      productsGroups
-    );
-
-    return {
-      productsByCategory: productsGroups,
-      categories: Object.keys(productsGroups),
-    };
-  };
 
   return (
     <PublicContext.Provider

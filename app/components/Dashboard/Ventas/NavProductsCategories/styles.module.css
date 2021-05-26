@@ -1,0 +1,27 @@
+.products__nav {
+  margin-bottom: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  max-width: 100vw;
+  background-color: #e13d0d30;
+  border-radius: 0.5rem;
+}
+
+.nav__item {
+  padding: 1rem 2rem;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-family: Lemonada, cursive;
+}
+
+.nav__item:hover {
+  background-color: #e13d0d;
+  color: #f8f8f8;
+}
+
+.nav__item__active {
+  background-color: #e13d0d;
+  color: #f8f8f8;
+}

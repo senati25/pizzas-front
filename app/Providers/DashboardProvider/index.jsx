@@ -7,6 +7,7 @@ import { useCallback, useEffect, useState } from 'react';
 import DashboardContext from '../../context/DashboardContext';
 import UserRepository from '../../../api/UserRepository';
 import useSessionDashboardContext from '../../hooks/useSessionDashboardContext';
+import groupProductsAndCategories from '../../helpers/groupProductsAndCategories';
 
 // const action = {
 //   REFRESH_PRODUCTS: 'products',
@@ -30,8 +31,7 @@ const DashboardProvider = ({ children }) => {
 
   const handleRefresh = async () => {
     const data = await UserRepository.sectionData(session?.rol);
-    console.log(data);
-    if (!data.error) setState(data.payload);
+    if (!data.error) await setState(data.payload);
   };
 
   useEffect(() => {
@@ -42,6 +42,10 @@ const DashboardProvider = ({ children }) => {
     <DashboardContext.Provider
       value={{
         administrador: state.administrador,
+        ventas: {
+          ...state.ventas,
+          ...groupProductsAndCategories(state.ventas?.products),
+        },
         refreshData: useCallback(() => handleRefresh(), []),
       }}
     >
