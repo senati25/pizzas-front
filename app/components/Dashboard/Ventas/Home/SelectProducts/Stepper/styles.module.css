@@ -69,3 +69,9 @@
   background-color: #00ccff;
   transform: scale(1.1);
 }
+
+.stepsList > button[disabled] {
+  background-color: #bbf1ff;
+  color: #8b8b8b;
+  pointer-events: none;
+}

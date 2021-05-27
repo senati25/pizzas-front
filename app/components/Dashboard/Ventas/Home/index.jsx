@@ -3,6 +3,7 @@ import ClientForm from './ClientForm';
 import SelectProducts from './SelectProducts';
 import Stepper from './SelectProducts/Stepper';
 import { OrderStateProvider } from './shared/OrderContext';
+import ShoppingCart from './ShoppingCart';
 import styles from './styles.module.css';
 
 const stepsList = ['Elegir Productos', 'Datos del Cliente', 'Confirmar orden'];
@@ -59,7 +60,7 @@ const Ventas = () => {
           Step 3
         </div>
 
-        <div className={styles.circle}>Circle</div>
+        <ShoppingCart className={styles.shoppingCartList} />
       </div>
     </OrderStateProvider>
   );

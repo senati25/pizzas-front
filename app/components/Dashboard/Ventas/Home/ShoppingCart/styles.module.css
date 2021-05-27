@@ -1,0 +1,47 @@
+.shoppingCartWrapper {
+  height: 60%;
+  width: 30%;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.644);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.shoppingCart {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 0.5rem;
+}
+
+.shoppingCart__closeButton {
+  position: absolute;
+  right: 0rem;
+  top: 0rem;
+  width: 2rem;
+  height: 2rem;
+  padding: 0.5rem;
+  background-color: #00000050;
+  border-bottom-left-radius: 0.5rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.shoppingCart__title {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.shoppingCart__closeButton:hover {
+  background-color: #ff4343;
+}
+
+.shoppingCart__button {
+  border-radius: 100%;
+  padding: 1rem;
+  transition: all 0.3s ease-in-out;
+  background-color: #00ccff;
+}
+
+.shoppingCart__button:hover {
+  transform: scale(1.05);
+}
