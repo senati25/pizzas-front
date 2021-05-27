@@ -2,12 +2,44 @@
   /* padding: 1rem;ç */
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  /* height: 100vh; */
 
   overflow-y: scroll;
-  background-color: #252f3e;
 }
 
 .sideMenu::-webkit-scrollbar {
   display: none;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #1b2330;
+  align-items: center;
+  padding: 0.5rem;
+}
+.header__brand {
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+}
+
+.header__title {
+  color: #fff;
+  font-size: 1rem;
+}
+
+.closeSideMenuButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100%;
+  transition: all 0.3s ease-in-out;
+}
+
+.closeSideMenuButton:hover {
+  background-color: #ff4343;
 }
