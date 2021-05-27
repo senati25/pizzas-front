@@ -34,12 +34,14 @@
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
+  width: 100%;
+  padding: 0 2rem;
 }
+
 .nav__gridButtons > button {
   color: #f8f8f8;
   background-color: #fc4c4c;
   padding: 0.5rem;
-  width: 45vw;
   border-radius: 0.5rem;
   font-size: 1rem;
   font-weight: 600;
@@ -47,7 +49,7 @@
 }
 
 .nav__gridButtons > button:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 @media only screen and (min-width: 768px) {
