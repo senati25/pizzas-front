@@ -2,12 +2,18 @@ import Image from 'next/image';
 import PropTypes from 'prop-types';
 import { memo, useState } from 'react';
 import SpinnerV2 from '../../../../shared/SpinerV2';
+import { useOrderState } from '../shared/OrderContext';
 
 import styles from './styles.module.css';
 
 const ProductCard = memo(({ product }) => {
+  const {
+    state: { isLoading },
+    dispatch,
+    actionType,
+  } = useOrderState();
+
   const [currentVariety, setCurrentVariety] = useState(product.variedades[0]);
-  const { handleAddProduct, isLoading } = [() => {}, false];
 
   const handleChangeVariety = (variety) => {
     setCurrentVariety({ ...variety });
@@ -21,12 +27,12 @@ const ProductCard = memo(({ product }) => {
       <div className={styles.productCard__content}>
         <h4 className={styles.productCard__title}>{product.nombre}</h4>
 
-        {/* <p
+        <p
           className={styles.productCard__description}
           title={product.descripcion}
         >
           {product.descripcion}
-        </p> */}
+        </p>
 
         <div className={styles.productCard__tamanios}>
           {product.variedades.map((variedad) => (
@@ -51,7 +57,17 @@ const ProductCard = memo(({ product }) => {
           type="button"
           className={styles.productCard__button}
           onClick={() => {
-            handleAddProduct(product, currentVariety.denominacion);
+            dispatch({ type: actionType.LOADING_TRUE });
+
+            dispatch({
+              type: actionType.ADD_PRODUCT,
+              payload: {
+                ...product,
+                denominacion: currentVariety.denominacion,
+              },
+            });
+
+            dispatch({ type: actionType.LOADING_FALSE });
           }}
           disabled={isLoading}
         >

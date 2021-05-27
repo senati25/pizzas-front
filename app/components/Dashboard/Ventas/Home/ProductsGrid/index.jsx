@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-
 import ProductCard from '../ProductCard';
 import styles from './styles.module.css';
 

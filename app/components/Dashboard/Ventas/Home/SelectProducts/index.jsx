@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import useDashboardContext from '../../../../../hooks/useDashboardContext';
 import useFilterProducts from '../../../../../hooks/useFilterProducts';
@@ -7,7 +8,7 @@ import ProductsGrid from '../ProductsGrid';
 import Search from '../Search';
 import styles from './styles.module.css';
 
-const SelectProducts = (props) => {
+const SelectProducts = ({ className, title }) => {
   const { ventas } = useDashboardContext();
 
   const { filterProducts, handleSearchProducts } = useFilterProducts(
@@ -24,7 +25,9 @@ const SelectProducts = (props) => {
     );
 
   return (
-    <div {...props}>
+    <div className={className}>
+      {title}
+
       {ventas?.categoriesDenominationList?.length > 0 && (
         <NavProductsCategories
           categories={ventas.categoriesDenominationList}
@@ -45,5 +48,8 @@ const SelectProducts = (props) => {
     </div>
   );
 };
-
+SelectProducts.propTypes = {
+  className: PropTypes.string.isRequired,
+  title: PropTypes.node.isRequired,
+};
 export default SelectProducts;

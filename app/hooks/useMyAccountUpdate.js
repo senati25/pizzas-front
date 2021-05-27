@@ -36,6 +36,7 @@ const useMyAccountUpdate = () => {
       .email('*El correo es invalido')
       .required('*El correo es requerido'),
     dni: Yup.number()
+      .min(11111111, '*Debe contener 8 caracteres')
       .max(99999999, '*Debe contener 8 caracteres')
       .required('*Requerido'),
     direccion: Yup.string()

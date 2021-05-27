@@ -12,6 +12,15 @@
   display: flex;
   flex-direction: column;
   padding: 2rem;
+  position: relative;
+  z-index: 3;
+}
+
+.stepper {
+  position: absolute;
+  bottom: -1.2rem;
+  left: 0;
+  width: 100%;
 }
 
 .title {
@@ -27,9 +36,23 @@
   bottom: 0;
   position: absolute;
 }
+.stepsList__title {
+  font-size: 1.3rem;
+  margin: 1rem 0;
+}
 
 .stepActive {
   position: unset;
   opacity: 1;
   z-index: 2;
+}
+
+.circle {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  background-color: red;
+  width: 5rem;
+  height: 5rem;
 }

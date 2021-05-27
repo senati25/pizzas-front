@@ -30,7 +30,7 @@ const ShoppingCartProvider = ({ children }) => {
     <ShoppingCartContext.Provider
       value={{
         shoppingCartProducts: state,
-        setShoppingCartProduct: setState,
+        setShoppingCartProducts: setState,
         refreshShoppingCart: handleRefreshShoppingCart,
       }}
     >
