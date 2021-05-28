@@ -17,7 +17,7 @@ const ShoppingCartGrid = () => {
       <span className={styles.grid__header}>Precio</span>
       <span className={styles.grid__header}>Subtotal</span>
       {shoppingCart.map((product, index) => (
-        <Fragment key={product.nombre + product.denominacion}>
+        <Fragment key={product.nombre + product.variedad}>
           <span className={`${styles.row} ${styles.product__info}`}>
             <span>
               {product.nombre.charAt(0) +
@@ -25,6 +25,7 @@ const ShoppingCartGrid = () => {
             </span>
             <span>{product.variedad.toUpperCase()}</span>
             <button
+              className={styles.deleteButton}
               type="button"
               onClick={() =>
                 dispatch({
@@ -33,18 +34,53 @@ const ShoppingCartGrid = () => {
                 })
               }
             >
-              borrar
+              Eliminar
             </button>
           </span>
 
           <span className={`${styles.row} ${styles.product__cantidad}`}>
-            <button type="button" onClick={() => {}}>
+            <button
+              type="button"
+              onClick={() =>
+                dispatch({
+                  type: actionType.UPDATE_PRODUCT,
+                  payload: { ...product, cantidad: product.cantidad + 1 },
+                })
+              }
+            >
               +
             </button>
 
-            <span>{product.cantidad}</span>
+            <input
+              type="number"
+              name="precio"
+              id="precio"
+              value={product.cantidad}
+              onChange={(e) => {
+                console.log(e.target.value);
+                if (e.target.value >= 1) {
+                  dispatch({
+                    type: actionType.UPDATE_PRODUCT,
+                    payload: {
+                      ...product,
+                      cantidad: parseInt(e.target.value, 10),
+                    },
+                  });
+                }
+              }}
+            />
 
-            <button type="button" onClick={() => {}}>
+            <button
+              type="button"
+              onClick={() => {
+                if (product.cantidad > 1) {
+                  dispatch({
+                    type: actionType.UPDATE_PRODUCT,
+                    payload: { ...product, cantidad: product.cantidad - 1 },
+                  });
+                }
+              }}
+            >
               -
             </button>
           </span>

@@ -1,6 +1,7 @@
 export const actionType = {
   ADD_PRODUCT: 'ADD_PRODUCT',
   DELETE_PRODUCT: 'DELETE_PRODUCT',
+  UPDATE_PRODUCT: 'UPDATE_PRODUCT',
   UPDATE_CLIENT_FORM: 'UPDATE_CLIENT_FORM',
   RESET_FORM: 'RESET_FORM',
   RESET_INITIAL_STATE: 'RESET_INITIALSTATE',
@@ -33,11 +34,11 @@ export const orderReducer = (state, action) => {
         shoppingCart: state.shoppingCart.some(
           (product) =>
             product.id === action.payload.id &&
-            product.denominacion === action.payload.denominacion
+            product.variedad === action.payload.variedad
         )
           ? state.shoppingCart.map((product) =>
               product.id === action.payload.id &&
-              product.denominacion === action.payload.denominacion
+              product.variedad === action.payload.variedad
                 ? {
                     ...product,
                     cantidad: product.cantidad + action.payload.cantidad,
@@ -52,6 +53,17 @@ export const orderReducer = (state, action) => {
         ...state,
         shoppingCart: state.shoppingCart.filter(
           (product, i) => i !== action.payload
+        ),
+      };
+
+    case actionType.UPDATE_PRODUCT:
+      return {
+        ...state,
+        shoppingCart: state.shoppingCart.map((product) =>
+          product.id === action.payload.id &&
+          product.variedad === action.payload.variedad
+            ? action.payload
+            : product
         ),
       };
 
