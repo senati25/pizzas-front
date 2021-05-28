@@ -10,7 +10,11 @@ const Stepper = ({ className, currentStep, stepsList, setCurrentStep }) => (
       }}
       disabled={currentStep === 0}
     >
-      {'<'} Anterior
+      <span>
+        <i className="fas fa-chevron-left"></i>{' '}
+      </span>
+
+      <span className={styles.button__text}>Anterior</span>
     </button>
 
     <ol className={styles.stepsList__grid}>
@@ -25,6 +29,7 @@ const Stepper = ({ className, currentStep, stepsList, setCurrentStep }) => (
         </li>
       ))}
     </ol>
+
     <button
       type="button"
       onClick={() => {
@@ -32,7 +37,11 @@ const Stepper = ({ className, currentStep, stepsList, setCurrentStep }) => (
       }}
       disabled={stepsList.length === currentStep + 1}
     >
-      Siguiente {'>'}
+      <span className={styles.button__text}>Siguiente</span>
+      <span>
+        {' '}
+        <i className="fas fa-chevron-right"></i>
+      </span>
     </button>
   </div>
 );

@@ -58,7 +58,7 @@
   border-radius: 3rem;
   padding: 0.5rem 1rem;
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: rgba(0, 0, 0, 0.87);
   background-color: #0cb7e2;
   transition: all 0.3s ease-in-out;
@@ -74,4 +74,14 @@
   background-color: #bbf1ff;
   color: #8b8b8b;
   pointer-events: none;
+}
+
+.button__text {
+  display: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .button__text {
+    display: unset;
+  }
 }

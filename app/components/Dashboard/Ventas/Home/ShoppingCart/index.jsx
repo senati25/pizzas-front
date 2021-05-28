@@ -26,8 +26,12 @@ const ShoppingCart = ({ className }) => {
 
           <div>
             <ul>
-              {shoppingCart.map((product) => (
-                <li>{product.nombre}</li>
+              {shoppingCart.map((product, i) => (
+                <li key={product.nombre + product.denominacion}>
+                  <span>{i + 1}</span>
+                  <span>{product.nombre}</span>
+                  <span>{product.denominacion}</span>
+                </li>
               ))}
             </ul>
           </div>

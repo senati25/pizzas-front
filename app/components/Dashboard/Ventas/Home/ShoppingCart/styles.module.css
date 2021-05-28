@@ -1,6 +1,6 @@
 .shoppingCartWrapper {
-  height: 60%;
-  width: 30%;
+  height: 85vh;
+  width: 92vw;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.644);
   border-radius: 0.5rem;
@@ -44,4 +44,11 @@
 
 .shoppingCart__button:hover {
   transform: scale(1.05);
+}
+
+@media only screen and (min-width: 640px) {
+  .shoppingCartWrapper {
+    height: 40rem;
+    width: 30rem;
+  }
 }

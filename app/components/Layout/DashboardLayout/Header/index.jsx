@@ -8,7 +8,7 @@ const Header = ({ className, setSideMenuOpen }) => {
   return (
     <header className={`${styles.dashboardHeader} ${className}`}>
       <button type="button" onClick={() => setSideMenuOpen(true)}>
-        <i className="fas fa-times"></i>
+        <i className="fas fa-bars"></i>
       </button>
       <button className={styles.logout} type="button" onClick={handleLogout}>
         Cerrar Sesión
