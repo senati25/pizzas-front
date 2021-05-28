@@ -63,6 +63,7 @@ const ProductCard = memo(({ product }) => {
               type: actionType.ADD_PRODUCT,
               payload: {
                 ...product,
+                cantidad: 1,
                 denominacion: currentVariety.denominacion,
               },
             });

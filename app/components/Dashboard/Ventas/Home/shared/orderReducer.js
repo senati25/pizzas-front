@@ -30,11 +30,30 @@ export const orderReducer = (state, action) => {
     case actionType.ADD_PRODUCT:
       return {
         ...state,
-        shoppingCart: [...state.shoppingCart, action.payload],
+        shoppingCart: state.shoppingCart.some(
+          (product) =>
+            product.id === action.payload.id &&
+            product.denominacion === action.payload.denominacion
+        )
+          ? state.shoppingCart.map((product) =>
+              product.id === action.payload.id &&
+              product.denominacion === action.payload.denominacion
+                ? {
+                    ...product,
+                    cantidad: product.cantidad + action.payload.cantidad,
+                  }
+                : product
+            )
+          : [...state.shoppingCart, action.payload],
       };
 
     case actionType.DELETE_PRODUCT:
-      return { count: state.count - 1 };
+      return {
+        ...state,
+        shoppingCart: state.shoppingCart.filter(
+          (product, i) => i !== action.payload
+        ),
+      };
 
     case actionType.RESET_FORM:
       return { ...state, initialStateForm };

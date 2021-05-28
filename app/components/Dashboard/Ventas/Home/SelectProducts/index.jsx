@@ -3,7 +3,7 @@ import { useState } from 'react';
 import useDashboardContext from '../../../../../hooks/useDashboardContext';
 import useFilterProducts from '../../../../../hooks/useFilterProducts';
 import SpinnerDashboard from '../../../../shared/SpinnerDashboard';
-import NavProductsCategories from '../../NavProductsCategories';
+import NavProductsCategories from '../NavProductsCategories';
 import ProductsGrid from '../ProductsGrid';
 import Search from '../Search';
 import styles from './styles.module.css';

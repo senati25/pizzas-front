@@ -6,6 +6,8 @@ import styles from './styles.module.css';
 const ShoppingCart = ({ className }) => {
   const {
     state: { shoppingCart },
+    dispatch,
+    actionType,
   } = useOrderState();
 
   const [isActive, setIsActive] = useState(false);
@@ -26,11 +28,25 @@ const ShoppingCart = ({ className }) => {
 
           <div>
             <ul>
-              {shoppingCart.map((product, i) => (
+              {shoppingCart.map((product, index) => (
                 <li key={product.nombre + product.denominacion}>
-                  <span>{i + 1}</span>
+                  <span>{index + 1}</span>
                   <span>{product.nombre}</span>
                   <span>{product.denominacion}</span>
+
+                  <span>{product.cantidad}</span>
+
+                  <button
+                    type="button"
+                    onClick={() =>
+                      dispatch({
+                        type: actionType.DELETE_PRODUCT,
+                        payload: index,
+                      })
+                    }
+                  >
+                    borrar
+                  </button>
                 </li>
               ))}
             </ul>
