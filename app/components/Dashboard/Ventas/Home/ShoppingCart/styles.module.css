@@ -11,7 +11,27 @@
   width: 100%;
   height: 100%;
   position: relative;
-  padding: 0.5rem;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.shoppingCart::-webkit-scrollbar {
+  width: 0.5rem;
+  background-color: transparent;
+  height: 0.5rem;
+}
+
+.shoppingCart::-webkit-scrollbar-track {
+  background: #1b233010;
+}
+
+.shoppingCart::-webkit-scrollbar-track-piece {
+  color: #fc4d4d;
+}
+
+.shoppingCart::-webkit-scrollbar-thumb {
+  background-color: #1b233060;
+  border-radius: 0.5rem;
 }
 
 .shoppingCart__closeButton {

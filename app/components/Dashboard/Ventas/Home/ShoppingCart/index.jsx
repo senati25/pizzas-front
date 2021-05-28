@@ -1,15 +1,9 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { useOrderState } from '../shared/OrderContext';
+import ShoppingCartGrid from '../shared/ShoppingCartGrid';
 import styles from './styles.module.css';
 
 const ShoppingCart = ({ className }) => {
-  const {
-    state: { shoppingCart },
-    dispatch,
-    actionType,
-  } = useOrderState();
-
   const [isActive, setIsActive] = useState(false);
 
   if (isActive)
@@ -27,29 +21,7 @@ const ShoppingCart = ({ className }) => {
           <h3 className={styles.shoppingCart__title}>Lista de Productos</h3>
 
           <div>
-            <ul>
-              {shoppingCart.map((product, index) => (
-                <li key={product.nombre + product.denominacion}>
-                  <span>{index + 1}</span>
-                  <span>{product.nombre}</span>
-                  <span>{product.denominacion}</span>
-
-                  <span>{product.cantidad}</span>
-
-                  <button
-                    type="button"
-                    onClick={() =>
-                      dispatch({
-                        type: actionType.DELETE_PRODUCT,
-                        payload: index,
-                      })
-                    }
-                  >
-                    borrar
-                  </button>
-                </li>
-              ))}
-            </ul>
+            <ShoppingCartGrid></ShoppingCartGrid>
           </div>
         </div>
       </div>
