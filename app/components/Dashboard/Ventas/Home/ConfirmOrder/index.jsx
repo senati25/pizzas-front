@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { Fragment } from 'react';
+import useCheckoutDashboard from '../../../../../hooks/useCheckoutDashboard';
 import { useOrderState } from '../shared/OrderContext';
 import ShoppingCartGrid from '../shared/ShoppingCartGrid';
 import styles from './styles.module.css';
@@ -8,6 +9,9 @@ const ConfirmOrder = ({ className, title }) => {
   const {
     state: { formValues, shoppingCart },
   } = useOrderState();
+
+  const { handleCreateOrder } = useCheckoutDashboard();
+
   return (
     <div className={className}>
       {title}
@@ -30,10 +34,14 @@ const ConfirmOrder = ({ className, title }) => {
               ))}
             </div>
           </div>
+
           <button
             className={styles.form__button}
             type="button"
-            onClick={() => console.table(shoppingCart, formValues)}
+            onClick={(e) => {
+              handleCreateOrder(e, formValues, shoppingCart);
+              console.table();
+            }}
           >
             Confirmar
           </button>

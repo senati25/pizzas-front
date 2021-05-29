@@ -68,7 +68,7 @@ export const orderReducer = (state, action) => {
       };
 
     case actionType.RESET_FORM:
-      return { ...state, initialStateForm };
+      return { ...state, formValues: { ...initialStateForm } };
 
     case actionType.SET_FORM_VALUES:
       return { ...state, formValues: { ...action.payload } };

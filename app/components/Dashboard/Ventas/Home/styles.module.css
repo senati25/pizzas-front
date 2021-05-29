@@ -29,22 +29,21 @@
 }
 
 .step {
-  opacity: 0;
-  transition: all 0.5s ease-in-out;
   padding: 2rem;
-  left: -200vw;
+  bottom: -200vw;
   bottom: 0;
   position: absolute;
+  display: none;
+}
+
+.stepActive {
+  display: unset;
+  position: unset;
 }
 
 .stepsList__title {
   font-size: 1.3rem;
   margin: 1rem 0;
-}
-
-.stepActive {
-  position: unset;
-  opacity: 1;
 }
 
 .shoppingCartList {

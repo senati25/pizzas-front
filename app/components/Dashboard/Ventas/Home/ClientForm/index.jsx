@@ -8,7 +8,7 @@ import styles from './styles.module.css';
 
 const ClientForm = ({ className, title }) => {
   const {
-    state: { formValues, submitDisabled },
+    state: { formValues },
     dispatch,
     actionType,
   } = useOrderState();
@@ -102,18 +102,13 @@ const ClientForm = ({ className, title }) => {
 
               <button
                 className={styles.form__button}
-                onClick={formik.handleReset}
+                onClick={(e) => {
+                  formik.handleReset(e);
+                  dispatch({ type: actionType.RESET_FORM });
+                }}
                 type="button"
               >
                 Reset
-              </button>
-
-              <button
-                className={styles.form__button}
-                disabled={submitDisabled}
-                type="submit"
-              >
-                Guardar cambios
               </button>
             </Form>
           );

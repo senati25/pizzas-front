@@ -19,7 +19,8 @@ const SelectProducts = ({ className, title }) => {
 
   if (!ventas?.products)
     return (
-      <div className={styles.spinnerWrapper}>
+      <div className={`${className} ${styles.spinnerWrapper}`}>
+        {title}
         <SpinnerDashboard />
       </div>
     );
