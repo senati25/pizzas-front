@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ClientForm from './ClientForm';
+import ConfirmOrder from './ConfirmOrder';
 import SelectProducts from './SelectProducts';
 import Stepper from './SelectProducts/Stepper';
 import { OrderStateProvider } from './shared/OrderContext';
@@ -30,9 +31,12 @@ const Ventas = () => {
             stepsList[currentStep] === stepsList[0] && styles.stepActive
           }`}
           title={
-            <h2 className={styles.stepsList__title}>
-              {stepsList[currentStep]}
-            </h2>
+            <>
+              <h2 className={styles.stepsList__title}>
+                {stepsList[currentStep]}
+                <hr />
+              </h2>
+            </>
           }
         />
 
@@ -41,26 +45,32 @@ const Ventas = () => {
             stepsList[currentStep] === stepsList[1] && styles.stepActive
           }`}
           title={
-            <h2 className={styles.stepsList__title}>
-              {stepsList[currentStep]}
-            </h2>
+            <>
+              <h2 className={styles.stepsList__title}>
+                {stepsList[currentStep]}
+                <hr />
+              </h2>
+            </>
           }
         />
 
-        <div
+        <ConfirmOrder
           className={`${styles.step} ${
             stepsList[currentStep] === stepsList[2] && styles.stepActive
           }`}
           title={
-            <h2 className={styles.stepsList__title}>
-              {stepsList[currentStep]}
-            </h2>
+            <>
+              <h2 className={styles.stepsList__title}>
+                {stepsList[currentStep]}
+                <hr />
+              </h2>
+            </>
           }
-        >
-          Step 3
-        </div>
+        />
 
-        <ShoppingCart className={styles.shoppingCartList} />
+        {currentStep !== 2 && (
+          <ShoppingCart className={styles.shoppingCartList} />
+        )}
       </div>
     </OrderStateProvider>
   );
