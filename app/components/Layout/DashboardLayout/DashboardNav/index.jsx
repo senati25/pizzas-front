@@ -10,6 +10,28 @@ const DashboardNav = memo(() => {
   } = useSessionDashboardContext();
   const { pathname } = useRouter();
 
+  if (rutas.length === 1)
+    return (
+      <nav className={styles.dashboardNav}>
+        {rutas[0].subrutas.map((subruta) => (
+          <Link
+            key={subruta.denominacion}
+            href={`/dashboard/${rutas[0].raiz}/${subruta.nombre}`}
+          >
+            <a
+              className={`${styles.dashboardNav__link} ${
+                pathname.includes(`/${rutas[0].raiz}/${subruta.nombre}`) &&
+                styles.dashboardNav__link__active
+              } `}
+            >
+              {subruta.denominacion.charAt(0).toUpperCase() +
+                subruta.denominacion.slice(1)}
+            </a>
+          </Link>
+        ))}
+      </nav>
+    );
+
   return (
     <nav className={styles.dashboardNav}>
       {rutas.map((ruta) => (
@@ -24,13 +46,12 @@ const DashboardNav = memo(() => {
           {ruta.subrutas.map((subruta) => (
             <Link
               key={subruta.denominacion}
-              href={`/dashboard/${ruta.raiz}/${subruta.denominacionIngles}`}
+              href={`/dashboard/${ruta.raiz}/${subruta.nombre}`}
             >
               <a
                 className={`${styles.dashboardNav__link} ${
-                  pathname.includes(
-                    `/${ruta.raiz}/${subruta.denominacionIngles}`
-                  ) && styles.dashboardNav__link__active
+                  pathname.includes(`/${ruta.raiz}/${subruta.nombre}`) &&
+                  styles.dashboardNav__link__active
                 } `}
               >
                 {subruta.denominacion.charAt(0).toUpperCase() +

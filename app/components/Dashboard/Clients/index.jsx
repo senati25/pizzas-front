@@ -3,15 +3,17 @@ import useDashboardContext from '../../../hooks/useDashboardContext';
 import ClientsTable from './ClientTable';
 import SpinnerDashboard from '../../shared/SpinnerDashboard';
 import styles from './style.module.css';
+import ContentLayout from '../../shared/ContentLayout';
+import HeaderPageDashboard from '../../shared/HeaderPageDashboard';
 
 const Clients = () => {
   const dashboardContext = useDashboardContext();
 
   return (
-    <>
+    <ContentLayout>
+      <HeaderPageDashboard title="Clientes" />
       {dashboardContext?.administrador?.clients ? (
-        <div className={styles.categories}>
-          <h1 className={styles.categories__title}>Clientes</h1>
+        <div className={styles.table__wrapper}>
           <Link href="clients/new">
             <a className={styles.categories__link}>Nuevo</a>
           </Link>
@@ -20,7 +22,7 @@ const Clients = () => {
       ) : (
         <SpinnerDashboard />
       )}
-    </>
+    </ContentLayout>
   );
 };
 

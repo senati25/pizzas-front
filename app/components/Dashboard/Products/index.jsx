@@ -5,15 +5,17 @@ import ProductsTable from './ProductsTable';
 import SpinnerDashboard from '../../shared/SpinnerDashboard';
 
 import styles from './style.module.css';
+import ContentLayout from '../../shared/ContentLayout';
+import HeaderPageDashboard from '../../shared/HeaderPageDashboard';
 
 const Products = () => {
   const dashboardContext = useDashboardContext();
 
   return (
-    <>
+    <ContentLayout>
+      <HeaderPageDashboard title="Productos" />
       {dashboardContext?.administrador?.products ? (
-        <div className={styles.categories}>
-          <h1 className={styles.categories__title}>Productos</h1>
+        <div className={styles.table__wrapper}>
           <Link href="products/new">
             <a className={styles.categories__link}>Nuevo</a>
           </Link>
@@ -22,7 +24,7 @@ const Products = () => {
       ) : (
         <SpinnerDashboard />
       )}
-    </>
+    </ContentLayout>
   );
 };
 

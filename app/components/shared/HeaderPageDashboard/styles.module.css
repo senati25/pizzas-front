@@ -1,0 +1,12 @@
+.header {
+  min-height: 10rem;
+  background: linear-gradient(to right, #1b2330 0%, #252f3e 100%);
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  position: relative;
+}
+.title {
+  font-size: 1.8rem;
+  color: #fff;
+}

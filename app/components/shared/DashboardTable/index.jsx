@@ -30,7 +30,7 @@ const DashboardTable = ({ columns, data }) => {
     state: { pageIndex, pageSize },
   } = tableInstance;
   return (
-    <div>
+    <>
       <table {...getTableProps()} className={styles.customTable}>
         <thead>
           {headerGroups.map((headerGroup) => (
@@ -65,8 +65,9 @@ const DashboardTable = ({ columns, data }) => {
         </tbody>
       </table>
 
-      <div className="pagination">
+      <div className={styles.pagination}>
         <button
+          className={styles.pagination__button}
           type="button"
           onClick={() => gotoPage(0)}
           disabled={!canPreviousPage}
@@ -74,6 +75,7 @@ const DashboardTable = ({ columns, data }) => {
           {'<<'}
         </button>{' '}
         <button
+          className={styles.pagination__button}
           type="button"
           onClick={() => previousPage()}
           disabled={!canPreviousPage}
@@ -81,6 +83,7 @@ const DashboardTable = ({ columns, data }) => {
           {'<'}
         </button>{' '}
         <button
+          className={styles.pagination__button}
           type="button"
           onClick={() => nextPage()}
           disabled={!canNextPage}
@@ -88,6 +91,7 @@ const DashboardTable = ({ columns, data }) => {
           {'>'}
         </button>{' '}
         <button
+          className={styles.pagination__button}
           type="button"
           onClick={() => gotoPage(pageCount - 1)}
           disabled={!canNextPage}
@@ -103,6 +107,7 @@ const DashboardTable = ({ columns, data }) => {
         <span>
           | Go to page:{' '}
           <input
+            className={styles.pagination__input}
             type="number"
             defaultValue={pageIndex + 1}
             onChange={(e) => {
@@ -113,6 +118,7 @@ const DashboardTable = ({ columns, data }) => {
           />
         </span>{' '}
         <select
+          className={styles.pagination__select}
           value={pageSize}
           onChange={(e) => {
             setPageSize(Number(e.target.value));
@@ -120,12 +126,12 @@ const DashboardTable = ({ columns, data }) => {
         >
           {[10, 20, 30, 40, 50].map((pz) => (
             <option key={pz} value={pz}>
-              Show {pz}
+              Ver {pz}
             </option>
           ))}
         </select>
       </div>
-    </div>
+    </>
   );
 };
 

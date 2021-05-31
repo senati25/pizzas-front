@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import ContentLayout from '../../../shared/ContentLayout';
+import HeaderPageDashboard from '../../../shared/HeaderPageDashboard';
 import ClientForm from './ClientForm';
 import ConfirmOrder from './ConfirmOrder';
 import SelectProducts from './SelectProducts';
@@ -14,17 +16,15 @@ const Ventas = () => {
 
   return (
     <OrderStateProvider>
-      <div className={styles.ventas}>
-        <header className={styles.header}>
-          <h1 className={styles.title}>Nueva venta</h1>
-
+      <ContentLayout>
+        <HeaderPageDashboard title="Nueva venta">
           <Stepper
             className={styles.stepper}
             currentStep={currentStep}
             setCurrentStep={setCurrentStep}
             stepsList={stepsList}
           />
-        </header>
+        </HeaderPageDashboard>
 
         <SelectProducts
           className={`${styles.step} ${
@@ -39,7 +39,6 @@ const Ventas = () => {
             </>
           }
         />
-
         <ClientForm
           className={`${styles.step} ${
             stepsList[currentStep] === stepsList[1] && styles.stepActive
@@ -53,7 +52,6 @@ const Ventas = () => {
             </>
           }
         />
-
         <ConfirmOrder
           className={`${styles.step} ${
             stepsList[currentStep] === stepsList[2] && styles.stepActive
@@ -67,11 +65,10 @@ const Ventas = () => {
             </>
           }
         />
-
         {currentStep !== 2 && (
           <ShoppingCart className={styles.shoppingCartList} />
         )}
-      </div>
+      </ContentLayout>
     </OrderStateProvider>
   );
 };

@@ -6,7 +6,7 @@ table.customTable {
   border-color: #e0e0e0;
   border-style: solid;
   color: #000000;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   overflow: hidden;
   box-shadow: 0 0 5px #232c3b;
 }
@@ -16,10 +16,33 @@ table.customTable th {
   border-width: 1px;
   border-color: #e0e0e0;
   border-style: solid;
-  padding: 7px;
+  padding: 0.3rem 0.5rem;
 }
 
 table.customTable thead {
   font-weight: bold;
   background-color: #f6f7f9;
+}
+
+.pagination {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  column-gap: 0.5rem;
+}
+
+.pagination__button {
+  font-family: Lemonada, cursive;
+  font-size: 1rem;
+}
+
+.pagination__input {
+  border: 1px solid #000;
+  height: 100%;
+  padding: 0.1rem 0 0.1rem 0.5rem;
+}
+
+.pagination__select {
+  border: 1px solid #000;
 }
