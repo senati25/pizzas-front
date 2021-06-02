@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import OrderDetails from '../../../../app/components/Dashboard/Ventas/Orders/OrderDetails';
+import OrderDetails from '../../../../app/components/Dashboard/Sales/Orders/OrderDetails';
 
 const orderDetails = () => (
   <>
