@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { useRouter } from 'next/router';
 
 import DashboardTable from '../../../shared/DashboardTable';
-import styles from '../style.module.css';
+import styles from './styles.module.css';
 import useClients from '../../../../hooks/useClients';
 
 const Actions = ({ original, handleDeleteClient }) => {
@@ -51,6 +51,7 @@ const ClientsTable = ({ clients }) => {
 
   return (
     <DashboardTable
+      buttonPathname="/dashboard/administrador/clients/new"
       columns={useMemo(() => {
         let headers = [];
         if (clients.length) {

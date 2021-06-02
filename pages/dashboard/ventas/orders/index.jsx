@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import OrdersWrapper from '../../../app/components/Dashboard/Ventas/Orders';
+import OrdersWrapper from '../../../../app/components/Dashboard/Ventas/Orders';
 
 const orders = () => (
   <>

@@ -14,6 +14,13 @@ const OrderRepository = {
     const data = await response.json();
     return data;
   },
+
+  getById: async (orderId) => {
+    const response = await fetch(`${ROUTES.api}/dashboard/pedido/${orderId}`);
+
+    const data = await response.json();
+    return data;
+  },
 };
 
 export default OrderRepository;

@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import DashboardTable from '../../../shared/DashboardTable';
-import styles from '../style.module.css';
+import styles from './styles.module.css';
 import useProducts from '../../../../hooks/useProducts';
 
 const Actions = ({ original, handleDeleteProduct }) => {
@@ -49,6 +49,7 @@ const ProductsTable = ({ products }) => {
 
   return (
     <DashboardTable
+      buttonPathname="/dashboard/administrador/products/new"
       columns={useMemo(() => {
         let headers = [];
         if (products.length) {

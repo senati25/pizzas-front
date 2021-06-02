@@ -9,14 +9,12 @@ const Actions = ({ original, handleDeleteCategory }) => {
     <div className={styles.actions}>
       <button
         onClick={() => {
-          router.push({
-            pathname: `/dashboard/administrador/categories/${original.id}`,
-            query: original,
-          });
+          router.push(`/dashboard/ventas/orders/${original.id}`);
         }}
         type="button"
       >
-        <i className="fas fa-edit fa-lg"></i>
+        {/* <i className="fas fa-edit fa-lg"></i> */}
+        <i className="fas fa-eye fa-lg"></i>
       </button>
       <button
         onClick={() => {

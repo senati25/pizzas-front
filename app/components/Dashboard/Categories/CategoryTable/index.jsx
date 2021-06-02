@@ -11,6 +11,7 @@ const CategoryTable = ({ categories }) => {
 
   return (
     <DashboardTable
+      buttonPathname="/dashboard/administrador/categories/new"
       columns={useMemo(() => {
         let headers = [];
         if (categories.length) {

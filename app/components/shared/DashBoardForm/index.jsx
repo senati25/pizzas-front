@@ -8,7 +8,7 @@ const DashboardForm = ({ children, title, handleSubmit, onCancel }) => (
     autoComplete="off"
     className={styles.dashboardForm}
   >
-    <h1 className={styles.dashboardForm__title}>{title}</h1>
+    {title && <h1 className={styles.dashboardForm__title}>{title}</h1>}
 
     <div className={styles.form__content}>
       {Children.map(children, (child) => (
@@ -17,7 +17,6 @@ const DashboardForm = ({ children, title, handleSubmit, onCancel }) => (
         </>
       ))}
     </div>
-
     <div className={styles.dashboardForm__buttonsGroup}>
       <button className={styles.buttonsGroup__save} type="submit">
         Guardar
@@ -34,13 +33,15 @@ const DashboardForm = ({ children, title, handleSubmit, onCancel }) => (
   </form>
 );
 
+DashboardForm.defaultProps = { title: null };
+
 const elementOrArrayOfElementPropType = PropTypes.oneOfType([
   PropTypes.arrayOf(PropTypes.element),
   PropTypes.element,
 ]);
 
 DashboardForm.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(elementOrArrayOfElementPropType),
     elementOrArrayOfElementPropType,

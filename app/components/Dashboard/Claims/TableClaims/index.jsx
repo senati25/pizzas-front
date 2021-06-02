@@ -2,9 +2,9 @@
 import PropTypes from 'prop-types';
 import { useMemo } from 'react';
 import { useRouter } from 'next/router';
-import styles from '../style.module.css';
 import DashboardTable from '../../../shared/DashboardTable';
 import useReclamo from '../../../../hooks/useReclamo';
+import styles from './styles.module.css';
 
 const Actions = ({ original, handleDeleteClaim }) => {
   const router = useRouter();

@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import DashboardTable from '../../../shared/DashboardTable';
-import styles from '../style.module.css';
+import styles from './styles.module.css';
 import useUsers from '../../../../hooks/useUsers';
 
 const Actions = ({ original, deleteItem }) => {
@@ -50,6 +50,7 @@ const UsersTable = ({ users }) => {
   const { deleteItem } = useUsers();
   return (
     <DashboardTable
+      buttonPathname="/dashboard/administrador/users/new"
       columns={useMemo(() => {
         let headers = [];
         if (users.length) {

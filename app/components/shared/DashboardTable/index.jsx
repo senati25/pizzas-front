@@ -1,15 +1,56 @@
 /* eslint-disable react/prop-types */
-// import PropTypes from 'prop-types';
-import { useTable, usePagination } from 'react-table';
+import Link from 'next/link';
+import PropTypes from 'prop-types';
+import { useState } from 'react';
+import {
+  useTable,
+  usePagination,
+  useGlobalFilter,
+  useFilters,
+  useAsyncDebounce,
+} from 'react-table';
 import styles from './styles.module.css';
 
-const DashboardTable = ({ columns, data }) => {
+function GlobalFilter({
+  preGlobalFilteredRows,
+  globalFilter,
+  setGlobalFilter,
+}) {
+  const count = preGlobalFilteredRows.length;
+  const [value, setValue] = useState(globalFilter);
+  const onChange = useAsyncDebounce((val) => {
+    setGlobalFilter(val || undefined);
+  }, 200);
+
+  return (
+    <div className={styles.table__search}>
+      <label htmlFor="search">
+        Buscar:
+        <input
+          name="search"
+          id="search"
+          type="search"
+          value={value || ''}
+          onChange={(e) => {
+            setValue(e.target.value);
+            onChange(e.target.value);
+          }}
+          placeholder={`${count} records...`}
+        />
+      </label>
+    </div>
+  );
+}
+
+const DashboardTable = ({ columns, data, buttonPathname }) => {
   const tableInstance = useTable(
     {
       columns,
       data,
       initialState: { pageIndex: 0 },
     },
+    useGlobalFilter,
+    useFilters,
     usePagination
   );
 
@@ -27,10 +68,26 @@ const DashboardTable = ({ columns, data }) => {
     nextPage,
     previousPage,
     setPageSize,
-    state: { pageIndex, pageSize },
+    state: { pageIndex, pageSize, globalFilter },
+    // visibleColumns,
+    preGlobalFilteredRows,
+    setGlobalFilter,
   } = tableInstance;
   return (
-    <>
+    <div className={styles.table__wrapper}>
+      <div className={styles.table__interactive}>
+        <GlobalFilter
+          preGlobalFilteredRows={preGlobalFilteredRows}
+          globalFilter={globalFilter}
+          setGlobalFilter={setGlobalFilter}
+        />
+
+        {buttonPathname && (
+          <Link href={`${buttonPathname}`}>
+            <a className={styles.table__button}>Nuevo</a>
+          </Link>
+        )}
+      </div>
       <table {...getTableProps()} className={styles.customTable}>
         <thead>
           {headerGroups.map((headerGroup) => (
@@ -40,6 +97,21 @@ const DashboardTable = ({ columns, data }) => {
               ))}
             </tr>
           ))}
+
+          {/* <tr>
+            <th
+              colSpan={visibleColumns.length}
+              style={{
+                textAlign: 'left',
+              }}
+            >
+              <GlobalFilter
+                preGlobalFilteredRows={preGlobalFilteredRows}
+                globalFilter={globalFilter}
+                setGlobalFilter={setGlobalFilter}
+              />
+            </th>
+          </tr> */}
         </thead>
         <tbody {...getTableBodyProps()}>
           {page.map((row) => {
@@ -64,7 +136,6 @@ const DashboardTable = ({ columns, data }) => {
           })} */}
         </tbody>
       </table>
-
       <div className={styles.pagination}>
         <button
           className={styles.pagination__button}
@@ -131,32 +202,16 @@ const DashboardTable = ({ columns, data }) => {
           ))}
         </select>
       </div>
-    </>
+    </div>
   );
 };
 
-// DashboardTable.defaultProps = {
-//   data: [
-//     {
-//       denominacion: '',
-//     },
-//   ],
-// };
+DashboardTable.defaultProps = { buttonPathname: null };
 
-// DashboardTable.propTypes = {
-//   columns: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       Header: PropTypes.string.isRequired,
-//       accessor: PropTypes.string.isRequired,
-//     })
-//   ).isRequired,
-//   data: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.number.isRequired,
-//       denominacion: PropTypes.string,
-//       estado: PropTypes.string.isRequired,
-//     }).isRequired
-//   ).isRequired,
-// };
+DashboardTable.propTypes = {
+  columns: PropTypes.oneOfType([PropTypes.array.isRequired]).isRequired,
+  data: PropTypes.oneOfType([PropTypes.array.isRequired]).isRequired,
+  buttonPathname: PropTypes.string,
+};
 
 export default DashboardTable;

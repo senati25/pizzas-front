@@ -1,7 +1,11 @@
 .dashboardForm {
+  margin: 3rem 0;
+  align-self: center;
+  justify-self: center;
+  width: max-content;
   box-shadow: 0 0 3px rgb(27, 35, 48);
   padding: 2.5rem;
-  border-radius: 2rem;
+  border-radius: 1rem;
   display: flex;
   flex-direction: column;
 }

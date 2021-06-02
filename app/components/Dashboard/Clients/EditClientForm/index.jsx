@@ -1,7 +1,9 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import useClients from '../../../../hooks/useClients';
+import ContentLayout from '../../../shared/ContentLayout';
 import DashboardForm from '../../../shared/DashBoardForm';
+import HeaderPageDashboard from '../../../shared/HeaderPageDashboard';
 import SpinnerDashboard from '../../../shared/SpinnerDashboard';
 
 const EditClientForm = () => {
@@ -21,12 +23,9 @@ const EditClientForm = () => {
   if (isLoading) return <SpinnerDashboard />;
 
   return (
-    <>
-      <DashboardForm
-        handleSubmit={handleSubmitEdit}
-        title="Editar Cliente"
-        onCancel={router.back}
-      >
+    <ContentLayout>
+      <HeaderPageDashboard title="Editar Cliente" />
+      <DashboardForm handleSubmit={handleSubmitEdit} onCancel={router.back}>
         <input
           onChange={handleOnChange}
           type="text"
@@ -83,7 +82,7 @@ const EditClientForm = () => {
           <option value="baja">Baja</option>
         </select>
       </DashboardForm>
-    </>
+    </ContentLayout>
   );
 };
 

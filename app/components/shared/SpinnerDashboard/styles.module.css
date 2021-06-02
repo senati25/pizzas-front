@@ -1,4 +1,5 @@
 .spinner {
+  align-self: center;
   width: 10rem;
   height: 10rem;
   display: flex;
@@ -6,7 +7,6 @@
   align-items: center;
   background: #fff;
   border-radius: 100%;
-  width: 100%;
   margin: 4rem;
 }
 
