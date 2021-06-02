@@ -20,7 +20,6 @@ const SelectProducts = ({ className, title }) => {
   if (!ventas?.products)
     return (
       <div className={`${className} ${styles.spinnerWrapper}`}>
-        {title}
         <SpinnerDashboard />
       </div>
     );
