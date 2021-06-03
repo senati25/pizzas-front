@@ -28,10 +28,16 @@ import groupProductsAndCategories from '../../helpers/groupProductsAndCategories
 const DashboardProvider = ({ children }) => {
   const { session } = useSessionDashboardContext();
   const [state, setState] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleRefresh = async () => {
+    setIsLoading(true);
+
     const data = await UserRepository.sectionData(session?.rol);
-    if (!data.error) await setState(data.payload);
+    if (!data.error) {
+      setIsLoading(false);
+      setState(data.payload);
+    }
   };
 
   useEffect(() => {
@@ -41,12 +47,14 @@ const DashboardProvider = ({ children }) => {
   return (
     <DashboardContext.Provider
       value={{
-        administrador: state.administrador,
+        administrador: { ...state.administrador },
         ventas: {
           ...state.ventas,
           ...groupProductsAndCategories(state.ventas?.products),
         },
+        cocina: { ...state.cocina },
         refreshData: useCallback(() => handleRefresh(), []),
+        isLoading,
       }}
     >
       {children}

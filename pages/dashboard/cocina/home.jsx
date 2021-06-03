@@ -1,12 +1,12 @@
 import Head from 'next/head';
-import Kitchen from '../../../app/components/Dashboard/Kitchen';
+import HomeWrapper from '../../../app/components/Dashboard/Kitchen/Home';
 
 const home = () => (
   <>
     <Head>
       <title>Inviaggio Dashboard | Cocina</title>
     </Head>
-    <Kitchen />
+    <HomeWrapper />
   </>
 );
 
