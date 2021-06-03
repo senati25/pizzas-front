@@ -21,6 +21,19 @@ const OrderRepository = {
     const data = await response.json();
     return data;
   },
+
+  updateStatus: async (orderId, statusId) => {
+    const response = await fetch(
+      `${ROUTES.api}/dashboard/pedido/${orderId}/actualizarEstado`,
+      {
+        method: 'PATCH',
+        body: JSON.stringify({ statusId }),
+        headers: { 'Content-Type': 'application/json' },
+      }
+    );
+    const data = await response.json();
+    return data;
+  },
 };
 
 export default OrderRepository;
