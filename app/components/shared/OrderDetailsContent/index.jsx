@@ -79,6 +79,10 @@ const OrderDetailsContent = ({
   );
 };
 
+OrderDetailsContent.defaultProps = {
+  nextStatus: null,
+};
+
 OrderDetailsContent.propTypes = {
   order: PropTypes.shape({
     id: PropTypes.number.isRequired,
@@ -93,7 +97,7 @@ OrderDetailsContent.propTypes = {
     total: PropTypes.number.isRequired,
   }).isRequired,
   handleUpdateOrderStatus: PropTypes.func.isRequired,
-  nextStatus: PropTypes.number.isRequired,
+  nextStatus: PropTypes.number,
   orderStatus: PropTypes.oneOfType([PropTypes.array.isRequired]).isRequired,
 };
 

@@ -46,10 +46,9 @@ const useCheckoutDashboard = () => {
 
       if (!data.error) {
         await refreshData();
-        router.push(`/dashboard/ventas/home`);
+        router.push(`/dashboard/ventas/orders/${payload.id}`);
       }
     }
-
     if (_isMounted) setIsLoading(false);
   };
 

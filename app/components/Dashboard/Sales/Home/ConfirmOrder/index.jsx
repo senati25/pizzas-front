@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { Fragment } from 'react';
 import useCheckoutDashboard from '../../../../../hooks/useCheckoutDashboard';
+import SpinnerDashboard from '../../../../shared/SpinnerDashboard';
 import { useOrderState } from '../shared/OrderContext';
 import ShoppingCartGrid from '../shared/ShoppingCartGrid';
 import styles from './styles.module.css';
@@ -10,7 +11,9 @@ const ConfirmOrder = ({ className, title }) => {
     state: { formValues, shoppingCart },
   } = useOrderState();
 
-  const { handleCreateOrder } = useCheckoutDashboard();
+  const { handleCreateOrder, isLoading } = useCheckoutDashboard();
+
+  if (isLoading) return <SpinnerDashboard />;
 
   return (
     <div className={className}>
@@ -40,7 +43,6 @@ const ConfirmOrder = ({ className, title }) => {
             type="button"
             onClick={(e) => {
               handleCreateOrder(e, formValues, shoppingCart);
-              console.table();
             }}
           >
             Confirmar
