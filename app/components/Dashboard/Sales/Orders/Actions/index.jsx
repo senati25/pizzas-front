@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import styles from './styles.module.css';
 
-const Actions = ({ original, handleDeleteCategory }) => {
+const Actions = ({ original }) => {
   const router = useRouter();
 
   return (
@@ -13,16 +13,7 @@ const Actions = ({ original, handleDeleteCategory }) => {
         }}
         type="button"
       >
-        {/* <i className="fas fa-edit fa-lg"></i> */}
         <i className="fas fa-eye fa-lg"></i>
-      </button>
-      <button
-        onClick={() => {
-          handleDeleteCategory(original.id);
-        }}
-        type="button"
-      >
-        <i className="fas fa-trash-alt fa-lg"></i>
       </button>
     </div>
   );
@@ -31,10 +22,7 @@ const Actions = ({ original, handleDeleteCategory }) => {
 Actions.propTypes = {
   original: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    denominacion: PropTypes.string.isRequired,
-    estado: PropTypes.string.isRequired,
   }).isRequired,
-  handleDeleteCategory: PropTypes.func.isRequired,
 };
 
 export default Actions;

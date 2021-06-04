@@ -39,9 +39,7 @@ const Orders = () => {
                 cell: {
                   row: { original },
                 },
-              }) => (
-                <Actions original={original} handleDeleteCategory={() => {}} />
-              ),
+              }) => <Actions original={original} />,
             },
           ];
         }, [orders])}

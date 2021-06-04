@@ -50,7 +50,7 @@ const DashboardProvider = ({ children }) => {
         administrador: { ...state.administrador },
         ventas: {
           ...state.ventas,
-          ...groupProductsAndCategories(state.ventas?.products),
+          ...groupProductsAndCategories(state?.ventas?.products),
         },
         cocina: { ...state.cocina },
         reparto: { ...state.reparto },
