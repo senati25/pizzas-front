@@ -1,21 +1,15 @@
 import { Fragment } from 'react';
 import PropTypes from 'prop-types';
-
 import OrderDetailsTable from '../OrderDetailsTable';
-
 import styles from './styles.module.css';
-import useDashboardContext from '../../../hooks/useDashboardContext';
 
 const OrderDetailsContent = ({
   order,
   handleUpdateOrderStatus,
+  orderStatus,
   nextStatus,
 }) => {
-  const {
-    cocina: { orderStatus = [] },
-  } = useDashboardContext();
-
-  const status = orderStatus.find(({ id }) => nextStatus === id);
+  const status = orderStatus.find(({ id }) => id === nextStatus);
 
   const details = {
     fecha: order.fecha,
@@ -100,6 +94,7 @@ OrderDetailsContent.propTypes = {
   }).isRequired,
   handleUpdateOrderStatus: PropTypes.func.isRequired,
   nextStatus: PropTypes.number.isRequired,
+  orderStatus: PropTypes.oneOfType([PropTypes.array.isRequired]).isRequired,
 };
 
 export default OrderDetailsContent;

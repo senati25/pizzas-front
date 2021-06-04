@@ -53,6 +53,7 @@ const DashboardProvider = ({ children }) => {
           ...groupProductsAndCategories(state.ventas?.products),
         },
         cocina: { ...state.cocina },
+        reparto: { ...state.reparto },
         refreshData: useCallback(() => handleRefresh(), []),
         isLoading,
       }}

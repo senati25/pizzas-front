@@ -7,13 +7,14 @@ import SpinnerDashboard from '../../../shared/SpinnerDashboard';
 import OrderDetailsContent from '../../../shared/OrderDetailsContent';
 import useDashboardContext from '../../../../hooks/useDashboardContext';
 
-const nextStatusList = { 1: 2, 2: 3 };
+const nextStatusList = { 3: 6, 6: 5 };
 
 const OrderDetails = () => {
   const router = useRouter();
   const {
-    cocina: { orderStatus = [] },
+    reparto: { orderStatus = [] },
   } = useDashboardContext();
+
   const { getDetails, order, isLoading, handleUpdateOrderStatus } = useOrders();
 
   const nextStatus = nextStatusList[order.estado_pedido_id];

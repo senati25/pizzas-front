@@ -5,6 +5,7 @@ import DashboardContext from '../context/DashboardContext';
  * administrador: [],
  * ventas: [],
  * cocina: [],
+ * reparto: [],
  * refreshData: function
  * isLoading: boolean
  * }}
