@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import ClientRepository from '../../api/ClientRepository';
+// import ClientRepository from '../../api/ClientRepository';
 import OrderRepository from '../../api/OrderRepository';
 import useDashboardContext from './useDashboardContext';
 
@@ -20,35 +20,36 @@ const useCheckoutDashboard = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    const { error, payload } = await ClientRepository.create({
-      ...formValues,
-      password: `${formValues.dni}drT`,
+    // const { error, payload } = await ClientRepository.create({
+    //   ...formValues,
+    //   password: `${formValues.dni}drT`,
+    // });
+
+    // if (!error) {
+    const details = shoppingCart.map((product) => ({
+      cantidad: product.cantidad,
+      precio_unidad: product.variedades.find(
+        ({ denominacion }) => denominacion === product.variedad
+      ).precio,
+      producto_id: product.id,
+      variedad: product.variedad,
+    }));
+
+    const data = await OrderRepository.create({
+      // cliente_id: payload.id,
+      cliente: formValues,
+      tipo: 'presencial',
+      detalles: details,
+      mensaje: message,
     });
 
-    if (!error) {
-      const details = shoppingCart.map((product) => ({
-        cantidad: product.cantidad,
-        precio_unidad: product.variedades.find(
-          ({ denominacion }) => denominacion === product.variedad
-        ).precio,
-        producto_id: product.id,
-        variedad: product.variedad,
-      }));
+    console.log(data);
 
-      const data = await OrderRepository.create({
-        cliente_id: payload.id,
-        tipo: 'presencial',
-        detalles: details,
-        mensaje: message,
-      });
-
-      console.log(data);
-
-      if (!data.error) {
-        await refreshData();
-        router.push(`/dashboard/ventas/orders/${payload.id}`);
-      }
+    if (!data.error) {
+      await refreshData();
+      router.push(`/dashboard/ventas/orders/${data.payload}`);
     }
+    // }
     if (_isMounted) setIsLoading(false);
   };
 

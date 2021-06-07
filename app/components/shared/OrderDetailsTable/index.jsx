@@ -49,7 +49,6 @@ OrderDetailsTable.propTypes = {
     fecha: PropTypes.string.isRequired,
     mensaje: PropTypes.string,
     tipo: PropTypes.string.isRequired,
-    cliente_id: PropTypes.number.isRequired,
     estado_pedido_id: PropTypes.number.isRequired,
     detalles: PropTypes.oneOfType([PropTypes.array.isRequired]).isRequired,
     total: PropTypes.number.isRequired,

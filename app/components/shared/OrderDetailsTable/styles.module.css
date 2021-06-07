@@ -18,6 +18,7 @@
   border: 2px solid #00000020;
   align-items: center;
   text-align: center;
+  place-self: flex-start;
 }
 
 .grid__header {

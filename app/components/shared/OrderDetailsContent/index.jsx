@@ -19,6 +19,13 @@ const OrderDetailsContent = ({
     estado: order.estado,
   };
 
+  const cliente = {
+    nombre: order?.factura?.cliente_nombre || '',
+    apellido: order?.factura?.cliente_apellido || '',
+    direccion: order?.factura?.cliente_direccion || '',
+    dni: order?.factura?.cliente_dni || '',
+  };
+
   const buttonIsDisabled = nextStatus === order?.estado_pedido_id;
 
   return (
@@ -42,7 +49,7 @@ const OrderDetailsContent = ({
             Detalles <hr />
           </h2>
 
-          <div className={styles.formValues__content}>
+          <div className={styles.grid}>
             {Object.keys(details).map((key) => (
               <Fragment key={key}>
                 {details[key] && (
@@ -62,14 +69,14 @@ const OrderDetailsContent = ({
           <h2 className={styles.info__title}>
             Datos Cliente <hr />
           </h2>
-          <div className={styles.formValues__content}>
-            {Object.keys(order.cliente).map((key) => (
+          <div className={styles.grid}>
+            {Object.keys(cliente).map((key) => (
               <Fragment key={key}>
                 <span className={styles.formValues__key}>
                   {key.charAt(0).toUpperCase() + key.substring(1)}:{' '}
                 </span>
 
-                <span>{order.cliente[key]}</span>
+                <span>{cliente[key]}</span>
               </Fragment>
             ))}
           </div>
@@ -89,12 +96,20 @@ OrderDetailsContent.propTypes = {
     fecha: PropTypes.string.isRequired,
     mensaje: PropTypes.string,
     tipo: PropTypes.string.isRequired,
-    cliente_id: PropTypes.number.isRequired,
     estado_pedido_id: PropTypes.number.isRequired,
-    cliente: PropTypes.oneOfType([PropTypes.object.isRequired]).isRequired,
     estado: PropTypes.string.isRequired,
     detalles: PropTypes.oneOfType([PropTypes.array.isRequired]).isRequired,
     total: PropTypes.number.isRequired,
+    factura: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      fecha: PropTypes.string.isRequired,
+      igv: PropTypes.string.isRequired,
+      cliente_nombre: PropTypes.string.isRequired,
+      cliente_apellido: PropTypes.string.isRequired,
+      cliente_direccion: PropTypes.string.isRequired,
+      cliente_dni: PropTypes.number.isRequired,
+      pedido_id: PropTypes.number.isRequired,
+    }),
   }).isRequired,
   handleUpdateOrderStatus: PropTypes.func.isRequired,
   nextStatus: PropTypes.number,
