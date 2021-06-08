@@ -7,7 +7,7 @@ import SpinnerDashboard from '../../../shared/SpinnerDashboard';
 import OrderDetailsContent from '../../../shared/OrderDetailsContent';
 import useDashboardContext from '../../../../hooks/useDashboardContext';
 
-const nextStatusList = { 3: 6, 6: 5 };
+const nextStatusList = { 3: 4, 4: 5 };
 
 const OrderDetails = () => {
   const router = useRouter();
@@ -15,7 +15,13 @@ const OrderDetails = () => {
     reparto: { orderStatus = [] },
   } = useDashboardContext();
 
-  const { getDetails, order, isLoading, handleUpdateOrderStatus } = useOrders();
+  const {
+    getDetails,
+    order,
+    isLoading,
+    handleUpdateOrderStatus,
+    assignDealer,
+  } = useOrders();
 
   const nextStatus = nextStatusList[order.estado_pedido_id];
 
@@ -32,9 +38,11 @@ const OrderDetails = () => {
       <HeaderPageDashboard title={`Pedido Nº ${order.id}: ${order.estado}`} />
       <OrderDetailsContent
         order={order}
-        handleUpdateOrderStatus={() => {
+        handleUpdateOrderStatus={async () => {
+          if (order.estado_pedido_id === 3) await assignDealer();
           handleUpdateOrderStatus(nextStatus);
         }}
+        // assignDealer={assignDealer}
         orderStatus={orderStatus}
         nextStatus={nextStatus}
       />

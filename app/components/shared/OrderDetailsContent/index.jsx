@@ -40,7 +40,7 @@ const OrderDetailsContent = ({
             onClick={handleUpdateOrderStatus}
             disabled={buttonIsDisabled}
           >
-            {status?.denominacion}
+            {status?.accion}
           </button>
         )}
 
