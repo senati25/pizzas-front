@@ -16,7 +16,7 @@ const AssignedOrders = () => {
     <ContentLayout>
       <HeaderPageDashboard title="Ordenes Asignadas" />
 
-      <OrdersCardGrid orders={assignedOrders} />
+      <OrdersCardGrid orders={assignedOrders} ruta="reparto" />
     </ContentLayout>
   );
 };

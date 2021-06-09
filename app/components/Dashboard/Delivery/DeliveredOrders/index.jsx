@@ -16,7 +16,7 @@ const DeliveredOrders = () => {
     <ContentLayout>
       <HeaderPageDashboard title="Ordenes Entregadas" />
 
-      <OrdersCardGrid orders={deliveredOrders} />
+      <OrdersCardGrid orders={deliveredOrders} ruta="reparto" />
     </ContentLayout>
   );
 };

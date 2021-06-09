@@ -2,8 +2,9 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import styles from './styles.module.css';
 
-const OrdersCardGrid = ({ orders }) => {
+const OrdersCardGrid = ({ orders, ruta }) => {
   const router = useRouter();
+
   return (
     <ul className={styles.grid}>
       {orders.length > 0 &&
@@ -21,7 +22,7 @@ const OrdersCardGrid = ({ orders }) => {
             <button
               type="button"
               onClick={() => {
-                router.push(`/dashboard/reparto/orders/${order.id}`);
+                router.push(`/dashboard/${ruta}/orders/${order.id}`);
               }}
             >
               Ver detalles
@@ -34,6 +35,7 @@ const OrdersCardGrid = ({ orders }) => {
 
 OrdersCardGrid.propTypes = {
   orders: PropTypes.oneOfType([PropTypes.array.isRequired]).isRequired,
+  ruta: PropTypes.string.isRequired,
 };
 
 export default OrdersCardGrid;

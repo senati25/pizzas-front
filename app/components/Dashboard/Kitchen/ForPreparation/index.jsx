@@ -4,9 +4,9 @@ import HeaderPageDashboard from '../../../shared/HeaderPageDashboard';
 import OrdersCardGrid from '../../../shared/OrdersCardGrid';
 import SpinnerDashboard from '../../../shared/SpinnerDashboard';
 
-const OrderReady = () => {
+const ForPreparation = () => {
   const {
-    cocina: { ordersReady = [] },
+    cocina: { ordersForPreparation = [] },
     isLoading,
   } = useDashboardContext();
 
@@ -14,11 +14,11 @@ const OrderReady = () => {
 
   return (
     <ContentLayout>
-      <HeaderPageDashboard title="Ordenes Preparadas" />
+      <HeaderPageDashboard title="Ordenes aprobadas" />
 
-      <OrdersCardGrid orders={ordersReady} ruta="cocina" />
+      <OrdersCardGrid orders={ordersForPreparation} ruta="cocina" />
     </ContentLayout>
   );
 };
 
-export default OrderReady;
+export default ForPreparation;
