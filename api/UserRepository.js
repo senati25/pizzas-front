@@ -37,9 +37,11 @@ const UserRepository = {
     return data;
   },
 
-  sectionData: async (rol) => {
+  sectionData: async (rol, userId) => {
     const response = await fetch(`${ROUTES.api}/dashboard/info/${rol}`, {
-      method: 'get',
+      method: 'POST',
+      body: JSON.stringify({ userId }),
+      headers: { 'Content-Type': 'application/json' },
     });
 
     const data = await response.json();

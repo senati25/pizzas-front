@@ -33,9 +33,10 @@ const DashboardProvider = ({ children }) => {
   const handleRefresh = async () => {
     setIsLoading(true);
 
-    const data = await UserRepository.sectionData(session?.rol);
+    const data = await UserRepository.sectionData(session?.rol, session?.id);
     if (!data.error) {
       setIsLoading(false);
+      console.log(data.payload);
       setState(data.payload);
     }
   };
