@@ -1,15 +1,18 @@
 import { array, object, oneOfType } from 'prop-types';
 import React, { useCallback, useEffect, useState } from 'react';
+import IGVRepository from '../../../api/IGVRepository';
 import ProductRepository from '../../../api/ProductRepository';
 import PublicContext from '../../context/PublicContext';
 import groupProductsAndCategories from '../../helpers/groupProductsAndCategories';
 
 const action = {
   REFRESH_PRODUCTS: 'products',
+  REFRESH_IGV: 'igv',
 };
 
 const get = {
   products: ProductRepository.getAll,
+  igv: IGVRepository.get,
 };
 
 const PublicProvider = ({ children }) => {
@@ -39,6 +42,7 @@ const PublicProvider = ({ children }) => {
       value={{
         ...groupProductsAndCategories(state.products),
         products: state.products,
+        igv: state.igv,
         refreshProducts: useCallback(
           () => handleRefresh(action.REFRESH_PRODUCTS),
           []

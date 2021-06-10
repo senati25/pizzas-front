@@ -6,6 +6,7 @@
   padding: 1rem;
   width: 100%;
   z-index: 2;
+  row-gap: 1rem;
 }
 
 .shopingCart__form textarea {
@@ -16,6 +17,27 @@
   resize: none;
 }
 
+.info__description {
+  font-weight: bold;
+}
+
+.delivery {
+  display: flex;
+  column-gap: 0.5rem;
+}
+
+.price__info {
+  font-size: 1.2rem;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  width: max-content;
+  column-gap: 2rem;
+  row-gap: 0.5rem;
+}
+
+.info__value {
+  text-align: right;
+}
 .form__paragraph {
   text-align: center;
   margin: 1rem 0;
@@ -57,10 +79,5 @@
     position: -webkit-sticky;
     position: sticky;
     top: 6rem;
-  }
-
-  .shopingCart__form textarea {
-    margin-top: 2rem;
-    order: 3;
   }
 }
