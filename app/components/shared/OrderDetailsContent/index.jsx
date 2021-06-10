@@ -17,6 +17,7 @@ const OrderDetailsContent = ({
     total: order.total,
     mensaje: order.mensaje,
     estado: order.estado,
+    delivery: order.delivery === 0 ? 'No' : 'Si',
   };
 
   const cliente = {
@@ -101,6 +102,7 @@ OrderDetailsContent.propTypes = {
     estado: PropTypes.string.isRequired,
     detalles: PropTypes.oneOfType([PropTypes.array.isRequired]).isRequired,
     total: PropTypes.number.isRequired,
+    delivery: PropTypes.number.isRequired,
     factura: PropTypes.shape({
       id: PropTypes.number.isRequired,
       fecha: PropTypes.string.isRequired,

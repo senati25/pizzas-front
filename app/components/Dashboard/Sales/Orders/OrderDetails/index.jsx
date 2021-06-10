@@ -7,12 +7,16 @@ import SpinnerDashboard from '../../../../shared/SpinnerDashboard';
 import OrderDetailsContent from '../../../../shared/OrderDetailsContent';
 import useDashboardContext from '../../../../../hooks/useDashboardContext';
 
+const nextStatusList = { 3: 5 };
+
 const OrderDetails = () => {
   const router = useRouter();
   const {
-    cocina: { orderStatus = [] },
+    ventas: { orderStatus = [] },
   } = useDashboardContext();
-  const { getDetails, order, isLoading } = useOrders();
+  const { getDetails, order, isLoading, handleUpdateOrderStatus } = useOrders();
+
+  const nextStatus = nextStatusList[order.estado_pedido_id];
 
   useEffect(() => {
     if (router.query.id) {
@@ -25,7 +29,14 @@ const OrderDetails = () => {
   return (
     <ContentLayout>
       <HeaderPageDashboard title={`Pedido Nº ${order.id}: ${order.estado}`} />
-      <OrderDetailsContent order={order} orderStatus={orderStatus} />
+      <OrderDetailsContent
+        order={order}
+        orderStatus={orderStatus}
+        handleUpdateOrderStatus={() => {
+          handleUpdateOrderStatus(nextStatus);
+        }}
+        nextStatus={!order.delivery && nextStatus}
+      />
     </ContentLayout>
   );
 };
