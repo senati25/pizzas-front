@@ -16,7 +16,12 @@ const useCheckoutDashboard = () => {
     setMessage(e.target.value);
   };
 
-  const handleCreateOrder = async (e, formValues, shoppingCart) => {
+  const handleCreateOrder = async (
+    e,
+    formValues,
+    isForDelivery,
+    shoppingCart
+  ) => {
     e.preventDefault();
     setIsLoading(true);
 
@@ -36,7 +41,7 @@ const useCheckoutDashboard = () => {
     }));
 
     const data = await OrderRepository.create({
-      // cliente_id: payload.id,
+      delivery: isForDelivery,
       cliente: formValues,
       tipo: 'presencial',
       detalles: details,

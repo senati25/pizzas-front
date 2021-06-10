@@ -17,6 +17,7 @@ const useCheckout = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [_isMounted, setIsMounted] = useState(true);
   const [message, setMessage] = useState('');
+  const [isForDelivery, setIsForDelivery] = useState(false);
 
   const handleOnChange = (e) => {
     setMessage(e.target.value);
@@ -43,6 +44,7 @@ const useCheckout = () => {
 
       const data = await OrderRepository.create({
         cliente_id: id,
+        delivery: isForDelivery,
         carrito_id: carritoId,
         tipo: 'web',
         detalles: details,
@@ -66,7 +68,13 @@ const useCheckout = () => {
     []
   );
 
-  return { handleOnChange, handleCreateOrder, isLoading };
+  return {
+    handleOnChange,
+    handleCreateOrder,
+    isLoading,
+    isForDelivery,
+    setIsForDelivery,
+  };
 };
 
 export default useCheckout;

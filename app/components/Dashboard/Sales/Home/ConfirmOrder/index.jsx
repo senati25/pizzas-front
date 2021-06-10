@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import useCheckoutDashboard from '../../../../../hooks/useCheckoutDashboard';
 import SpinnerDashboard from '../../../../shared/SpinnerDashboard';
 import { useOrderState } from '../shared/OrderContext';
@@ -10,6 +10,8 @@ const ConfirmOrder = ({ className, title }) => {
   const {
     state: { formValues, shoppingCart },
   } = useOrderState();
+
+  const [isForDelivery, setIsForDelivery] = useState(false);
 
   const { handleCreateOrder, isLoading } = useCheckoutDashboard();
 
@@ -38,11 +40,25 @@ const ConfirmOrder = ({ className, title }) => {
             </div>
           </div>
 
+          <div>
+            <input
+              type="checkbox"
+              name="delivery"
+              id=""
+              onChange={(event) => {
+                setIsForDelivery(event.target.checked);
+              }}
+            />
+            {/* eslint-disable-next-line max-len */}
+            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+            <label htmlFor="delivery">Delivery</label>
+          </div>
+
           <button
             className={styles.form__button}
             type="button"
             onClick={(e) => {
-              handleCreateOrder(e, formValues, shoppingCart);
+              handleCreateOrder(e, formValues, isForDelivery, shoppingCart);
             }}
           >
             Confirmar

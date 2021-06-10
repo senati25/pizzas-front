@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 
 const ShoppingCartForm = ({ totalCost }) => {
   const { shoppingCartProducts } = useShoppingCartContext();
-  const { handleCreateOrder, handleOnChange } = useCheckout();
+  const { handleCreateOrder, handleOnChange, setIsForDelivery } = useCheckout();
 
   return (
     <form className={styles.shopingCart__form} onSubmit={handleCreateOrder}>
@@ -17,6 +17,7 @@ const ShoppingCartForm = ({ totalCost }) => {
         maxLength="250"
       ></textarea>
       <p className={styles.form__paragraph}>Total S/.{totalCost}</p>
+
       <button
         className={styles.form__button}
         type="submit"
@@ -24,6 +25,20 @@ const ShoppingCartForm = ({ totalCost }) => {
       >
         Completar orden
       </button>
+
+      <div>
+        <input
+          type="checkbox"
+          name="delivery"
+          id=""
+          onChange={(event) => {
+            setIsForDelivery(event.target.checked);
+          }}
+        />
+        {/* eslint-disable-next-line max-len */}
+        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+        <label htmlFor="delivery">Delivery</label>
+      </div>
     </form>
   );
 };

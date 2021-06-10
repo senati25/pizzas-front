@@ -88,6 +88,7 @@ const OrderDetailsContent = ({
 
 OrderDetailsContent.defaultProps = {
   nextStatus: null,
+  handleUpdateOrderStatus: null,
 };
 
 OrderDetailsContent.propTypes = {
@@ -111,7 +112,7 @@ OrderDetailsContent.propTypes = {
       pedido_id: PropTypes.number.isRequired,
     }),
   }).isRequired,
-  handleUpdateOrderStatus: PropTypes.func.isRequired,
+  handleUpdateOrderStatus: PropTypes.func,
   nextStatus: PropTypes.number,
   orderStatus: PropTypes.oneOfType([PropTypes.array.isRequired]).isRequired,
 };
