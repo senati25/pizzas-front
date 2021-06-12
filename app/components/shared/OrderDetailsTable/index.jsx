@@ -36,6 +36,18 @@ const OrderDetailsTable = ({ order }) => (
       ))}
     <span className={styles.grid__footer}></span>
     <span className={styles.grid__footer}></span>
+    <span className={styles.grid__footer}>Subtotal</span>
+    <span className={`${styles.grid__footer} ${styles.total}`}>
+      S/.{parseFloat(order.subtotal).toFixed(2)}
+    </span>
+    <span className={styles.grid__footer}></span>
+    <span className={styles.grid__footer}></span>
+    <span className={styles.grid__footer}>IGV</span>
+    <span className={`${styles.grid__footer} ${styles.total}`}>
+      S/.{parseFloat(order.igv).toFixed(2)}
+    </span>
+    <span className={styles.grid__footer}></span>
+    <span className={styles.grid__footer}></span>
     <span className={styles.grid__footer}>Total</span>
     <span className={`${styles.grid__footer} ${styles.total}`}>
       S/.{parseFloat(order.total).toFixed(2)}
@@ -52,6 +64,8 @@ OrderDetailsTable.propTypes = {
     estado_pedido_id: PropTypes.number.isRequired,
     detalles: PropTypes.oneOfType([PropTypes.array.isRequired]).isRequired,
     total: PropTypes.number.isRequired,
+    subtotal: PropTypes.number.isRequired,
+    igv: PropTypes.number.isRequired,
   }).isRequired,
 };
 export default OrderDetailsTable;
